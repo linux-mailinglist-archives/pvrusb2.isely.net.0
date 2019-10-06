@@ -2,21 +2,53 @@ Return-Path: <pvrusb2-bounces@isely.net>
 X-Original-To: lists+pvrusb2@lfdr.de
 Delivered-To: lists+pvrusb2@lfdr.de
 Received: from cnc.isely.net (cnc.isely.net [75.149.91.89])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64D67BAB81
-	for <lists+pvrusb2@lfdr.de>; Sun, 22 Sep 2019 22:04:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A17ECD22C
+	for <lists+pvrusb2@lfdr.de>; Sun,  6 Oct 2019 15:53:27 +0200 (CEST)
 Received: from cnc.isely.net (cnc.isely.net [::ffff:192.168.23.2])
   (IDENT: list)
-  by cnc.isely.net with ESMTP; Sun, 22 Sep 2019 15:04:51 -0500
-  id 000000000014272F.000000005D87D3E3.00007952
-Received: from ts3-dock2.isely.net (ts3-dock2.isely.net [::ffff:192.168.23.14])
- (AUTH: PLAIN isely, TLS: TLSv1/SSLv3,256bits,DHE-RSA-AES256-GCM-SHA384)
- by cnc.isely.net with ESMTPSA; Sun, 22 Sep 2019 15:04:48 -0500
- id 000000000014271C.000000005D87D3E0.00007947
-Date: Sun, 22 Sep 2019 15:04:48 -0500 (CDT)
-From: Mike Isely <isely@isely.net>
+  by cnc.isely.net with ESMTP; Sun, 06 Oct 2019 08:53:19 -0500
+  id 00000000001426C6.000000005D99F1CF.00005312
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com
+ [::ffff:209.85.160.170]) (TLS: TLSv1/SSLv3,128bits,AES128-GCM-SHA256)
+ by cnc.isely.net with ESMTPS; Sun, 06 Oct 2019 08:53:16 -0500
+ id 0000000000142089.000000005D99F1CC.00005300
+Received: by mail-qt1-f170.google.com with SMTP id c4so2834936qtn.10
+ for <pvrusb2@isely.net>; Sun, 06 Oct 2019 06:53:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:subject:from:to:in-reply-to:references:date:mime-version
+ :user-agent; bh=l5uhJtuda5tdwQgq4zEFtwlCNWNMaWTKklmrgETokkE=;
+ b=RER0vNn+U3sF9JakZQ7rjfBxFIsmTJm2r6k1Toe/whY5i9FnZYXuBsJ0wX9dwK54iy
+ mRxIP5eZm4ziBPnvXZ1USPuDb7JTSP+4EZ+18BJYHIQZWrhUpx/rF4WjkeOpKf7Vs/Ok
+ 1Cm/+ri56RfUQkJqxvW+SrlL3Z8N2CcDu8ICeSYnImjIx2d7wT7aPULaWkFhBRne6B3P
+ oaOyASJyAj+5ubRleV/m0Vv+H8wGnBoLS0mcSqPLZVYrp1ExQeSC27qyAaRed9Atk8pN
+ i/mK+QB+sAl4k5NW5yStuprPo1X3vBslFTd6l9fS8kXPWoPiq4bu9VyxWhFrmooKahGy
+ M4Qg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:subject:from:to:in-reply-to
+ :references:date:mime-version:user-agent;
+ bh=l5uhJtuda5tdwQgq4zEFtwlCNWNMaWTKklmrgETokkE=;
+ b=AzM9znmFVtfDQvgPjJKbJcU4Bqd3mhj/oD6hRldnMUHacb159LDyyfTDqSJSsaUBbl
+ ZMJURkh18l59VzfbMM0aW+KZhbH4ZfevOFrlwmsvD7SfOfvjkGkliyXZrnKOY5L9J6qk
+ cRoIflf4SYIB/6hzvdZxWMCDpSmwGRXv93lHUB8kMytVshlhYzFlW93Yo8/VJOpusQ8W
+ lxZ+PUwVxYp6PRcrGtu3sIc8BPWHwcvluN0cny16HhfNbZ+8t0ozBKXwHAw15LTsgn1/
+ zZ+dieXsPL8MleWeaLL9cKD5qXoza42fBWLaZxjYjWc5ijk13s7B5dmJZiFv9Q4zdSL5
+ bePA==
+X-Gm-Message-State: APjAAAUFNdJxDPoEknEm2+fbkQc2gsqh7vpBssFMBvameMtX0FllNRja
+ iuQCb2bmA2k6yPshReo4Q5/R0Sb3p3w=
+X-Google-Smtp-Source: APXvYqzxoPBmvuMD5Vf0GrAUutxFsLZvKYc9WkTfdBMe5ZbcgN0cwvPabkxXwpXtnXSBE2t8KFl/Yw==
+X-Received: by 2002:a0c:ea27:: with SMTP id t7mr23245706qvp.103.1570369962257; 
+ Sun, 06 Oct 2019 06:52:42 -0700 (PDT)
+Old-Return-Path: <diego.rivera.cr@gmail.com>
+Received: from diego.rivera.prv (ip130-144-15-186.ct.co.cr. [186.15.144.130])
+ by smtp.googlemail.com with ESMTPSA id
+ a19sm7942309qtc.58.2019.10.06.06.52.40 for <pvrusb2@isely.net>
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 06 Oct 2019 06:52:41 -0700 (PDT)
+Message-ID: <78e7483a9f85e15c43b2f1b2c7f88d39566a70d7.camel@gmail.com>
+From: Diego Rivera <diego.rivera.cr@gmail.com>
 To: Communications nexus for pvrusb2 driver <pvrusb2@isely.net>
-In-Reply-To: <CAA--8UYqen9v3NWMhmc031_4j+GFbOoAM1YgtzxvcZNG7FVSEw@mail.gmail.com>
-Message-ID: <alpine.DEB.2.21.1909221504420.31377@sheridan.isely.net>
+In-Reply-To: <alpine.DEB.2.21.1909221504420.31377@sheridan.isely.net>
 References: <48398a0f6b57cf9bef89554ec870d7e2f7430517.camel@gmail.com>
  <CAA--8UZ4oiRz42K3B3B4AZr9rQU8nmspBURrj2r7UGgj5o4W-g@mail.gmail.com>
  <alpine.DEB.2.20.1903161807490.24442@lochley.isely.net>
@@ -32,8 +64,10 @@ References: <48398a0f6b57cf9bef89554ec870d7e2f7430517.camel@gmail.com>
  <CAA--8UYWcps5o_jbe3z-Y3kRdeuGmPNwEMMTkQTNV-WZ00Dtaw@mail.gmail.com>
  <alpine.DEB.2.21.1909221452590.31377@sheridan.isely.net>
  <CAA--8UYqen9v3NWMhmc031_4j+GFbOoAM1YgtzxvcZNG7FVSEw@mail.gmail.com>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
-MIME-Version: 1.0
+ <alpine.DEB.2.21.1909221504420.31377@sheridan.isely.net>
+Date: Sun, 06 Oct 2019 07:52:41 -0600
+Mime-Version: 1.0
+User-Agent: Evolution 3.32.1-2
 X-Content-Filtered-By: Mailman/MimeDel 2.1.18
 Subject: Re: [pvrusb2] Ability to fully reset a PVRUSB2 Device
 X-BeenThere: pvrusb2@isely.net
@@ -48,222 +82,346 @@ List-Help: <mailto:pvrusb2-request@isely.net?subject=help>
 List-Subscribe: <http://www.isely.net/cgi-bin/mailman/listinfo/pvrusb2>,
  <mailto:pvrusb2-request@isely.net?subject=subscribe>
 Reply-To: Communications nexus for pvrusb2 driver <pvrusb2@isely.net>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============3451241365692983601=="
 Errors-To: pvrusb2-bounces@isely.net
 Sender: "pvrusb2" <pvrusb2-bounces@isely.net>
 
-ClRoYW5rIHlvdSEKCiAgLU1pa2UKCk9uIFN1biwgMjIgU2VwIDIwMTksIERpZWdvIFJpdmVyYSB3
-cm90ZToKCj4gQXMgcmVxdWVzdGVkCj4gLS0KPiAqRGllZ28gUml2ZXJhKgo+IAo+IAo+IE9uIFN1
-biwgU2VwIDIyLCAyMDE5IGF0IDE6NTMgUE0gTWlrZSBJc2VseSA8aXNlbHlAaXNlbHkubmV0PiB3
-cm90ZToKPiAKPiA+Cj4gPiBVZ2guICBUaGlzIGlzIGxpbmUtd3JhcHBlZCB0byBoZWxsLWFuZC1i
-YWNrLiAgQ2FuIHlvdSByZXNlbmQgdGhhdCBhcyBhCj4gPiBmaWxlIGF0dGFjaG1lbnQ/Cj4gPgo+
-ID4gICAtTWlrZQo+ID4KPiA+IE9uIFN1biwgMjIgU2VwIDIwMTksIERpZWdvIFJpdmVyYSB3cm90
-ZToKPiA+Cj4gPiA+IFRoaXMgaXMgd2hhdCBrZXJuLmxvZyBzaG93cyB3aGVuIEkgaG90LXVucGx1
-Zy9ob3QtcG93ZXJvZmYgb25lIG9mIHRoZQo+ID4gPiBkZXZpY2VzOgo+ID4gPgo+ID4gPiBTZXAg
-MjIgMTM6MzY6MDUgdHZzZXJ2ZXIga2VybmVsOiBbICAxNTYuMjY1ODI1XSB1c2IgMS00OiBVU0Ig
-ZGlzY29ubmVjdCwKPiA+ID4gZGV2aWNlIG51bWJlciA4Cj4gPiA+IFNlcCAyMiAxMzozNjowNSB0
-dnNlcnZlciBrZXJuZWw6IFsgIDE1Ni4yNjYwNTldIHB2cnVzYjI6IERldmljZSBiZWluZwo+ID4g
-PiByZW5kZXJlZCBpbm9wZXJhYmxlCj4gPiA+IFNlcCAyMiAxMzozNjowNSB0dnNlcnZlciBrZXJu
-ZWw6IFsgIDE1Ni4yNjYxNjJdIEJVRzogdW5hYmxlIHRvIGhhbmRsZQo+ID4gPiBrZXJuZWwgTlVM
-TCBwb2ludGVyIGRlcmVmZXJlbmNlIGF0IDAwMDAwMDAwMDAwMDA1MjAKPiA+ID4gU2VwIDIyIDEz
-OjM2OjA1IHR2c2VydmVyIGtlcm5lbDogWyAgMTU2LjI2NjI5OV0gI1BGIGVycm9yOiBbbm9ybWFs
-IGtlcm5lbAo+ID4gPiByZWFkIGZhdWx0XQo+ID4gPiBTZXAgMjIgMTM6MzY6MDUgdHZzZXJ2ZXIg
-a2VybmVsOiBbICAxNTYuMjY2Mzc2XSBQR0QgMCBQNEQgMAo+ID4gPiBTZXAgMjIgMTM6MzY6MDUg
-dHZzZXJ2ZXIga2VybmVsOiBbICAxNTYuMjY2NDI0XSBPb3BzOiAwMDAwIFsjMV0gU01QIFBUSQo+
-ID4gPiBTZXAgMjIgMTM6MzY6MDUgdHZzZXJ2ZXIga2VybmVsOiBbICAxNTYuMjY2NDg1XSBDUFU6
-IDAgUElEOiAyMTkwIENvbW06Cj4gPiA+IHB2cnVzYjItY29udGV4dCBOb3QgdGFpbnRlZCA1LjAu
-MC0yOS1nZW5lcmljICMzMS1VYnVudHUKPiA+ID4gU2VwIDIyIDEzOjM2OjA1IHR2c2VydmVyIGtl
-cm5lbDogWyAgMTU2LjI2NjYxMF0gSGFyZHdhcmUgbmFtZTogVG8gQmUKPiA+IEZpbGxlZAo+ID4g
-PiBCeSBPLkUuTS4gVG8gQmUgRmlsbGVkIEJ5IE8uRS5NLi9RMTkwMC1JVFgsIEJJT1MgUDEuNzAg
-MDMvMzEvMjAxNgo+ID4gPiBTZXAgMjIgMTM6MzY6MDUgdHZzZXJ2ZXIga2VybmVsOiBbICAxNTYu
-MjY2NzcwXSBSSVA6Cj4gPiA+IDAwMTA6cHZyMl92NGwyX2ludGVybmFsX2NoZWNrKzB4NDcvMHg3
-MCBbcHZydXNiMl0KPiA+ID4gU2VwIDIyIDEzOjM2OjA1IHR2c2VydmVyIGtlcm5lbDogWyAgMTU2
-LjI2Njg2N10gQ29kZTogMmYgZTQgZmYgZmYgNDggOGIKPiA+IDdiCj4gPiA+IDQwIGU4IDI2IGU0
-IGZmIGZmIDQ4IDhiIDQzIDM4IDQ4IDhiIDkwIDIwIDA1IDAwIDAwIDQ4IDA1IDIwIDA1IDAwIDAw
-IDQ4Cj4gPiAzOQo+ID4gPiBkMCA3NCAwMyA1YiA1ZCBjMyA0OCA4YiA0MyA0MCA8NDg+IDhiIDkw
-IDIwIDA1IDAwIDAwIDQ4IDA1IDIwIDA1IDAwIDAwIDQ4Cj4gPiA+IDM5IGQwIDc1IGU3IDQ4IDg5
-IGRmIGU4Cj4gPiA+IFNlcCAyMiAxMzozNjowNSB0dnNlcnZlciBrZXJuZWw6IFsgIDE1Ni4yNjcx
-NDBdIFJTUDoKPiA+IDAwMTg6ZmZmZmI0ZjNjMjYyZmVhMAo+ID4gPiBFRkxBR1M6IDAwMDEwMjQ2
-Cj4gPiA+IFNlcCAyMiAxMzozNjowNSB0dnNlcnZlciBrZXJuZWw6IFsgIDE1Ni4yNjcyMjNdIFJB
-WDogMDAwMDAwMDAwMDAwMDAwMAo+ID4gUkJYOgo+ID4gPiBmZmZmOTExMmVmYWQ4YmEwIFJDWDog
-MDAwMDAwMDAwMDAwMDAwMAo+ID4gPiBTZXAgMjIgMTM6MzY6MDUgdHZzZXJ2ZXIga2VybmVsOiBb
-ICAxNTYuMjY3MzMxXSBSRFg6IGZmZmY5MTEyZWU4MGNkMjAKPiA+IFJTSToKPiA+ID4gMDAwMDAw
-MDAwMDAwMDAwMCBSREk6IDAwMDAwMDAwMDAwMDAwMDAKPiA+ID4gU2VwIDIyIDEzOjM2OjA1IHR2
-c2VydmVyIGtlcm5lbDogWyAgMTU2LjI2NzQzOV0gUkJQOiBmZmZmYjRmM2MyNjJmZWE4Cj4gPiBS
-MDg6Cj4gPiA+IDAwMDAwMDAwMDAwMDAwMDAgUjA5OiBmZmZmOTExMmVkNjBjNjE4Cj4gPiA+IFNl
-cCAyMiAxMzozNjowNSB0dnNlcnZlciBrZXJuZWw6IFsgIDE1Ni4yNjc1NDZdIFIxMDogMDAwMDAw
-MDAwMDAwZjAwMAo+ID4gUjExOgo+ID4gPiAwMDAwMDAyNDYyMDE2YmVkIFIxMjogZmZmZjkxMTJl
-ZjQ3NDAwMAo+ID4gPiBTZXAgMjIgMTM6MzY6MDUgdHZzZXJ2ZXIga2VybmVsOiBbICAxNTYuMjY3
-NjUzXSBSMTM6IGZmZmZmZmZmYzEwOGJhOTAKPiA+IFIxNDoKPiA+ID4gMDAwMDAwMDAwMDAwMDAw
-MCBSMTU6IGZmZmY5MTEyZjM2ZWQ3MDAKPiA+ID4gU2VwIDIyIDEzOjM2OjA1IHR2c2VydmVyIGtl
-cm5lbDogWyAgMTU2LjI2Nzc2MV0gRlM6Cj4gPiAwMDAwMDAwMDAwMDAwMDAwKDAwMDApCj4gPiA+
-IEdTOmZmZmY5MTEyZjgyMDAwMDAoMDAwMCkga25sR1M6MDAwMDAwMDAwMDAwMDAwMAo+ID4gPiBT
-ZXAgMjIgMTM6MzY6MDUgdHZzZXJ2ZXIga2VybmVsOiBbICAxNTYuMjY3ODgwXSBDUzogIDAwMTAg
-RFM6IDAwMDAgRVM6Cj4gPiAwMDAwCj4gPiA+IENSMDogMDAwMDAwMDA4MDA1MDAzMwo+ID4gPiBT
-ZXAgMjIgMTM6MzY6MDUgdHZzZXJ2ZXIga2VybmVsOiBbICAxNTYuMjY3OTY4XSBDUjI6IDAwMDAw
-MDAwMDAwMDA1MjAKPiA+IENSMzoKPiA+ID4gMDAwMDAwMDE0ODIwZTAwMCBDUjQ6IDAwMDAwMDAw
-MDAxMDA2ZjAKPiA+ID4gU2VwIDIyIDEzOjM2OjA1IHR2c2VydmVyIGtlcm5lbDogWyAgMTU2LjI2
-ODA3NF0gQ2FsbCBUcmFjZToKPiA+ID4gU2VwIDIyIDEzOjM2OjA1IHR2c2VydmVyIGtlcm5lbDog
-WyAgMTU2LjI2ODEzNl0KPiA+ID4gIHB2cjJfY29udGV4dF90aHJlYWRfZnVuYysweGM0LzB4MmIw
-IFtwdnJ1c2IyXQo+ID4gPiBTZXAgMjIgMTM6MzY6MDUgdHZzZXJ2ZXIga2VybmVsOiBbICAxNTYu
-MjY4MjI3XSAgPyB3YWl0X3dva2VuKzB4ODAvMHg4MAo+ID4gPiBTZXAgMjIgMTM6MzY6MDUgdHZz
-ZXJ2ZXIga2VybmVsOiBbICAxNTYuMjY4MjkwXSAga3RocmVhZCsweDEyMC8weDE0MAo+ID4gPiBT
-ZXAgMjIgMTM6MzY6MDUgdHZzZXJ2ZXIga2VybmVsOiBbICAxNTYuMjY4MzYyXSAgPwo+ID4gPiBw
-dnIyX2NvbnRleHRfZGVzdHJveSsweGMwLzB4YzAgW3B2cnVzYjJdCj4gPiA+IFNlcCAyMiAxMzoz
-NjowNSB0dnNlcnZlciBrZXJuZWw6IFsgIDE1Ni4yNjg0NDldICA/Cj4gPiA+IF9fa3RocmVhZF9w
-YXJrbWUrMHg3MC8weDcwCj4gPiA+IFNlcCAyMiAxMzozNjowNSB0dnNlcnZlciBrZXJuZWw6IFsg
-IDE1Ni4yNjg1MThdICByZXRfZnJvbV9mb3JrKzB4MzUvMHg0MAo+ID4gPiBTZXAgMjIgMTM6MzY6
-MDUgdHZzZXJ2ZXIga2VybmVsOiBbICAxNTYuMjY4NTc4XSBNb2R1bGVzIGxpbmtlZCBpbjoKPiA+
-IHM1aDE0MTEKPiA+ID4gdGRhMTgyNzEgdGRhODI5MCB0dW5lciBjeDI1ODQwIHB2cnVzYjIgdHZl
-ZXByb20gY3gyMzQxeCBkdmJfY29yZQo+ID4gPiB2NGwyX2NvbW1vbiB2aWRlb2RldiBtZWRpYSB2
-ZXRoIHh0X25hdCBpcHRfTUFTUVVFUkFERSB4ZnJtX3VzZXIgeGZybV9hbGdvCj4gPiA+IGJyX25l
-dGZpbHRlciBicmlkZ2Ugc3RwIGxsYyB4dF9yZWNlbnQgaXB0X1JFSkVDVCBuZl9yZWplY3RfaXB2
-NCB4dF9saW1pdAo+ID4gPiB4dF9jb21tZW50IHh0X211bHRpcG9ydCB4dF9jb25udHJhY2sgeHRf
-aGFzaGxpbWl0IHh0X2FkZHJ0eXBlIHh0X21hcmsKPiA+ID4gaXB0YWJsZV9tYW5nbGUgeHRfdGNw
-dWRwIHh0X0NUIGlwdGFibGVfcmF3IG5mbmV0bGlua19sb2cgeHRfTkZMT0cKPiA+ID4gbmZfbG9n
-X2lwdjQgbmZfbG9nX2NvbW1vbiB4dF9MT0cgbmZfY29ubnRyYWNrX3NhbmUgbmZfY29ubnRyYWNr
-X25ldGxpbmsKPiA+ID4gbmZuZXRsaW5rIG5mX25hdF90ZnRwIG5mX25hdF9zbm1wX2Jhc2ljIG5m
-X2Nvbm50cmFja19zbm1wIG5mX25hdF9zaXAKPiA+ID4gbmZfbmF0X3BwdHAgbmZfbmF0X2lyYyBu
-Zl9uYXRfaDMyMyBuZl9uYXRfZnRwIG5mX25hdF9hbWFuZGEKPiA+ID4gbmZfY29ubnRyYWNrX3Rm
-dHAgbmZfY29ubnRyYWNrX3NpcCBuZl9jb25udHJhY2tfcHB0cAo+ID4gbmZfY29ubnRyYWNrX3By
-b3RvX2dyZQo+ID4gPiBuZl9jb25udHJhY2tfbmV0Ymlvc19ucyBuZl9jb25udHJhY2tfYnJvYWRj
-YXN0IG5mX2Nvbm50cmFja19pcmMKPiA+ID4gbmZfY29ubnRyYWNrX2gzMjMgbmZfY29ubnRyYWNr
-X2Z0cCB0c19rbXAgbmZfY29ubnRyYWNrX2FtYW5kYSBpcHRhYmxlX25hdAo+ID4gPiBuZl9uYXRf
-aXB2NCBuZl9uYXQgbmZfY29ubnRyYWNrIG5mX2RlZnJhZ19pcHY2IG5mX2RlZnJhZ19pcHY0IGFy
-YzQKPiA+ID4gaXB0YWJsZV9maWx0ZXIgYnBmaWx0ZXIgbWQ0IGNtYWMgbmxzX3V0ZjggY2lmcyBj
-Y20gZnNjYWNoZSBhdWZzIG92ZXJsYXkKPiA+ID4gbmxzX2lzbzg4NTlfMSB4ZnMgbGliY3JjMzJj
-IHNuZF9oZG1pX2xwZV9hdWRpbyBzbmRfcGNtCj4gPiA+IFNlcCAyMiAxMzozNjowNSB0dnNlcnZl
-ciBrZXJuZWw6IFsgIDE1Ni4yNjg2NTVdICBzbmRfc2VxX21pZGkKPiA+ID4gc25kX3NlcV9taWRp
-X2V2ZW50IHNuZF9yYXdtaWRpIHNuZF9zZXEgc25kX3NlcV9kZXZpY2Ugc25kX3RpbWVyIHNuZAo+
-ID4gPiBzb3VuZGNvcmUgaW50ZWxfcmFwbCBpbnRlbF9zb2NfZHRzX3RoZXJtYWwgaW50ZWxfc29j
-X2R0c19pb3NmCj4gPiA+IGludGVsX3Bvd2VyY2xhbXAgY29yZXRlbXAga3ZtX2ludGVsIHB1bml0
-X2F0b21fZGVidWcgaTkxNSBqb3lkZXYga3ZtZ3QKPiA+ID4gY3JjdDEwZGlmX3BjbG11bCBpbnB1
-dF9sZWRzIHZmaW9fbWRldiBtZGV2IGNyYzMyX3BjbG11bCB2ZmlvX2lvbW11X3R5cGUxCj4gPiA+
-IGdoYXNoX2NsbXVsbmlfaW50ZWwgY3J5cHRkIHZmaW8gaW50ZWxfY3N0YXRlIGt2bSBpcnFieXBh
-c3MgZHJtX2ttc19oZWxwZXIKPiA+ID4gZHJtIGhjaV91YXJ0IGkyY19hbGdvX2JpdCBmYl9zeXNf
-Zm9wcyBidHFjYSBtZWlfdHhlIHN5c2NvcHlhcmVhIGJ0cnRsCj4gPiA+IHN5c2ZpbGxyZWN0IG1l
-aSBzeXNpbWdibHQgYnRiY20gYnRpbnRlbCBibHVldG9vdGggZWNkaF9nZW5lcmljCj4gPiByZmtp
-bGxfZ3Bpbwo+ID4gPiBtYWNfaGlkIHNjaF9mcV9jb2RlbCBpcF90YWJsZXMgeF90YWJsZXMgYXV0
-b2ZzNCBoaWRfbG9naXRlY2hfaGlkcHAKPiA+ID4gaGlkX2xvZ2l0ZWNoX2RqIGhpZF9nZW5lcmlj
-IHVzYmhpZCByODE2OSBhaGNpIGxwY19pY2ggaTJjX2k4MDEgbGliYWhjaQo+ID4gPiByZWFsdGVr
-IGkyY19oaWQgdmlkZW8gaGlkCj4gPiA+IFNlcCAyMiAxMzozNjowNSB0dnNlcnZlciBrZXJuZWw6
-IFsgIDE1Ni4yNzA4MzFdIENSMjogMDAwMDAwMDAwMDAwMDUyMAo+ID4gPiBTZXAgMjIgMTM6MzY6
-MDUgdHZzZXJ2ZXIga2VybmVsOiBbICAxNTYuMjcwODkxXSAtLS1bIGVuZCB0cmFjZQo+ID4gPiA1
-ZDEzMzc4MTc0ODQ5ZWY5IF0tLS0KPiA+ID4gU2VwIDIyIDEzOjM2OjA1IHR2c2VydmVyIGtlcm5l
-bDogWyAgMTU2LjI3MDk4OF0gUklQOgo+ID4gPiAwMDEwOnB2cjJfdjRsMl9pbnRlcm5hbF9jaGVj
-aysweDQ3LzB4NzAgW3B2cnVzYjJdCj4gPiA+IFNlcCAyMiAxMzozNjowNSB0dnNlcnZlciBrZXJu
-ZWw6IFsgIDE1Ni4yNzEwODldIENvZGU6IDJmIGU0IGZmIGZmIDQ4IDhiCj4gPiA3Ygo+ID4gPiA0
-MCBlOCAyNiBlNCBmZiBmZiA0OCA4YiA0MyAzOCA0OCA4YiA5MCAyMCAwNSAwMCAwMCA0OCAwNSAy
-MCAwNSAwMCAwMCA0OAo+ID4gMzkKPiA+ID4gZDAgNzQgMDMgNWIgNWQgYzMgNDggOGIgNDMgNDAg
-PDQ4PiA4YiA5MCAyMCAwNSAwMCAwMCA0OCAwNSAyMCAwNSAwMCAwMCA0OAo+ID4gPiAzOSBkMCA3
-NSBlNyA0OCA4OSBkZiBlOAo+ID4gPiBTZXAgMjIgMTM6MzY6MDUgdHZzZXJ2ZXIga2VybmVsOiBb
-ICAxNTYuMjcxMzYzXSBSU1A6Cj4gPiAwMDE4OmZmZmZiNGYzYzI2MmZlYTAKPiA+ID4gRUZMQUdT
-OiAwMDAxMDI0Ngo+ID4gPiBTZXAgMjIgMTM6MzY6MDUgdHZzZXJ2ZXIga2VybmVsOiBbICAxNTYu
-MjcxNDQ3XSBSQVg6IDAwMDAwMDAwMDAwMDAwMDAKPiA+IFJCWDoKPiA+ID4gZmZmZjkxMTJlZmFk
-OGJhMCBSQ1g6IDAwMDAwMDAwMDAwMDAwMDAKPiA+ID4gU2VwIDIyIDEzOjM2OjA1IHR2c2VydmVy
-IGtlcm5lbDogWyAgMTU2LjI3MTU1Nl0gUkRYOiBmZmZmOTExMmVlODBjZDIwCj4gPiBSU0k6Cj4g
-PiA+IDAwMDAwMDAwMDAwMDAwMDAgUkRJOiAwMDAwMDAwMDAwMDAwMDAwCj4gPiA+IFNlcCAyMiAx
-MzozNjowNSB0dnNlcnZlciBrZXJuZWw6IFsgIDE1Ni4yNzE2NjVdIFJCUDogZmZmZmI0ZjNjMjYy
-ZmVhOAo+ID4gUjA4Ogo+ID4gPiAwMDAwMDAwMDAwMDAwMDAwIFIwOTogZmZmZjkxMTJlZDYwYzYx
-OAo+ID4gPiBTZXAgMjIgMTM6MzY6MDUgdHZzZXJ2ZXIga2VybmVsOiBbICAxNTYuMjcxNzczXSBS
-MTA6IDAwMDAwMDAwMDAwMGYwMDAKPiA+IFIxMToKPiA+ID4gMDAwMDAwMjQ2MjAxNmJlZCBSMTI6
-IGZmZmY5MTEyZWY0NzQwMDAKPiA+ID4gU2VwIDIyIDEzOjM2OjA1IHR2c2VydmVyIGtlcm5lbDog
-WyAgMTU2LjI3MTg4Ml0gUjEzOiBmZmZmZmZmZmMxMDhiYTkwCj4gPiBSMTQ6Cj4gPiA+IDAwMDAw
-MDAwMDAwMDAwMDAgUjE1OiBmZmZmOTExMmYzNmVkNzAwCj4gPiA+IFNlcCAyMiAxMzozNjowNSB0
-dnNlcnZlciBrZXJuZWw6IFsgIDE1Ni4yNzE5OTBdIEZTOgo+ID4gMDAwMDAwMDAwMDAwMDAwMCgw
-MDAwKQo+ID4gPiBHUzpmZmZmOTExMmY4MjAwMDAwKDAwMDApIGtubEdTOjAwMDAwMDAwMDAwMDAw
-MDAKPiA+ID4gU2VwIDIyIDEzOjM2OjA1IHR2c2VydmVyIGtlcm5lbDogWyAgMTU2LjI3MjExMV0g
-Q1M6ICAwMDEwIERTOiAwMDAwIEVTOgo+ID4gMDAwMAo+ID4gPiBDUjA6IDAwMDAwMDAwODAwNTAw
-MzMKPiA+ID4gU2VwIDIyIDEzOjM2OjA1IHR2c2VydmVyIGtlcm5lbDogWyAgMTU2LjI3MjIwMV0g
-Q1IyOiAwMDAwMDAwMDAwMDAwNTIwCj4gPiBDUjM6Cj4gPiA+IDAwMDAwMDAxNDgyMGUwMDAgQ1I0
-OiAwMDAwMDAwMDAwMTAwNmYwCj4gPiA+IFNlcCAyMiAxMzozNjoxMCB0dnNlcnZlciBrZXJuZWw6
-IFsgIDE2MS4wODQyNzZdIHVzYiAxLTQ6IG5ldyBoaWdoLXNwZWVkCj4gPiBVU0IKPiA+ID4gZGV2
-aWNlIG51bWJlciA5IHVzaW5nIHhoY2lfaGNkCj4gPiA+IFNlcCAyMiAxMzozNjoxMCB0dnNlcnZl
-ciBrZXJuZWw6IFsgIDE2MS4yMzYyMTFdIHVzYiAxLTQ6IE5ldyBVU0IgZGV2aWNlCj4gPiA+IGZv
-dW5kLCBpZFZlbmRvcj0yMDQwLCBpZFByb2R1Y3Q9NzUwMSwgYmNkRGV2aWNlPSA4LjAwCj4gPiA+
-IFNlcCAyMiAxMzozNjoxMCB0dnNlcnZlciBrZXJuZWw6IFsgIDE2MS4yMzYzNDldIHVzYiAxLTQ6
-IE5ldyBVU0IgZGV2aWNlCj4gPiA+IHN0cmluZ3M6IE1mcj0xLCBQcm9kdWN0PTIsIFNlcmlhbE51
-bWJlcj0zCj4gPiA+IFNlcCAyMiAxMzozNjoxMCB0dnNlcnZlciBrZXJuZWw6IFsgIDE2MS4yMzY0
-NThdIHVzYiAxLTQ6IFByb2R1Y3Q6IFdpblRWCj4gPiA+IFNlcCAyMiAxMzozNjoxMCB0dnNlcnZl
-ciBrZXJuZWw6IFsgIDE2MS4yMzY1MTZdIHVzYiAxLTQ6IE1hbnVmYWN0dXJlcjoKPiA+ID4gSGF1
-cHBhdWdlCj4gPiA+IFNlcCAyMiAxMzozNjoxMCB0dnNlcnZlciBrZXJuZWw6IFsgIDE2MS4yMzY1
-ODRdIHVzYiAxLTQ6IFNlcmlhbE51bWJlcjoKPiA+ID4gNzMwMC0wMC1GMDgwRURDRgo+ID4gPiBT
-ZXAgMjIgMTM6MzY6MTAgdHZzZXJ2ZXIga2VybmVsOiBbICAxNjEuMjM5Mzc0XSBwdnJ1c2IyOiBI
-YXJkd2FyZQo+ID4gPiBkZXNjcmlwdGlvbjogV2luVFYgSFZSLTE5NTAgTW9kZWwgNzUxeHgKPiA+
-ID4KPiA+ID4gQ2hlZXJzIQo+ID4gPiAtLQo+ID4gPiAqRGllZ28gUml2ZXJhKgo+ID4gPgo+ID4g
-Pgo+ID4gPiA8Cj4gPiBodHRwczovL3d3dy5hdmFzdC5jb20vc2lnLWVtYWlsP3V0bV9tZWRpdW09
-ZW1haWwmdXRtX3NvdXJjZT1saW5rJnV0bV9jYW1wYWlnbj1zaWctZW1haWwmdXRtX2NvbnRlbnQ9
-d2VibWFpbCZ1dG1fdGVybT1pY29uCj4gPiA+Cj4gPiA+IFZpcnVzLWZyZWUuCj4gPiA+IHd3dy5h
-dmFzdC5jb20KPiA+ID4gPAo+ID4gaHR0cHM6Ly93d3cuYXZhc3QuY29tL3NpZy1lbWFpbD91dG1f
-bWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9bGluayZ1dG1fY2FtcGFpZ249c2lnLWVtYWlsJnV0bV9j
-b250ZW50PXdlYm1haWwmdXRtX3Rlcm09bGluawo+ID4gPgo+ID4gPiA8I0RBQjRGQUQ4LTJERDct
-NDBCQi1BMUI4LTRFMkFBMUY5RkRGMj4KPiA+ID4KPiA+ID4gT24gU3VuLCBTZXAgMjIsIDIwMTkg
-YXQgMTI6NDIgUE0gTWlrZSBJc2VseSA8aXNlbHlAaXNlbHkubmV0PiB3cm90ZToKPiA+ID4KPiA+
-ID4gPiBPbiBTdW4sIDIyIFNlcCAyMDE5LCBNaWtlIElzZWx5IHdyb3RlOgo+ID4gPiA+Cj4gPiA+
-ID4gPgo+ID4gPiA+ID4gT24gU3VuLCAxNCBBcHIgMjAxOSwgRGllZ28gUml2ZXJhIHdyb3RlOgo+
-ID4gPiA+ID4KPiA+ID4gPiA+ID4gR3VpbmVhIHBpZyAjMSByZWFkeSwgc2lyISDwn5iCCj4gPiA+
-ID4gPiA+Cj4gPiA+ID4gPiA+IC0tCj4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+IERpZWdvIFJpdmVy
-YQo+ID4gPiA+ID4gPgo+ID4gPiA+ID4KPiA+ID4gPiA+IERpZWdvOgo+ID4gPiA+ID4KPiA+ID4g
-PiA+IEdvaW5nIGJhY2sgb3ZlciB0aGlzIHRocmVhZCBhbmQgY29tcGFyaW5nIG15IHJlY2VudCBu
-b3RlcywgdGhlcmUncyBhCj4gPiA+ID4gPiBnb29kIGV4cGVyaW1lbnQgSSdkIGxpa2UgeW91IHRv
-IHRyeTogIEdldCB0aGUgaGFyZHdhcmUgaW50byBhIHN0YXRlCj4gPiA+ID4gPiB3aGVyZSB5b3Ug
-Z2V0IHRoZSAiQXR0ZW1wdGVkIHRvIGV4ZWN1dGUgY29udHJvbCB0cmFuc2ZlciB3aGVuIGRldmlj
-ZQo+ID4gbm90Cj4gPiA+ID4gPiBvayIgaW5maW5pdGUgbG9nIHNwZXcuICBPbmNlIHlvdSd2ZSBj
-b25maXJtZWQgdGhlIHNjZW5hcmlvIGFnYWluLAo+ID4gcmVib290Cj4gPiA+ID4gPiB0aGUgaG9z
-dCBhbmQgdGhlbiByZW5hbWUgdGhlIGlyLWtiZC1pMmMua28gbW9kdWxlIHRvIHNvbWV0aGluZyB3
-aGljaAo+ID4gPiA+ID4gZGlzYWJsZXMgaXQuICBZb3UgY2FuIGZpbmQgdGhpcyBtb2R1bGUgaW4g
-dGhlIGZvbGxvd2luZyBwYXRoOgo+ID4gPiA+ID4KPiA+ID4gPiA+IC9saWIvbW9kdWxlcy9gdW5h
-bWUgLXJgL2tydG5ybC9kcml2ZXJzL21lZGlhL2kyYy8KPiA+ID4gPgo+ID4gPiA+IFR5cG8gY29y
-cmVjdGlvbjoKPiA+ID4gPgo+ID4gPiA+IC9saWIvbW9kdWxlcy9gdW5hbWUgLXJgL2tlcm5lbC9k
-cml2ZXJzL21lZGlhL2kyYy8KPiA+ID4gPgo+ID4gPiA+IChmaW5nZXJzIGluIHdyb25nIHBvc2l0
-aW9uIG9uIGtleWJvYXJkLCBhcHBhcmVudGx5KQo+ID4gPiA+Cj4gPiA+ID4KPiA+ID4gPiA+Cj4g
-PiA+ID4gPiBBIGdvb2QgdGhpbmcgdG8gZG8gd291bGQgYmUgdG8ganVzdCBhZGQgIi1kaXNhYmxl
-ZCIgdG8gdGhlIGVuZCBvZiB0aGUKPiA+ID4gPiA+IGZpbGUgbmFtZS4gIFRoZW4gcnVuICJkZXBt
-b2QgLWEiIHRvIHJlYnVpbGQgdGhlIG1vZHVsZSBkZXBlbmRlbmNpZXMKPiA+ID4gPiA+IChzaG91
-bGQgdGFrZSBhIGZldyBzZWNvbmRzKSBhbmQgbm93IHRoZSBpci1rYmQtaTJjIG1vZHVsZSB3aWxs
-IGJlCj4gPiA+ID4gPiBkaXNhYmxlZC4gIE9uIHRoZSBvZmYtY2hhbmNlIHRoYXQgaXQgaGFzIGFs
-cmVhZHkgYmVlbiBsb2FkZWQsIGFsc28KPiA+IHJ1bgo+ID4gPiA+ID4gIm1vZHByb2JlIC1yIGly
-X2tiZF9pYzIiIChvciBqdXN0IHJlYm9vdCBhZ2FpbikuICBOT1csIHJ1biB0aGF0IHNhbWUKPiA+
-ID4gPiA+IHNjZW5hcmlvIHdoZXJlIHlvdSBnZXQgdGhlIGxvZyBzcGV3IGFzIG1lbnRpb25lZCBh
-Ym92ZS4gIElzIHRoYXQKPiA+IHN0aWxsCj4gPiA+ID4gPiBoYXBwZW5pbmc/ICBBbHNvLCBpZiBp
-dCBpc24ndCBzdGlsbCBoYXBwZW5pbmcsIGRvZXMgIm1vZHByb2JlIC1yCj4gPiA+ID4gPiBwdnJ1
-c2IyIiBzdGlsbCBnZXQgc3R1Y2s/Cj4gPiA+ID4gPgo+ID4gPiA+ID4gVGhlIHJlYXNvbiBJIGFz
-ayBpcyBiZWNhdXNlIHRoYXQncyB3aGF0IEkgYW0gc2VlaW5nIGhlcmUuICBUaGF0Cj4gPiA+ID4g
-PiBpci1rYmQtaTJjIGhlcmUgaXMgdGhlIHNvdXJjZSBvZiB0aGUgZW5kbGVzcyBzdHJlYW0gb2Yg
-ZmFpbGluZyBJMkMKPiA+ID4gPiA+IHJlcXVlc3RzIGludG8gdGhlIHB2cnVzYjIgZHJpdmVyLiAg
-SSB3YW50IHRvIG1ha2Ugc3VyZSB3ZSdyZSBsb29raW5nCj4gPiBhdAo+ID4gPiA+ID4gdGhlIHNh
-bWUgYnVnLiAgSSd2ZSBnb3Qgcm91Z2hseSAzIG1pc2JlaGF2aW9ycyBvbiBteSBwbGF0ZSByaWdo
-dCBub3cuCj4gPiA+ID4gPiBUaGlzIGlzIG9uZSBvZiB0aGVtLgo+ID4gPiA+ID4KPiA+ID4gPiA+
-IFRoZXJlIHdhcyBhbiBlYXJsaWVyIG1lbnRpb24gb2YgYSBrZXJuZWwgcGFuaWMgd2hlbiB0cnlp
-bmcgdG8gcmVtb3ZlCj4gPiB0aGUKPiA+ID4gPiA+IHB2cnVzYjIgZHJpdmVyIGZyb20gdGhlIHN5
-c3RlbS4gIFdoaWxlIEkgYW0gc2VlaW5nIGtlcm5lbCBvb3BzZXMgZnJvbQo+ID4gPiA+ID4gdGhp
-cyAtIGR1ZSB0byBzeXNmcyBkb2luZyBzb21ldGhpbmcgdW5leHBlY3RlZCAtIGl0IGlzIG5vdCBw
-YW5pY2luZy4KPiA+ID4gPiA+IFNvIEkgaGF2ZSBub3QgeWV0IHNlZW4gdGhhdCBzcGVjaWZpYyBw
-cm9ibGVtLiAgSSdkIGxpa2UgdG8ga25vdyB3aGF0Cj4gPiA+ID4gPiBleGFjdCBrZXJuZWwgd2Fz
-IGJlaW5nIHJ1biAoZGlzdHJvIC8gdW5hbWUgLXIgb3V0cHV0IC8gLmNvbmZpZyB3b3VsZAo+ID4g
-PiA+ID4gaGVscCB0b28pLgo+ID4gPiA+ID4KPiA+ID4gPiA+ICAgLU1pa2UKPiA+ID4gPiA+Cj4g
-PiA+ID4gPiAtLQo+ID4gPiA+ID4KPiA+ID4gPiA+IE1pa2UgSXNlbHkKPiA+ID4gPiA+IGlzZWx5
-IEAgaXNlbHkgKGRvdCkgbmV0Cj4gPiA+ID4gPiBQR1A6IDAzIDU0IDQzIDREIDc1IEU1IENDIDky
-IDcxIDE2IDAxIEUyIEI1IEY1IEMxIEU4Cj4gPiA+ID4gPiBfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwo+ID4gPiA+ID4gcHZydXNiMiBtYWlsaW5nIGxpc3QK
-PiA+ID4gPiA+IHB2cnVzYjJAaXNlbHkubmV0Cj4gPiA+ID4gPiBodHRwOi8vd3d3LmlzZWx5Lm5l
-dC9jZ2ktYmluL21haWxtYW4vbGlzdGluZm8vcHZydXNiMgo+ID4gPiA+ID4KPiA+ID4gPgo+ID4g
-PiA+IC0tCj4gPiA+ID4KPiA+ID4gPiBNaWtlIElzZWx5Cj4gPiA+ID4gaXNlbHkgQCBpc2VseSAo
-ZG90KSBuZXQKPiA+ID4gPiBQR1A6IDAzIDU0IDQzIDREIDc1IEU1IENDIDkyIDcxIDE2IDAxIEUy
-IEI1IEY1IEMxIEU4Cj4gPiA+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KPiA+ID4gPiBwdnJ1c2IyIG1haWxpbmcgbGlzdAo+ID4gPiA+IHB2cnVzYjJA
-aXNlbHkubmV0Cj4gPiA+ID4gaHR0cDovL3d3dy5pc2VseS5uZXQvY2dpLWJpbi9tYWlsbWFuL2xp
-c3RpbmZvL3B2cnVzYjIKPiA+ID4gPgo+ID4gPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwo+ID4gPiBwdnJ1c2IyIG1haWxpbmcgbGlzdAo+ID4gPiBwdnJ1
-c2IyQGlzZWx5Lm5ldAo+ID4gPiBodHRwOi8vd3d3LmlzZWx5Lm5ldC9jZ2ktYmluL21haWxtYW4v
-bGlzdGluZm8vcHZydXNiMgo+ID4gPgo+ID4KPiA+IC0tCj4gPgo+ID4gTWlrZSBJc2VseQo+ID4g
-aXNlbHkgQCBpc2VseSAoZG90KSBuZXQKPiA+IFBHUDogMDMgNTQgNDMgNEQgNzUgRTUgQ0MgOTIg
-NzEgMTYgMDEgRTIgQjUgRjUgQzEgRTgKPiA+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCj4gPiBwdnJ1c2IyIG1haWxpbmcgbGlzdAo+ID4gcHZydXNiMkBp
-c2VseS5uZXQKPiA+IGh0dHA6Ly93d3cuaXNlbHkubmV0L2NnaS1iaW4vbWFpbG1hbi9saXN0aW5m
-by9wdnJ1c2IyCj4gPgo+IAoKLS0gCgpNaWtlIElzZWx5CmlzZWx5IEAgaXNlbHkgKGRvdCkgbmV0
-ClBHUDogMDMgNTQgNDMgNEQgNzUgRTUgQ0MgOTIgNzEgMTYgMDEgRTIgQjUgRjUgQzEgRTgKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KcHZydXNiMiBtYWls
-aW5nIGxpc3QKcHZydXNiMkBpc2VseS5uZXQKaHR0cDovL3d3dy5pc2VseS5uZXQvY2dpLWJpbi9t
-YWlsbWFuL2xpc3RpbmZvL3B2cnVzYjIK
+This is a MIME-formatted message.  If you see this text it means that your
+E-mail software does not support MIME-formatted messages.
+
+--===============3451241365692983601==
+Content-Type: multipart/signed; micalg=pgp-sha1; protocol="application/pgp-signature"; boundary="=_cnc.isely.net-21248-1570369996-0001-2"
+
+This is a MIME-formatted message.  If you see this text it means that your
+E-mail software does not support MIME-formatted messages.
+
+--=_cnc.isely.net-21248-1570369996-0001-2
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hey, Mike!
+Any luck? Did my dumps help you out at all? Just poking to see if you had t=
+he chance to continue
+working on this.
+Cheers!
+
+On Sun, 2019-09-22 at 15:04 -0500, Mike Isely wrote:
+> Thank you!
+>   -Mike
+> On Sun, 22 Sep 2019, Diego Rivera wrote:
+> > As requested--*Diego Rivera*
+> >=20
+> > On Sun, Sep 22, 2019 at 1:53 PM Mike Isely <isely@isely.net> wrote:
+> > > Ugh.  This is line-wrapped to hell-and-back.  Can you resend that as =
+afile attachment?
+> > >   -Mike
+> > > On Sun, 22 Sep 2019, Diego Rivera wrote:
+> > > > This is what kern.log shows when I hot-unplug/hot-poweroff one of t=
+hedevices:
+> > > > Sep 22 13:36:05 tvserver kernel: [  156.265825] usb 1-4: USB discon=
+nect,device number 8Sep
+> > > > 22 13:36:05 tvserver kernel: [  156.266059] pvrusb2: Device beingre=
+ndered inoperableSep 22
+> > > > 13:36:05 tvserver kernel: [  156.266162] BUG: unable to handlekerne=
+l NULL pointer
+> > > > dereference at 0000000000000520Sep 22 13:36:05 tvserver kernel: [  =
+156.266299] #PF error:
+> > > > [normal kernelread fault]Sep 22 13:36:05 tvserver kernel: [  156.26=
+6376] PGD 0 P4D 0Sep 22
+> > > > 13:36:05 tvserver kernel: [  156.266424] Oops: 0000 [#1] SMP PTISep=
+ 22 13:36:05 tvserver
+> > > > kernel: [  156.266485] CPU: 0 PID: 2190 Comm:pvrusb2-context Not ta=
+inted 5.0.0-29-generic
+> > > > #31-UbuntuSep 22 13:36:05 tvserver kernel: [  156.266610] Hardware =
+name: To Be
+> > > Filled
+> > > > By O.E.M. To Be Filled By O.E.M./Q1900-ITX, BIOS P1.70 03/31/2016Se=
+p 22 13:36:05 tvserver
+> > > > kernel: [  156.266770] RIP:0010:pvr2_v4l2_internal_check+0x47/0x70 =
+[pvrusb2]Sep 22 13:36:05
+> > > > tvserver kernel: [  156.266867] Code: 2f e4 ff ff 48 8b
+> > > 7b
+> > > > 40 e8 26 e4 ff ff 48 8b 43 38 48 8b 90 20 05 00 00 48 05 20 05 00 0=
+0 48
+> > > 39
+> > > > d0 74 03 5b 5d c3 48 8b 43 40 <48> 8b 90 20 05 00 00 48 05 20 05 00=
+ 00 4839 d0 75 e7 48 89
+> > > > df e8Sep 22 13:36:05 tvserver kernel: [  156.267140] RSP:
+> > > 0018:ffffb4f3c262fea0
+> > > > EFLAGS: 00010246Sep 22 13:36:05 tvserver kernel: [  156.267223] RAX=
+: 0000000000000000
+> > > RBX:
+> > > > ffff9112efad8ba0 RCX: 0000000000000000Sep 22 13:36:05 tvserver kern=
+el: [  156.267331] RDX:
+> > > > ffff9112ee80cd20
+> > > RSI:
+> > > > 0000000000000000 RDI: 0000000000000000Sep 22 13:36:05 tvserver kern=
+el: [  156.267439] RBP:
+> > > > ffffb4f3c262fea8
+> > > R08:
+> > > > 0000000000000000 R09: ffff9112ed60c618Sep 22 13:36:05 tvserver kern=
+el: [  156.267546] R10:
+> > > > 000000000000f000
+> > > R11:
+> > > > 0000002462016bed R12: ffff9112ef474000Sep 22 13:36:05 tvserver kern=
+el: [  156.267653] R13:
+> > > > ffffffffc108ba90
+> > > R14:
+> > > > 0000000000000000 R15: ffff9112f36ed700Sep 22 13:36:05 tvserver kern=
+el: [  156.267761] FS:
+> > > 0000000000000000(0000)
+> > > > GS:ffff9112f8200000(0000) knlGS:0000000000000000Sep 22 13:36:05 tvs=
+erver kernel:
+> > > > [  156.267880] CS:  0010 DS: 0000 ES:
+> > > 0000
+> > > > CR0: 0000000080050033Sep 22 13:36:05 tvserver kernel: [  156.267968=
+] CR2: 0000000000000520
+> > > CR3:
+> > > > 000000014820e000 CR4: 00000000001006f0Sep 22 13:36:05 tvserver kern=
+el: [  156.268074] Call
+> > > > Trace:Sep 22 13:36:05 tvserver kernel: [  156.268136] pvr2_context_=
+thread_func+0xc4/0x2b0
+> > > > [pvrusb2]Sep 22 13:36:05 tvserver kernel: [  156.268227]  ? wait_wo=
+ken+0x80/0x80Sep 22
+> > > > 13:36:05 tvserver kernel: [  156.268290]  kthread+0x120/0x140Sep 22=
+ 13:36:05 tvserver
+> > > > kernel: [  156.268362]  ?pvr2_context_destroy+0xc0/0xc0 [pvrusb2]Se=
+p 22 13:36:05 tvserver
+> > > > kernel: [  156.268449]  ?__kthread_parkme+0x70/0x70Sep 22 13:36:05 =
+tvserver kernel:
+> > > > [  156.268518]  ret_from_fork+0x35/0x40Sep 22 13:36:05 tvserver ker=
+nel: [  156.268578]
+> > > > Modules linked in:
+> > > s5h1411
+> > > > tda18271 tda8290 tuner cx25840 pvrusb2 tveeprom cx2341x dvb_corev4l=
+2_common videodev media
+> > > > veth xt_nat ipt_MASQUERADE xfrm_user xfrm_algobr_netfilter bridge s=
+tp llc xt_recent
+> > > > ipt_REJECT nf_reject_ipv4 xt_limitxt_comment xt_multiport xt_conntr=
+ack xt_hashlimit
+> > > > xt_addrtype xt_markiptable_mangle xt_tcpudp xt_CT iptable_raw nfnet=
+link_log
+> > > > xt_NFLOGnf_log_ipv4 nf_log_common xt_LOG nf_conntrack_sane nf_connt=
+rack_netlinknfnetlink
+> > > > nf_nat_tftp nf_nat_snmp_basic nf_conntrack_snmp nf_nat_sipnf_nat_pp=
+tp nf_nat_irc nf_nat_h323
+> > > > nf_nat_ftp nf_nat_amandanf_conntrack_tftp nf_conntrack_sip nf_connt=
+rack_pptp
+> > > nf_conntrack_proto_gre
+> > > > nf_conntrack_netbios_ns nf_conntrack_broadcast nf_conntrack_ircnf_c=
+onntrack_h323
+> > > > nf_conntrack_ftp ts_kmp nf_conntrack_amanda iptable_natnf_nat_ipv4 =
+nf_nat nf_conntrack
+> > > > nf_defrag_ipv6 nf_defrag_ipv4 arc4iptable_filter bpfilter md4 cmac =
+nls_utf8 cifs ccm fscache
+> > > > aufs overlaynls_iso8859_1 xfs libcrc32c snd_hdmi_lpe_audio snd_pcmS=
+ep 22 13:36:05 tvserver
+> > > > kernel: [  156.268655]  snd_seq_midisnd_seq_midi_event snd_rawmidi =
+snd_seq snd_seq_device
+> > > > snd_timer sndsoundcore intel_rapl intel_soc_dts_thermal intel_soc_d=
+ts_iosfintel_powerclamp
+> > > > coretemp kvm_intel punit_atom_debug i915 joydev kvmgtcrct10dif_pclm=
+ul input_leds vfio_mdev
+> > > > mdev crc32_pclmul vfio_iommu_type1ghash_clmulni_intel cryptd vfio i=
+ntel_cstate kvm irqbypass
+> > > > drm_kms_helperdrm hci_uart i2c_algo_bit fb_sys_fops btqca mei_txe s=
+yscopyarea
+> > > > btrtlsysfillrect mei sysimgblt btbcm btintel bluetooth ecdh_generic
+> > > rfkill_gpio
+> > > > mac_hid sch_fq_codel ip_tables x_tables autofs4 hid_logitech_hidpph=
+id_logitech_dj
+> > > > hid_generic usbhid r8169 ahci lpc_ich i2c_i801 libahcirealtek i2c_h=
+id video hidSep 22
+> > > > 13:36:05 tvserver kernel: [  156.270831] CR2: 0000000000000520Sep 2=
+2 13:36:05 tvserver
+> > > > kernel: [  156.270891] ---[ end trace5d13378174849ef9 ]---Sep 22 13=
+:36:05 tvserver kernel:
+> > > > [  156.270988] RIP:0010:pvr2_v4l2_internal_check+0x47/0x70 [pvrusb2=
+]Sep 22 13:36:05 tvserver
+> > > > kernel: [  156.271089] Code: 2f e4 ff ff 48 8b
+> > > 7b
+> > > > 40 e8 26 e4 ff ff 48 8b 43 38 48 8b 90 20 05 00 00 48 05 20 05 00 0=
+0 48
+> > > 39
+> > > > d0 74 03 5b 5d c3 48 8b 43 40 <48> 8b 90 20 05 00 00 48 05 20 05 00=
+ 00 4839 d0 75 e7 48 89
+> > > > df e8Sep 22 13:36:05 tvserver kernel: [  156.271363] RSP:
+> > > 0018:ffffb4f3c262fea0
+> > > > EFLAGS: 00010246Sep 22 13:36:05 tvserver kernel: [  156.271447] RAX=
+: 0000000000000000
+> > > RBX:
+> > > > ffff9112efad8ba0 RCX: 0000000000000000Sep 22 13:36:05 tvserver kern=
+el: [  156.271556] RDX:
+> > > > ffff9112ee80cd20
+> > > RSI:
+> > > > 0000000000000000 RDI: 0000000000000000Sep 22 13:36:05 tvserver kern=
+el: [  156.271665] RBP:
+> > > > ffffb4f3c262fea8
+> > > R08:
+> > > > 0000000000000000 R09: ffff9112ed60c618Sep 22 13:36:05 tvserver kern=
+el: [  156.271773] R10:
+> > > > 000000000000f000
+> > > R11:
+> > > > 0000002462016bed R12: ffff9112ef474000Sep 22 13:36:05 tvserver kern=
+el: [  156.271882] R13:
+> > > > ffffffffc108ba90
+> > > R14:
+> > > > 0000000000000000 R15: ffff9112f36ed700Sep 22 13:36:05 tvserver kern=
+el: [  156.271990] FS:
+> > > 0000000000000000(0000)
+> > > > GS:ffff9112f8200000(0000) knlGS:0000000000000000Sep 22 13:36:05 tvs=
+erver kernel:
+> > > > [  156.272111] CS:  0010 DS: 0000 ES:
+> > > 0000
+> > > > CR0: 0000000080050033Sep 22 13:36:05 tvserver kernel: [  156.272201=
+] CR2: 0000000000000520
+> > > CR3:
+> > > > 000000014820e000 CR4: 00000000001006f0Sep 22 13:36:10 tvserver kern=
+el: [  161.084276] usb 1-
+> > > > 4: new high-speed
+> > > USB
+> > > > device number 9 using xhci_hcdSep 22 13:36:10 tvserver kernel: [  1=
+61.236211] usb 1-4: New
+> > > > USB devicefound, idVendor=3D2040, idProduct=3D7501, bcdDevice=3D 8.=
+00Sep 22 13:36:10 tvserver
+> > > > kernel: [  161.236349] usb 1-4: New USB devicestrings: Mfr=3D1, Pro=
+duct=3D2, SerialNumber=3D3Sep
+> > > > 22 13:36:10 tvserver kernel: [  161.236458] usb 1-4: Product: WinTV=
+Sep 22 13:36:10 tvserver
+> > > > kernel: [  161.236516] usb 1-4: Manufacturer:HauppaugeSep 22 13:36:=
+10 tvserver kernel:
+> > > > [  161.236584] usb 1-4: SerialNumber:7300-00-F080EDCFSep 22 13:36:1=
+0 tvserver kernel:
+> > > > [  161.239374] pvrusb2: Hardwaredescription: WinTV HVR-1950 Model 7=
+51xx
+> > > > Cheers!--*Diego Rivera*
+> > > >=20
+> > > > <
+> > > https://www.avast.com/sig-email?utm_medium=3Demail&utm_source=3Dlink&=
+utm_campaign=3Dsig-email&utm_content=3Dwebmail&utm_term=3Dicon
+> > > > Virus-free.www.avast.com
+> > > > <
+> > > https://www.avast.com/sig-email?utm_medium=3Demail&utm_source=3Dlink&=
+utm_campaign=3Dsig-email&utm_content=3Dwebmail&utm_term=3Dlink
+> > > > <#DAB4FAD8-2DD7-40BB-A1B8-4E2AA1F9FDF2>
+> > > > On Sun, Sep 22, 2019 at 12:42 PM Mike Isely <isely@isely.net> wrote=
+:
+> > > > > On Sun, 22 Sep 2019, Mike Isely wrote:
+> > > > > > On Sun, 14 Apr 2019, Diego Rivera wrote:
+> > > > > > > Guinea pig #1 ready, sir! =F0=9F=98=82
+> > > > > > > --
+> > > > > > > Diego Rivera
+> > > > > >=20
+> > > > > > Diego:
+> > > > > > Going back over this thread and comparing my recent notes, ther=
+e's agood experiment I'd
+> > > > > > like you to try:  Get the hardware into a statewhere you get th=
+e "Attempted to execute
+> > > > > > control transfer when device
+> > > not
+> > > > > > ok" infinite log spew.  Once you've confirmed the scenario agai=
+n,
+> > > reboot
+> > > > > > the host and then rename the ir-kbd-i2c.ko module to something =
+whichdisables it.  You
+> > > > > > can find this module in the following path:
+> > > > > > /lib/modules/`uname -r`/krtnrl/drivers/media/i2c/
+> > > > >=20
+> > > > > Typo correction:
+> > > > > /lib/modules/`uname -r`/kernel/drivers/media/i2c/
+> > > > > (fingers in wrong position on keyboard, apparently)
+> > > > >=20
+> > > > > > A good thing to do would be to just add "-disabled" to the end =
+of thefile name.  Then
+> > > > > > run "depmod -a" to rebuild the module dependencies(should take =
+a few seconds) and now
+> > > > > > the ir-kbd-i2c module will bedisabled.  On the off-chance that =
+it has already been
+> > > > > > loaded, also
+> > > run
+> > > > > > "modprobe -r ir_kbd_ic2" (or just reboot again).  NOW, run that=
+ samescenario where you
+> > > > > > get the log spew as mentioned above.  Is that
+> > > still
+> > > > > > happening?  Also, if it isn't still happening, does "modprobe -=
+rpvrusb2" still get
+> > > > > > stuck?
+> > > > > > The reason I ask is because that's what I am seeing here.  That=
+ir-kbd-i2c here is the
+> > > > > > source of the endless stream of failing I2Crequests into the pv=
+rusb2 driver.  I want to
+> > > > > > make sure we're looking
+> > > at
+> > > > > > the same bug.  I've got roughly 3 misbehaviors on my plate righ=
+t now.This is one of
+> > > > > > them.
+> > > > > > There was an earlier mention of a kernel panic when trying to r=
+emove
+> > > the
+> > > > > > pvrusb2 driver from the system.  While I am seeing kernel oopse=
+s fromthis - due to sysfs
+> > > > > > doing something unexpected - it is not panicing.So I have not y=
+et seen that specific
+> > > > > > problem.  I'd like to know whatexact kernel was being run (dist=
+ro / uname -r output /
+> > > > > > .config wouldhelp too).
+> > > > > >   -Mike
+> > > > > > --
+> > > > > > Mike Iselyisely @ isely (dot) netPGP: 03 54 43 4D 75 E5 CC 92 7=
+1 16 01 E2 B5 F5 C1
+> > > > > > E8_______________________________________________pvrusb2 mailin=
+g listpvrusb2@isely.net
+> > > > > > http://www.isely.net/cgi-bin/mailman/listinfo/pvrusb2
+> > > > > >=20
+> > > > >=20
+> > > > > --
+> > > > > Mike Iselyisely @ isely (dot) netPGP: 03 54 43 4D 75 E5 CC 92 71 =
+16 01 E2 B5 F5 C1
+> > > > > E8_______________________________________________pvrusb2 mailing =
+listpvrusb2@isely.net
+> > > > > http://www.isely.net/cgi-bin/mailman/listinfo/pvrusb2
+> > > > >=20
+> > > > _______________________________________________pvrusb2 mailing list=
+pvrusb2@isely.net
+> > > > http://www.isely.net/cgi-bin/mailman/listinfo/pvrusb2
+> > > >=20
+> > >=20
+> > > --
+> > > Mike Iselyisely @ isely (dot) netPGP: 03 54 43 4D 75 E5 CC 92 71 16 0=
+1 E2 B5 F5 C1
+> > > E8_______________________________________________pvrusb2 mailing list=
+pvrusb2@isely.net
+> > > http://www.isely.net/cgi-bin/mailman/listinfo/pvrusb2
+> > >=20
+--=20
+
+
+
+Diego Rivera
+
+
+--=_cnc.isely.net-21248-1570369996-0001-2
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Transfer-Encoding: 7bit
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQS+WVRpxpbIDf9cWSYLNvj/2phirQUCXZnxqQAKCRALNvj/2phi
+rSdhAJ9wSAXnoH+2K+hWrW9XkMy3Ehbl6QCglbWz8maBMgxBYO6NndoAdiB8FHg=
+=YgKX
+-----END PGP SIGNATURE-----
+
+--=_cnc.isely.net-21248-1570369996-0001-2--
+
+--===============3451241365692983601==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KcHZydXNiMiBt
+YWlsaW5nIGxpc3QKcHZydXNiMkBpc2VseS5uZXQKaHR0cDovL3d3dy5pc2VseS5uZXQvY2dpLWJp
+bi9tYWlsbWFuL2xpc3RpbmZvL3B2cnVzYjIK
+
+--===============3451241365692983601==--
