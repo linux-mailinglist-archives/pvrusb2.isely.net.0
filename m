@@ -2,51 +2,50 @@ Return-Path: <pvrusb2-bounces@isely.net>
 X-Original-To: lists+pvrusb2@lfdr.de
 Delivered-To: lists+pvrusb2@lfdr.de
 Received: from cnc.isely.net (cnc.isely.net [75.149.91.89])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB4CAD0625
-	for <lists+pvrusb2@lfdr.de>; Wed,  9 Oct 2019 05:57:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE96DD0628
+	for <lists+pvrusb2@lfdr.de>; Wed,  9 Oct 2019 05:59:48 +0200 (CEST)
 Received: from cnc.isely.net (cnc.isely.net [::ffff:192.168.23.2])
   (IDENT: list)
-  by cnc.isely.net with ESMTP; Tue, 08 Oct 2019 22:57:50 -0500
-  id 00000000001426E4.000000005D9D5ABE.00005B0A
-Received: from mail-qk1-f193.google.com (mail-qk1-f193.google.com
- [::ffff:209.85.222.193]) (TLS: TLSv1/SSLv3,128bits,AES128-GCM-SHA256)
- by cnc.isely.net with ESMTPS; Tue, 08 Oct 2019 22:56:17 -0500
- id 0000000000142436.000000005D9D5A63.00005AB1
-Received: by mail-qk1-f193.google.com with SMTP id u184so978326qkd.4
- for <pvrusb2@isely.net>; Tue, 08 Oct 2019 20:56:17 -0700 (PDT)
+  by cnc.isely.net with ESMTP; Tue, 08 Oct 2019 22:59:44 -0500
+  id 00000000001426FA.000000005D9D5B30.00005C2D
+Received: from mail-qk1-f196.google.com (mail-qk1-f196.google.com
+ [::ffff:209.85.222.196]) (TLS: TLSv1/SSLv3,128bits,AES128-GCM-SHA256)
+ by cnc.isely.net with ESMTPS; Tue, 08 Oct 2019 22:59:42 -0500
+ id 00000000001426E9.000000005D9D5B2E.00005C1E
+Received: by mail-qk1-f196.google.com with SMTP id f16so946253qkl.9
+ for <pvrusb2@isely.net>; Tue, 08 Oct 2019 20:59:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=message-id:subject:from:to:in-reply-to:references:date:mime-version
- :user-agent; bh=YjwMKikfaaKAOgupxYAs4FFXdPJY6EY3+WfwCF5H03k=;
- b=LL03nHtbvkKis0p5vDmuT2EPxL6Gsf0P/kFZcTr0z7qzcBndMXXd7ANY8NDnTOTqlp
- aDYkxRC/fL/SpepK0Ss4COwQvDnLj8Cr4xSDKXcHziw5b0Fl1A2j+yKvyhgXonooquc5
- gQK8Q3xF5rrwa29NC3BmOp1VB8q3JEjFTajypt4gl9pNl7RI8T2TQbW0BwDLGwOiF/M1
- NdqguDksa0awaWWJsOwFiPWLwv/t5o1Gsv/anrp654dNDLrMdH9uySWUwxxdTEBPmqly
- 6KtcQ4fRtjCwpGtC5qi7ua2XwtHBavlNuOFa87RW6ki5Zj6I/bMeLJ/CcaJ18CoKSNJG
- c8Jg==
+ :user-agent; bh=PEg3Ysfza6Pnz7IHVbCANDBYUUrpg40lp+eGSYahNXE=;
+ b=VwbywZJOaYbqj3aQlb9AlUhNFzt7wsY1nz0Nzx3wX3IYjahu949TF/r4LvS+qACQMm
+ fwtwGXBiLcq7No9RN/ksUlpy/eslzIX7eDv7+Ai6pLdlaINpupYc5dy2nayTF8hdsIBW
+ 2L+xlmP0BUlU8Z0emysabKUOVy5WKgdOWAN6o16Z/UMCANw0mzQT7F1zGBMkyAYpF+Rt
+ xUSn/LRQe3M0BEdkesFAtIKbwvFtBByuUQqv9DLxTwJt0P3peLZ0POJO63Q1Yx9c+EUl
+ RXfwnYHjriyv5PWl/eUFzDkar9Kr1Sl0841IIxqDHxviIubrPGR+elpxvawsMUsvh+/R
+ yEWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:subject:from:to:in-reply-to
  :references:date:mime-version:user-agent;
- bh=YjwMKikfaaKAOgupxYAs4FFXdPJY6EY3+WfwCF5H03k=;
- b=hHqxnc1D0Y7gyJzz8rz/xFBVA+Lza9SREu5BQmtGEpPHPNskawp0GkarHT+h+7iA6x
- WcqSGjDouOQscr+kwK9IrToHZCPfsndbpqjFMQI7Tt2lmoKP6Db+Oi0Kuy/Pe+Pxd4Qt
- Xkvd77G4Y6P8AgyRDJMLx/KeqJyl4l1WWTMR4eNZ5lRXLJ1RJDmiS3gX9u5PT5c552+3
- jy/7cV9PCdRvddUyp55bC/s0nQd3pekpXvN/S7exvY/FrUrSBV7BbgHqfrL15QF0w5eg
- ccGz4vHmjXUS6IEeEqRHyR7K7wrcCgfTHfy8rlkN+WOSh+v+nQ1W5FuA9wV4AsMJBd/W
- 1JYg==
-X-Gm-Message-State: APjAAAVgpG3TSmWS579Z2uQKatcOMEb1vi31J67zyxGs4e9Oz3k4z6Uf
- u3b76hOhIxtaeG2+Tg5r1G1GfrU/X0UPMQ==
-X-Google-Smtp-Source: APXvYqwhryXyA0QqBNbucxi4VEVmMQGHB/qi7ViGONvQtXNNPi6bDXT4HEtpJcgaBCe63h0vOiZ2aA==
-X-Received: by 2002:a05:620a:8dc:: with SMTP id
- z28mr1662561qkz.83.1570593346513; 
- Tue, 08 Oct 2019 20:55:46 -0700 (PDT)
+ bh=PEg3Ysfza6Pnz7IHVbCANDBYUUrpg40lp+eGSYahNXE=;
+ b=YbnRB30jkzNq0KROl1SNwVHGizytKutQ8aUZKcNl82Bna/Mrq7bf0h8lmN05ijmYtZ
+ HsoX3A5mWIu8j9Pkh7iNv8XE3njPJ1GNpouehEhYsRvTj7C0uXnyvlcjGdTnUxW8h0Gc
+ rLzjU9+vxyYucaKsZj90sKUZk6JA6ict73YscwGDUdEVAwEkGGKZv+UmjnxeNE+MkYVc
+ wVxHBnesAgF8lapXnR1nnFXZaq8fJzDYqnXGs5sWkha+96qWyZVYwvZKVPG2rugYySAQ
+ epCnpjFH5nlF9+fmQpElLN/bS5sMtDjAdiT6yD62vzQJhxVCyBLzBih/FG3PMZAxxNbS
+ Ur+Q==
+X-Gm-Message-State: APjAAAUWHT3qtdxGLlJr19wyxDKLBM5xlEXDIm8WDl/VXxJk14RoE7+2
+ knCBSv67ohoSwTgM4rLyQjVKUqEN7h9jQw==
+X-Google-Smtp-Source: APXvYqxoBFo+TTSN8/PE32LgVrqEyveu1snsDkaX+Q/9T60qNNCNFIjQyrOlrLDVPMgHrxXwQDd0Bg==
+X-Received: by 2002:a37:2d45:: with SMTP id t66mr1668203qkh.259.1570593550843; 
+ Tue, 08 Oct 2019 20:59:10 -0700 (PDT)
 Old-Return-Path: <diego.rivera.cr@gmail.com>
 Received: from diego.rivera.prv (ip130-144-15-186.ct.co.cr. [186.15.144.130])
  by smtp.googlemail.com with ESMTPSA id
- f10sm434338qtj.3.2019.10.08.20.55.45 for <pvrusb2@isely.net>
+ n65sm399485qkb.19.2019.10.08.20.59.09 for <pvrusb2@isely.net>
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 08 Oct 2019 20:55:45 -0700 (PDT)
-Message-ID: <f5c4b11bf3e7c23f84453b0aef2490d4ce44378b.camel@gmail.com>
+ Tue, 08 Oct 2019 20:59:10 -0700 (PDT)
+Message-ID: <f185236a3f25916d89bf30329b4e00875b9250bc.camel@gmail.com>
 From: Diego Rivera <diego.rivera.cr@gmail.com>
 To: Communications nexus for pvrusb2 driver <pvrusb2@isely.net>
 In-Reply-To: <alpine.DEB.2.21.1910082237390.15059@sheridan-wavelan>
@@ -67,10 +66,9 @@ References: <48398a0f6b57cf9bef89554ec870d7e2f7430517.camel@gmail.com>
  <alpine.DEB.2.21.1909221504420.31377@sheridan.isely.net>
  <78e7483a9f85e15c43b2f1b2c7f88d39566a70d7.camel@gmail.com>
  <alpine.DEB.2.21.1910082237390.15059@sheridan-wavelan>
-Date: Tue, 08 Oct 2019 21:55:42 -0600
+Date: Tue, 08 Oct 2019 21:59:07 -0600
 Mime-Version: 1.0
 User-Agent: Evolution 3.32.1-2
-X-Mailman-Approved-At: Tue, 08 Oct 2019 22:57:48 -0500
 X-Content-Filtered-By: Mailman/MimeDel 2.1.18
 Subject: Re: [pvrusb2] Ability to fully reset a PVRUSB2 Device
 X-BeenThere: pvrusb2@isely.net
@@ -85,49 +83,34 @@ List-Help: <mailto:pvrusb2-request@isely.net?subject=help>
 List-Subscribe: <http://www.isely.net/cgi-bin/mailman/listinfo/pvrusb2>,
  <mailto:pvrusb2-request@isely.net?subject=subscribe>
 Reply-To: Communications nexus for pvrusb2 driver <pvrusb2@isely.net>
-Content-Type: multipart/mixed; boundary="===============7816370244900058991=="
+Content-Type: multipart/mixed; boundary="===============2354448792174486530=="
 Errors-To: pvrusb2-bounces@isely.net
 Sender: "pvrusb2" <pvrusb2-bounces@isely.net>
 
 This is a MIME-formatted message.  If you see this text it means that your
 E-mail software does not support MIME-formatted messages.
 
---===============7816370244900058991==
-Content-Type: multipart/signed; micalg=pgp-sha1; protocol="application/pgp-signature"; boundary="=_cnc.isely.net-23217-1570593379-0001-2"
+--===============2354448792174486530==
+Content-Type: multipart/signed; micalg=pgp-sha1; protocol="application/pgp-signature"; boundary="=_cnc.isely.net-23582-1570593582-0001-2"
 
 This is a MIME-formatted message.  If you see this text it means that your
 E-mail software does not support MIME-formatted messages.
 
---=_cnc.isely.net-23217-1570593379-0001-2
+--=_cnc.isely.net-23582-1570593582-0001-2
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Consider yourself pinged!! =E2=98=BA
-I may have neglected to mention something that I think might be helpful: so=
-metimes, after one of
-these failures strikes and I'm forced to bounce the box, it seems the devic=
-es remain in an
-inconsistent state when booting backup because the machine starts seeing so=
-ft lockups on what I can
-only presume is the thread trying to start the device(s) up. The simple fix=
- is to unplug the
-devices, bounce the box without'em, and then plug them back in when everyth=
-ing's already booted and
-settled.
-However, even that sometimes fails and I have to actually power-cycle the d=
-evices so they return to
-a "stable" state.
-Re: the sysfs endpoints that someone else is being "nice" about disconnecti=
-ng for you - is it
-possible for the driver to check if the endpoint is already unplugged befor=
-e attempting it (i.e. if
-it's already gone, don't touch it)? I know it's stupid and ugly and it shou=
-ldn't be that way ... but
-hey - if it gets us past this hole ... maybe worth a shot? Baah...I'm sure =
-you've thought of this
-already along with a billion other smarter options that completely escape m=
-e =E2=98=BA
-Cheers...
+In the mean time, this weekend I'm going to try something that it just occu=
+rred to me was within my
+reach: use KVM to encapsulate each device. Thus, if they bork, I only resta=
+rt a "small"(ish) VM
+instead of the whole box.  I just need to figure out a way to block the hos=
+t from starting up the
+devices. Blacklisting pvrusb2 didn't seem to work, so I may have to simply =
+remove the module
+altogether.
+But I'll try that in the weekend.
+Cheers!
 On Tue, 2019-10-08 at 22:49 -0500, Mike Isely wrote:
 > This is proving to be a multi-faceted issue.
 > First, there's the infinite attempts at using the I2C interface from user=
@@ -481,21 +464,21 @@ g listpvrusb2@isely.net
 Diego Rivera
 
 
---=_cnc.isely.net-23217-1570593379-0001-2
+--=_cnc.isely.net-23582-1570593582-0001-2
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Transfer-Encoding: 7bit
 Content-Description: This is a digitally signed message part
 
 -----BEGIN PGP SIGNATURE-----
 
-iF0EABECAB0WIQS+WVRpxpbIDf9cWSYLNvj/2phirQUCXZ1aPQAKCRALNvj/2phi
-rcz9AJoCz/s3QBhA+MTxi7/Nho0H8TDNfACcCJRJ/ewHrsRR8/ixKBRXvPdjMF0=
-=VeUI
+iF0EABECAB0WIQS+WVRpxpbIDf9cWSYLNvj/2phirQUCXZ1bCwAKCRALNvj/2phi
+rcpwAJ46c4m2JV887nemRrQJNUW2qItCsACePAfU/sSPj3ANh0uITEi5TC96Efc=
+=VMWJ
 -----END PGP SIGNATURE-----
 
---=_cnc.isely.net-23217-1570593379-0001-2--
+--=_cnc.isely.net-23582-1570593582-0001-2--
 
---===============7816370244900058991==
+--===============2354448792174486530==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -505,4 +488,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KcHZydXNiMiBt
 YWlsaW5nIGxpc3QKcHZydXNiMkBpc2VseS5uZXQKaHR0cDovL3d3dy5pc2VseS5uZXQvY2dpLWJp
 bi9tYWlsbWFuL2xpc3RpbmZvL3B2cnVzYjIK
 
---===============7816370244900058991==--
+--===============2354448792174486530==--
