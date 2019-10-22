@@ -2,22 +2,53 @@ Return-Path: <pvrusb2-bounces@isely.net>
 X-Original-To: lists+pvrusb2@lfdr.de
 Delivered-To: lists+pvrusb2@lfdr.de
 Received: from cnc.isely.net (cnc.isely.net [75.149.91.89])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B005DFA12
-	for <lists+pvrusb2@lfdr.de>; Tue, 22 Oct 2019 03:19:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52A2BE067E
+	for <lists+pvrusb2@lfdr.de>; Tue, 22 Oct 2019 16:33:25 +0200 (CEST)
 Received: from cnc.isely.net (cnc.isely.net [::ffff:192.168.23.2])
   (IDENT: list)
-  by cnc.isely.net with ESMTP; Mon, 21 Oct 2019 20:19:53 -0500
-  id 00000000001425A9.000000005DAE5939.00000D30
-Received: from ts3-dock2.isely.net (ts3-dock2.isely.net [::ffff:192.168.23.14])
- (AUTH: PLAIN isely, TLS: TLSv1/SSLv3,256bits,DHE-RSA-AES256-GCM-SHA384)
- by cnc.isely.net with ESMTPSA; Mon, 21 Oct 2019 20:19:49 -0500
- id 0000000000142061.000000005DAE5935.00000D0A
-Date: Mon, 21 Oct 2019 20:19:46 -0500 (CDT)
-From: Mike Isely <isely@isely.net>
-X-X-Sender: isely@sheridan-wavelan
+  by cnc.isely.net with ESMTP; Tue, 22 Oct 2019 09:33:22 -0500
+  id 0000000000142704.000000005DAF1332.000075AA
+Received: from mail-ua1-f67.google.com (mail-ua1-f67.google.com
+ [::ffff:209.85.222.67]) (TLS: TLSv1/SSLv3,128bits,AES128-GCM-SHA256)
+ by cnc.isely.net with ESMTPS; Tue, 22 Oct 2019 09:33:19 -0500
+ id 00000000001426EF.000000005DAF132F.00007595
+Received: by mail-ua1-f67.google.com with SMTP id w7so4966528uag.4
+ for <pvrusb2@isely.net>; Tue, 22 Oct 2019 07:33:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:subject:from:to:in-reply-to:references:date:mime-version
+ :user-agent; bh=CvJZ06bsUPECD9KbyeLSOOssDQ5I2dznLwtI9scT23Y=;
+ b=Yq5GdzuHNvwLgRvwhL4Gpkadh0Nn5JzB0j2CvtMkGvydY1rnFTDz9IIfk8jDVOYBX1
+ YQ1ixqUvMJodjGYgU29DDZYX7C7/ubMuatEzBfEnZDcyGXAqN1nlrts82B1m/DNjDqYJ
+ 2DAwbfPFKyKsXnBpzFDBa+KCcGD4x2kB0WGEWhcw0jAjL8LZ3WaR0jMuBX2d6IvD6nX9
+ zMo1P9ptp0pZ48cgnFJ9di2e/3cJos1MyDZnApVwrnTlxhev0HpFjzrt/PcMmK5KtGxJ
+ rIwbg1Ct2SQ2Kom2kYEdbMkhwltZyGjgOGb6rGnpyoISLo+SiKOihk0iSInoEkftk375
+ 6MRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:subject:from:to:in-reply-to
+ :references:date:mime-version:user-agent;
+ bh=CvJZ06bsUPECD9KbyeLSOOssDQ5I2dznLwtI9scT23Y=;
+ b=mUUkTBr6AyPLvVmhUgFCyrcsTBNKzLDLJzAYXJz2p2cTn1TvRncbXWT49349eHE++V
+ 6UMODPqyFGNUu8WKcogcpwh4e19b56lwa9ZJlqQaBOptBFN3I6VmDNw6TEmDsnetyUhe
+ plL90dnnJbBEECO/I9b7KaXSWSZ0QzzhdRiN3oKGjM4/QyoUf+thIngA9jJkXJxD2WgR
+ EBPkswrMPoRDBN7cX7iMEhByhgDhFt8mFyVoh6YCPnr7Z1eFY4e69yzN0mTH8cnhfdsv
+ nhKftAtJGW0r940xLffZ68zxvRk0sPvd7Z7alWiUAVCvg2cB6ZIShc6i+3PLHHL6CKK8
+ cXfw==
+X-Gm-Message-State: APjAAAVIRTPEWpIQq8kMWzm/ctSc9vx4J3Nf5bXBL+46rqcmgdBjZ4qu
+ fiE7yPyKv4WWRtbGR3agqC8YlL9v
+X-Google-Smtp-Source: APXvYqwkT7Lcp1H/xXJzt+4AcBzSI7bMDia+qGdSkavDPrcZCsbOSH6cJFK98ZYLFOLWm3s61P8XTQ==
+X-Received: by 2002:ab0:22d3:: with SMTP id z19mr2077445uam.108.1571754768473; 
+ Tue, 22 Oct 2019 07:32:48 -0700 (PDT)
+Old-Return-Path: <diego.rivera.cr@gmail.com>
+Received: from diego.rivera.prv (ip130-144-15-186.ct.co.cr. [186.15.144.130])
+ by smtp.googlemail.com with ESMTPSA id
+ v188sm6057836vka.34.2019.10.22.07.32.47 for <pvrusb2@isely.net>
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 22 Oct 2019 07:32:47 -0700 (PDT)
+Message-ID: <83221f45db40d4b81e9f2ab15dd0cdff05a91617.camel@gmail.com>
+From: Diego Rivera <diego.rivera.cr@gmail.com>
 To: Communications nexus for pvrusb2 driver <pvrusb2@isely.net>
-In-Reply-To: <4d9f70bcba0e3c42816e2c76af5fd638e8b3f877.camel@gmail.com>
-Message-ID: <alpine.DEB.2.21.1910212011540.15059@sheridan-wavelan>
+In-Reply-To: <alpine.DEB.2.21.1910212011540.15059@sheridan-wavelan>
 References: <48398a0f6b57cf9bef89554ec870d7e2f7430517.camel@gmail.com>
  <9b91e31cbd073be618ebb826cc7079f6588a337b.camel@gmail.com>
  <alpine.DEB.2.20.1904142004420.7127@lochley.isely.net>
@@ -34,8 +65,11 @@ References: <48398a0f6b57cf9bef89554ec870d7e2f7430517.camel@gmail.com>
  <da8821d41f6445f2d89749ab552cf868646ac816.camel@gmail.com>
  <alpine.DEB.2.21.1910131808560.15059@sheridan-wavelan>
  <4d9f70bcba0e3c42816e2c76af5fd638e8b3f877.camel@gmail.com>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+ <alpine.DEB.2.21.1910212011540.15059@sheridan-wavelan>
+Date: Tue, 22 Oct 2019 08:32:45 -0600
 Mime-Version: 1.0
+User-Agent: Evolution 3.32.1-2
+X-Content-Filtered-By: Mailman/MimeDel 2.1.18
 Subject: Re: [pvrusb2] Ability to fully reset a PVRUSB2 Device
 X-BeenThere: pvrusb2@isely.net
 X-Mailman-Version: 2.1.18
@@ -49,81 +83,106 @@ List-Help: <mailto:pvrusb2-request@isely.net?subject=help>
 List-Subscribe: <http://www.isely.net/cgi-bin/mailman/listinfo/pvrusb2>,
  <mailto:pvrusb2-request@isely.net?subject=subscribe>
 Reply-To: Communications nexus for pvrusb2 driver <pvrusb2@isely.net>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============3624249939677567949=="
 Errors-To: pvrusb2-bounces@isely.net
 Sender: "pvrusb2" <pvrusb2-bounces@isely.net>
 
-ClVwZGF0ZS4uLgoKU28gdGhlIGtlcm5lbCBvb3BzIGlzIGhhcHBlbmluZyBiZWNhdXNlIHRoZSBk
-cml2ZXIgaXMgdHJ5aW5nIHRvIHRlYXIgCmRvd24gc3RhdGUgZm9yIGEgVjRMMiByYWRpbyBkZXZp
-Y2UgLSBleGNlcHQgdGhlcmUgd2FzIG5vIHJhZGlvIGRldmljZSAKY29uZmlndXJlZCBzbyB0aGUg
-dGVhci1kb3duIGVuZGVkIHVwIGRlcmVmZXJlbmNpbmcgdGhyb3VnaCBhIG51bGwgCnBvaW50ZXIu
-ICBCb29tLgoKSSBiYWNrdHJhY2tlZCB0aHJvdWdoIHRoZSBjb2RlIHRvIGZpZ3VyZSBvdXQgIndo
-eSBub3ciLCBhbmQgSSBjb3VsZCBub3QgCmZpbmQgYSByZWFzb24uICBGcm9tIHdoYXQgSSBjYW4g
-dGVsbCB0aGlzIGJ1ZyBoYXMgbGlrZWx5IGJlZW4gdGhlcmUgZm9yIAphYm91dCAxMSB5ZWFycy4g
-IFRoZSBjb2RlIHdoaWNoIGJ5cGFzc2VzIHNldHVwIG9mIHRoZSByYWRpbyBkZXZpY2UgdGFrZXMg
-CnRoYXQgcGF0aCBpZiB0aGVyZSdzIG5vIHJhZGlvIHN1cHBvcnQgY29uZmlndXJlZCBmb3IgdGhl
-IGhhcmR3YXJlIC0gCndoaWNoIGlzIHNhZGx5IHRoZSBjYXNlIGZvciB0aGUgSFZSLTE5NTAgLSBh
-bmQgZ2l0IGJsYW1lIHNob3dzIHRoYXQgYXJlYSAKb2YgY29kZSBsYXN0IG1vZGlmaWVkIGluIDIw
-MDguICAoVGhhdCBtYWtlcyBzZW5zZSBiZWNhdXNlIHRoYXQncyBhYm91dCAKd2hlbiB0aGUgSFZS
-LTE5NTAgd2FzIGFkZGVkLikgIEJlc3QgSSBjYW4gZmlndXJlIHRoYXQgc29tZSBvdGhlciAKaGFw
-cGVuc3RhbmNlIGhhZCB0byBoYXZlIHByZXZlbnRlZCB0aGUga2VybmVsIGZyb20gYmxvd2luZyB1
-cCBvbiB0aGlzIApwb2ludGVyLiAgRldJVywgaXQncyBhY3R1YWxseSB0cnlpbmcgdG8gZGVyZWZl
-cmVuY2UgYW4gb2Zmc2V0IGZyb20gbnVsbCwgCmJ1dCB0aGUgZGlzdGFuY2UgdG8gdGhlIG9mZnNl
-dCBpcyBzdGlsbCBzbWFsbCBlbm91Z2ggdGhhdCBpdCBzaG91bGQgZml0IAppbiB0aGUgZmlyc3Qg
-dmlydHVhbCBwYWdlIGFkZHJlc3MgYW5kIHRodXMgYmUgZGV0ZWN0ZWQuCgpBbnl3YXksIEkgbWFk
-ZSBhIGNoYW5nZSB0byB0aGUgdHdvIHBsYWNlcyBpbiB0aGUgY29kZSB3aGVyZSB0aGlzIAptYXR0
-ZXJzLCBiYXNpY2FsbHkgZG9uJ3QgdG91Y2ggdGhlIHJhZGlvIGRhdGEgc3RydWN0dXJlIGlmIGl0
-IGlzbid0IAp0aGVyZSwgYW5kIG5vdyB0aGUga2VybmVsIG9vcHMgaXMgZ29uZS4KClRoaXMgYWxz
-byBleHBsYWlucyB3aHkgSSBjb3VsZCBub3QgcmVwcm9kdWNlIHRoZSBwcm9ibGVtIGJlZm9yZSAt
-IApiZWNhdXNlIHRoZSBkaWZmZXJlbnQgZGV2aWNlIEkgd2FzIHRyeWluZyBoYXMgYSB3b3JraW5n
-IHJhZGlvIGluIGl0IHRoYXQgCmNhbiBiZSBvcGVyYXRlZCBieSB0aGUgcHZydXNiMiBkcml2ZXIu
-ICBUaHVzIHRoaXMgY29uZGl0aW9uIGRpZCBub3QgCmFyaXNlLgoKVGhlcmUncyBzdGlsbCBvdGhl
-ciBzdHJhbmdlbmVzcyB0byBmaWd1cmUgb3V0LCBuYW1lbHkgdGhlIHN5c2ZzIHRlYXJkb3duIApw
-cm9ibGVtIGFuZCBpbXBsZW1lbnRpbmcgKnNvbWV0aGluZyogdG8ga2VlcCBhIHVzZXJzcGFjZSBJ
-MkMgY2xpZW50IGZyb20gCmphbW1pbmcgdXAgdGhlIHB2cnVzYjIgZHJpdmVyLiAgQnV0IHRoaXMg
-aXMgcHJvZ3Jlc3MuCgpPYnZpb3VzbHkgSSB3aWxsIGdldCB0aGlzIHB1c2hlZC4gIEkgY2FuIHNl
-bmQgeW91IGEgc291cmNlIHBhdGNoIGlmIAp5b3UnZCBsaWtlIHRvIHRyeSByZWJ1aWxkaW5nIHRo
-ZSBtb2R1bGUgb24geW91ciBlbmQuICBTaW5jZSB3ZSdyZSBub3QgCnJ1bm5pbmcgaWRlbnRpY2Fs
-IGtlcm5lbHMgSSBjYW4ndCBqdXN0IHNlbmQgeW91IHRoZSBiaW5hcnkuCgogIC1NaWtlCgoKT24g
-U3VuLCAxMyBPY3QgMjAxOSwgRGllZ28gUml2ZXJhIHdyb3RlOgoKPiBNaWtlLAo+IEFzIGEgZGV2
-ZWxvcGVyIG15c2VsZiwgSSBjYW4gZnVsbHkgdW5kZXJzdGFuZCB0aGUgaW1wb3J0YW5jZSBvZiB0
-aGlzIGRpc2NvdmVyeSEhIEkgaGF2ZSBubyBkb3VidAo+IHRoYXQgdGhlIHN0YWNrIHRyYWNlIGRp
-ZmZlcmVuY2VzIHlvdSdyZSBvYnNlcnZpbmcgYXJlIGR1ZSB0byBvZmZzZXQgc2hpZnRzIGZyb20g
-dGhlIGFkZGVkIGRlYnVnCj4gaW5zdHJ1Y3Rpb25zICh0aGV5IGhhdmUgdG8gYmUgc3RvcmVkIHNv
-bWV3aGVyZSwgYWZ0ZXIgYWxsKS4gVGhpcyBpcyBlbmNvdXJhZ2luZyBuZXdzISEgVGhhbmtzIGZv
-cgo+IG5vdCBnaXZpbmcgdXAhCj4gQXMgYWx3YXlzOiBsZXQgbWUga25vdyBpZiB0aGVyZSdzIGFu
-eSB3YXkgSSBjYW4gaGVscCB0aGUgcHJvY2VzcyEKPiBDaGVlcnMhCj4gCj4gT24gU3VuLCAyMDE5
-LTEwLTEzIGF0IDE4OjE1IC0wNTAwLCBNaWtlIElzZWx5IHdyb3RlOgo+ID4gRGllZ286Cj4gPiBJ
-IHdhcyAqZmluYWxseSogYWJsZSB0byByZXByb2R1Y2UgdGhlIHByZWNpc2Uga2VybmVsIG9vcHMg
-eW91IGdvdC4gIEkgaGFkIHRvIGxvYWQgdGhlIGV4YWN0IHNhbWUKPiA+IFVidW50dSBrZXJuZWwg
-eW91IGFyZSB1c2luZyBhbmQgdGhlIHRlc3QgaGFkIHRvIHJ1biBzcGVjaWZpY2FsbHkgYWdhaW5z
-dCBhbiBIVlItMTk1MC4gIFRoZSBvbGRlcgo+ID4gKHNpbXBsZXIpIGRldmljZSBJIGhhZCBiZWVu
-IHRyeWluZyB3b24ndCBmYWlsLiAgQnV0IHdpdGggdGhhdCBzYWlkLCBJIGdvdCB5b3VyIGV4YWN0
-IGNhbGwgdHJhY2UuCj4gPiBOb3cgdGhhdCBJIHNlZSB0aGUgc2lnbmF0dXJlLCBJIGltbWVkaWF0
-ZWx5IHRlc3RlZCBhZ2FpbiB1c2luZyBhIDUuMi4xMyBrZXJuZWwub3JnIHZhbmlsbGEga2VybmVs
-Cj4gPiB0aGF0IGlzIGxhcmRlZCBmdWxsIG9mIHByaW50aygpIHN0YXRlbWVudHMgaW4gdGhlIGRy
-aXZlciwgYWdhaW4gb24gYW4gSFZSLTE5NTAuICBBbmQgaXQgYmxldwo+ID4gY2h1bmtzIGFnYWlu
-LiAgVGhlIHNpZ25hdHVyZSB3YXNuJ3QgcHJlY2lzZWx5IHRoZSBzYW1lIChzdGFjayB0cmFjZSBp
-cyBzbGlnaHRseSBkaWZmZXJlbnQpIGJ1dAo+ID4gaXQncyBjbG9zZSBlbm91Z2ggdGhhdCBJIGJl
-bGlldmUgaXQncyB0aGUgc2FtZSByb290IGNhdXNlLgo+ID4gTm93IHRoZSByZWFsIGRpZ2dpbmcg
-c3RhcnRzLgo+ID4gTm90ZTogVGhpcyBpcyBpZ25vcmluZyB0aGUgc3lzZnMgdGVhci1kb3duIGNv
-bGxpc2lvbiBJIGhhZCBtZW50aW9uZWQgZWFybGllciAod2hpY2gsIGludGVyZXN0aW5nbHkKPiA+
-IGRpZG4ndCBoYXBwZW4gdGhpcyB0aW1lLCBwcm9iYWJseSBiZWNhdXNlIHRoaXMgb29wcyBzdG9w
-cGVkIHRoZSB0ZWFyLWRvd24gYmVmb3JlIGl0IGdvdCB0aGF0Cj4gPiBmYXIpLiAgVGhpcyBpcyBh
-bHNvIHdpdGggdGhlIGV4dGVybmFsIHVzZXJzcGFjZSBJMkMgYWNjZXNzIGRpc2FibGVkIHNvIEkg
-Y2FuIGtlZXAgdGhhdCBzb3VyY2Ugb2YKPiA+IGxvZyBub2lzZSBvdXQgb2YgdGhlIHdheSwgZm9y
-IG5vdy4gIFNvIHRoZXJlJ3MgcmVhbGx5IDMgaXNzdWVzIGhlcmUuICBUcnlpbmcgdG8gZm9jdXMg
-b24gdGhlIG9uZQo+ID4gdGhhdCBpcyBidXJuaW5nIHlvdSBzcGVjaWZpY2FsbHkuCj4gPiBJZiBp
-dCB0dXJucyBvdXQgdGhhdCB3aGF0IEknbSBzZWVpbmcgaW4gdGhlIDUuMi4xMyBrZXJuZWwgaXMg
-YWN0dWFsbHkgZGlmZmVyZW50LCB3ZWxsIHRoZW4gdGhhdAo+ID4ganVzdCBtZWFucyB0aGVyZSBh
-cmUgNCBwcm9ibGVtcyA6LSggQnV0IHJpZ2h0IG5vdyBJJ20gYmV0dGluZyBpdCdzIHRoZSBzYW1l
-IHNvIHRoYXQncyB0aGUgYXZlbnVlCj4gPiBJJ20gZ29pbmcgdG8gY2hhc2UuICBJZiBJIHJ1biBh
-Z3JvdW5kLCB0aGVuIEknbSBnb2luZyB0byBiYWNrdHJhY2sgdG8gdGhhdCBzcGVjaWZpYyBVYnVu
-dHUga2VybmVsCj4gPiBhbmQgcmVidWlsZCBpdCB3aXRoIGFsbCBteSBkZWJ1ZyBjb2RlIGFkZGVk
-IGFuZCBvdGhlciBjb25maWcgdHdlYWtzIHRvIGhlbHAgd2l0aCBjaGFzaW5nIHRoZQo+ID4gcHJv
-YmxlbS4KPiA+ICAgLU1pa2UKPiAKCi0tIAoKTWlrZSBJc2VseQppc2VseSBAIGlzZWx5IChkb3Qp
-IG5ldApQR1A6IDAzIDU0IDQzIDREIDc1IEU1IENDIDkyIDcxIDE2IDAxIEUyIEI1IEY1IEMxIEU4
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCnB2cnVzYjIg
-bWFpbGluZyBsaXN0CnB2cnVzYjJAaXNlbHkubmV0Cmh0dHA6Ly93d3cuaXNlbHkubmV0L2NnaS1i
-aW4vbWFpbG1hbi9saXN0aW5mby9wdnJ1c2IyCg==
+This is a MIME-formatted message.  If you see this text it means that your
+E-mail software does not support MIME-formatted messages.
+
+--===============3624249939677567949==
+Content-Type: multipart/signed; micalg=pgp-sha1; protocol="application/pgp-signature"; boundary="=_cnc.isely.net-30101-1571754800-0001-2"
+
+This is a MIME-formatted message.  If you see this text it means that your
+E-mail software does not support MIME-formatted messages.
+
+--=_cnc.isely.net-30101-1571754800-0001-2
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+This is excellent news, Mike!!!
+I'd very much like that patch, please! It's been YEARS since I've recompile=
+d a kernel, so this will
+be a fun trip down memory lane!
+How long do you think till this patch gets merged into the mainline kernels=
+? Is that even a
+reasonable aspiration? Asking for a friend =F0=9F=98=84
+As for the I2C thing, the driver can be blacklisted so that's one workaroun=
+d.
+Cheers!
+On Mon, 2019-10-21 at 20:19 -0500, Mike Isely wrote:
+> Update...
+> So the kernel oops is happening because the driver is trying to tear down=
+ state for a V4L2 radio
+> device - except there was no radio device configured so the tear-down end=
+ed up dereferencing
+> through a null pointer.  Boom.
+> I backtracked through the code to figure out "why now", and I could not f=
+ind a reason.  From what
+> I can tell this bug has likely been there for about 11 years.  The code w=
+hich bypasses setup of
+> the radio device takes that path if there's no radio support configured f=
+or the hardware - which
+> is sadly the case for the HVR-1950 - and git blame shows that area of cod=
+e last modified in
+> 2008.  (That makes sense because that's about when the HVR-1950 was added=
+.)  Best I can figure
+> that some other happenstance had to have prevented the kernel from blowin=
+g up on this
+> pointer.  FWIW, it's actually trying to dereference an offset from null, =
+but the distance to the
+> offset is still small enough that it should fit in the first virtual page=
+ address and thus be
+> detected.
+> Anyway, I made a change to the two places in the code where this matters,=
+ basically don't touch
+> the radio data structure if it isn't there, and now the kernel oops is go=
+ne.
+> This also explains why I could not reproduce the problem before - because=
+ the different device I
+> was trying has a working radio in it that can be operated by the pvrusb2 =
+driver.  Thus this
+> condition did not arise.
+> There's still other strangeness to figure out, namely the sysfs teardown =
+problem and implementing
+> *something* to keep a userspace I2C client from jamming up the pvrusb2 dr=
+iver.  But this is
+> progress.
+> Obviously I will get this pushed.  I can send you a source patch if you'd=
+ like to try rebuilding
+> the module on your end.  Since we're not running identical kernels I can'=
+t just send you the
+> binary.
+>   -Mike
+--=20
+
+
+
+Diego Rivera
+
+
+--=_cnc.isely.net-30101-1571754800-0001-2
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Transfer-Encoding: 7bit
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQS+WVRpxpbIDf9cWSYLNvj/2phirQUCXa8TDQAKCRALNvj/2phi
+rX98AKCHKkYkpmhgXkGS6hSdpdw8/p+/eQCcCLdynBJMh8M5L393bOWVAm2zprs=
+=upI4
+-----END PGP SIGNATURE-----
+
+--=_cnc.isely.net-30101-1571754800-0001-2--
+
+--===============3624249939677567949==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KcHZydXNiMiBt
+YWlsaW5nIGxpc3QKcHZydXNiMkBpc2VseS5uZXQKaHR0cDovL3d3dy5pc2VseS5uZXQvY2dpLWJp
+bi9tYWlsbWFuL2xpc3RpbmZvL3B2cnVzYjIK
+
+--===============3624249939677567949==--
