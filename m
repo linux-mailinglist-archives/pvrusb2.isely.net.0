@@ -2,44 +2,53 @@ Return-Path: <pvrusb2-bounces@isely.net>
 X-Original-To: lists+pvrusb2@lfdr.de
 Delivered-To: lists+pvrusb2@lfdr.de
 Received: from cnc.isely.net (cnc.isely.net [75.149.91.89])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EB48E6BB7
-	for <lists+pvrusb2@lfdr.de>; Mon, 28 Oct 2019 05:24:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BBE04E74E5
+	for <lists+pvrusb2@lfdr.de>; Mon, 28 Oct 2019 16:20:59 +0100 (CET)
 Received: from cnc.isely.net (cnc.isely.net [::ffff:192.168.23.2])
   (IDENT: list)
-  by cnc.isely.net with ESMTP; Sun, 27 Oct 2019 23:24:56 -0500
-  id 00000000001426D8.000000005DB66D98.00005D7F
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com
- [::ffff:209.85.160.169]) (TLS: TLSv1/SSLv3,128bits,AES128-GCM-SHA256)
- by cnc.isely.net with ESMTPS; Sun, 27 Oct 2019 23:24:54 -0500
- id 0000000000142373.000000005DB66D96.00005D6E
-Received: by mail-qt1-f169.google.com with SMTP id o3so12781132qtj.8
- for <pvrusb2@isely.net>; Sun, 27 Oct 2019 21:24:54 -0700 (PDT)
+  by cnc.isely.net with ESMTP; Mon, 28 Oct 2019 10:20:56 -0500
+  id 000000000014274F.000000005DB70758.00001E76
+Received: from mail-vk1-f195.google.com (mail-vk1-f195.google.com
+ [::ffff:209.85.221.195]) (TLS: TLSv1/SSLv3,128bits,AES128-GCM-SHA256)
+ by cnc.isely.net with ESMTPS; Mon, 28 Oct 2019 10:20:53 -0500
+ id 00000000001426C9.000000005DB70755.00001E60
+Received: by mail-vk1-f195.google.com with SMTP id u79so1820051vke.4
+ for <pvrusb2@isely.net>; Mon, 28 Oct 2019 08:20:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=Lgb4s9Wd6ieR58SQ4GJFtBylGWDm6BTCm4Fc60smX+Q=;
- b=izrKFC94In4+oajdjuqaInDwL36c5Gn9a7rTWhIZoRK1Y1hgIBqhBgjjzeleskzUvX
- 8p0aeYpyAEI1qCWMfxAT88gKY44yEmtlsHK1d4EZ34NrdVtMoG++3XwNrktdZQxKeQwI
- bjRAyzL35fVJqShcLCQotPGzmkdf72jJSqWHYOOGo/+9Y/Erh4uCuuNFLzNznwqtxCtq
- 9fnZmrfu/C7rT9emUx1py1SqS6Zd6N+sttaKKPB42PyL93DQUHmpwVAbLjfAXUc6zMF0
- 5hkLSDqZXPNrBwLh3WHSe+LeOntOJGLSNdl8H2c6lcP0vKKBt5OI/SsY9q0pNe+5Bpgi
- 1V5Q==
+ h=message-id:subject:from:to:in-reply-to:references:date:mime-version
+ :user-agent; bh=xn83SsLfsG6ERBArB8Es0SeJIHGGJKY2sKiU/q29sjQ=;
+ b=Xg3/gRt4j/K1DFC8uLTc6Zi8LtMbQ0879Gj1fJpxzlR17x14J8HG0wix9Al813SUf6
+ fS2+3xtGQEZkPDLnjuMbvzKCDJTX2vqkAZGCyAyQGNLruHuEZxPvT+Llf0VATgizMBGH
+ IVMnNchCSDbOTD6QveB9f9BRTdsijRSwQV+D/LU4RWNxeJi33d0sHylVYwESzWsLTa1Q
+ Hr2QP0DDyE0w51SUH5E/RwcvJD1Ks7CoAmBFFmrDN0XQNctcgUirtKRRSYOLLP4Glol8
+ 1rli7NihE/JFF7NMCJ8YPSNv9sKq1up93w8w3+2J0yXQ8luS0OTPW18JIgZDXotFd8mh
+ 03Ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=Lgb4s9Wd6ieR58SQ4GJFtBylGWDm6BTCm4Fc60smX+Q=;
- b=djkhkhuj6MmmFbIYnSwh5bvwKR0yDOt9xE+Gmasrr4Pn7N1QRicx0SRha5uTklremR
- HklBWXIPPaa5GlWBKk3CuJOZgKo+IyQUfjtTrX+zhoHSh57zvOOLpEmfQxtGgc7dGJlw
- e3XO3eExAew0HtM+kdJo8s44AElnnBYMEmScHLXae97/RmS69BzV9fqX2jUdevhv+Yno
- u1KG5UN8hP8krxUXdEqVag6caxUMyXDywRWxAV1vTyQ9eq2xxurI8i72teyxk+sZpPBJ
- m90E/EixBoYLdeDLHspskMdHZ6FILUsSef4/QzeTMFIx2dfxJg69z44UNJ/Zt/ESGqP8
- rJ0w==
-X-Gm-Message-State: APjAAAXw1AyDn8+WSvHze3hANtO+lETRFe8TNkaPaIBuXb9QB4wulFSD
- u/H7WxRmSvZZ2h5uw7SdiqU3sGM2vV+u8/Zzq1dOoYAu
-X-Google-Smtp-Source: APXvYqxmZUsutZYFnxQp3OwfUYdfbQxIzfjy0iakfs48cXLMSxh+USmqwSDfT0LTQZBm18dGqhf4tm2Up7NMvapirjM=
-X-Received: by 2002:ac8:28a1:: with SMTP id i30mr15820250qti.245.1572236663284; 
- Sun, 27 Oct 2019 21:24:23 -0700 (PDT)
-Mime-Version: 1.0
+ h=x-gm-message-state:message-id:subject:from:to:in-reply-to
+ :references:date:mime-version:user-agent;
+ bh=xn83SsLfsG6ERBArB8Es0SeJIHGGJKY2sKiU/q29sjQ=;
+ b=K3FnQXi0YXRVT5L6BS1Xh8xfqyZnYj4hGNbmXfOScdKRaDhhXgMR3viZ7f8QYa8JSK
+ LYVecxpuoFRxp5Zd5sIWrsUaWYS6omJ/EiuSGL1Yt1YPAeSnaFhrD9VbVpJj44g05BkQ
+ zaJZS/MovO6S0E+UqwA138sZvzO+2Ws/66bQd1zGoMYAB863GDj5GMct+Ig1baNFwVah
+ yHIq31JkpkmIPba26iUuq/WrkJ0e5tROJf/os3ak4V9uVbhbr9ZULEnfC15X2u9l8X+Q
+ fVKlXI/fTnE32kpQTJVLy+BGttdzAdYgFYokE/c74SJtIviLZ6RHpJVzJf3MVzPfsMUt
+ NEHw==
+X-Gm-Message-State: APjAAAURIexKVHLbonBQ5c/dSdVrYSmjJjvmFLuQaLgBRqIzye/tWlgd
+ tcEez5y6ze69P/Ldb6d4OWH+Q2xsuBw=
+X-Google-Smtp-Source: APXvYqyHyeEvPLkoWeg9/R17oMJEQ9H194yensc/dry2QPevb0OPaxE4kPiwAS02v/tBjo+g0AW24Q==
+X-Received: by 2002:a1f:a409:: with SMTP id n9mr8953255vke.76.1572276021999;
+ Mon, 28 Oct 2019 08:20:21 -0700 (PDT)
+Old-Return-Path: <diego.rivera.cr@gmail.com>
+Received: from diego.rivera.prv (ip130-144-15-186.ct.co.cr. [186.15.144.130])
+ by smtp.googlemail.com with ESMTPSA id
+ k20sm2119509vsj.25.2019.10.28.08.20.20 for <pvrusb2@isely.net>
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 28 Oct 2019 08:20:21 -0700 (PDT)
+Message-ID: <b740466788a9050c5d43fe489fcb0b2f8f28ff1c.camel@gmail.com>
+From: Diego Rivera <diego.rivera.cr@gmail.com>
+To: Communications nexus for pvrusb2 driver <pvrusb2@isely.net>
+In-Reply-To: <CAA--8Uaj3exALAGjie5DDshZjd2rvPgF=8pbCP02T4X=22gTjA@mail.gmail.com>
 References: <alpine.DEB.2.21.1910271644510.15059@sheridan-wavelan>
  <alpine.DEB.2.21.1910271646080.15059@sheridan-wavelan>
  <d3fdc65dba5bc5fa13beae2e5f8b76cc17ecdbf6.camel@gmail.com>
@@ -50,11 +59,11 @@ References: <alpine.DEB.2.21.1910271644510.15059@sheridan-wavelan>
  <c0487d1ef2fa5d45de45a09c5967fdd18eac72c2.camel@gmail.com>
  <274ef0fd00f1b75290741c4ceb821d1733995094.camel@gmail.com>
  <alpine.DEB.2.21.1910272208580.15059@sheridan-wavelan>
-In-Reply-To: <alpine.DEB.2.21.1910272208580.15059@sheridan-wavelan>
-From: Diego Rivera <diego.rivera.cr@gmail.com>
-Date: Sun, 27 Oct 2019 22:24:11 -0600
-Message-ID: <CAA--8Uaj3exALAGjie5DDshZjd2rvPgF=8pbCP02T4X=22gTjA@mail.gmail.com>
-To: Communications nexus for pvrusb2 driver <pvrusb2@isely.net>
+ <CAA--8Uaj3exALAGjie5DDshZjd2rvPgF=8pbCP02T4X=22gTjA@mail.gmail.com>
+Date: Mon, 28 Oct 2019 09:20:17 -0600
+Mime-Version: 1.0
+Content-Type: multipart/mixed; boundary="=_cnc.isely.net-7798-1572276056-0001-2"
+User-Agent: Evolution 3.32.1-2
 X-Content-Filtered-By: Mailman/MimeDel 2.1.18
 Subject: Re: [pvrusb2] [PATCH] pvrusb2: Fix oops on tear-down when radio
  support is not present
@@ -70,71 +79,217 @@ List-Help: <mailto:pvrusb2-request@isely.net?subject=help>
 List-Subscribe: <http://www.isely.net/cgi-bin/mailman/listinfo/pvrusb2>,
  <mailto:pvrusb2-request@isely.net?subject=subscribe>
 Reply-To: Communications nexus for pvrusb2 driver <pvrusb2@isely.net>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
 Errors-To: pvrusb2-bounces@isely.net
 Sender: "pvrusb2" <pvrusb2-bounces@isely.net>
 
-WWVhaC4gRmlndXJlZCBhcyBtdWNoLiBJJ2xsIHNlZSB3aGF0IEkgY2FuIHJlcHJvIGluIHRlcm1z
-IG9mIGNvcmUgZHVtcHMgYW5kCnN0YWNrIHRyYWNlcy4KCkNoZWVycyEKCi0tCgpEaWVnbyBSaXZl
-cmEKCk9uIFN1biwgT2N0IDI3LCAyMDE5LCAyMToxMCBNaWtlIElzZWx5IDxpc2VseUBpc2VseS5u
-ZXQ+IHdyb3RlOgoKPgo+IFRoYW5rcy4gIEknbGwgZ2V0IHRoYXQgcGF0Y2ggcHVzaGVkIHVwc3Ry
-ZWFtLgo+Cj4gVGhlIHNvZnQgbG9ja3VwIHNpdHVhdGlvbiBJIGhhdmUgbm90IHNlZW4geWV0LiAg
-VGhhdCBpc24ndCB0byBzYXkgaXQKPiBpc24ndCBoYXBwZW5pbmcsIGJ1dCByYXRoZXIgdGhhdCBJ
-IHdpbGwgcHJvYmFibHkgbmVlZCBhIGxvdCBvZiBpbmZvIGluCj4gb3JkZXIgdG8gcmVwcm9kdWNl
-IGl0IGhlcmUuICAoVGhpcyBzb3J0IG9mIHByb2JsZW0gY2FuIGJlIGEgcmVhbCBkZXZpbAo+IHRv
-IHJlcHJvZHVjZSBlc3BlY2lhbGx5IG9uIG5vbi1pZGVudGljYWwgZXF1aXBtZW50LikKPgo+ICAg
-LU1pa2UKPgo+IE9uIFN1biwgMjcgT2N0IDIwMTksIERpZWdvIFJpdmVyYSB3cm90ZToKPgo+ID4g
-U28gaGVyZSdzIGFub3RoZXIgdGlkYml0IHRoYXQgd2UgbWF5IGV2ZW50dWFsbHkgd2FudCB0byBs
-b29rIGludG86IHVuZGVyCj4gdW5rbm93biBjaXJjdW1zdGFuY2VzLAo+ID4gZHVyaW5nIGRyaXZl
-ciBib290dXAsIGEgc29mdCBsb2NrdXAgd2lsbCB0YWtlIHBsYWNlIHdoaWNoIHJlbmRlcnMgdGhl
-Cj4gbWFjaGluZSBpbm9wZXJhYmxlLiBUaGlzIGFsc28KPiA+IGhhcHBlbnMgaW4gdGhlIFZNLiBJ
-J2xsIHRyeSB0byBmaXNoIG91dCBsb2dzIHRvIHNlZSBpZiBhbnl0aGluZyBzdGFuZHMKPiBvdXQu
-Cj4gPiBUaGF0IHNhaWQsIHRoZSBkcml2ZXIgcGF0Y2ggZG9lcyBpbmRlZWQgc2VlbSB0byB0YWtl
-IGNhcmUgb2YgdGhlIGRlYXRoCj4gZHVlIHRvIHVucGx1Zy9yZXBsdWcuICBOb3cgSQo+ID4gaGF2
-ZSB0byB0ZXN0IHRob3JvdWdobHkgdG8gc2VlIGlmIGEgc29mdC1yZXNldCByZXN1bHRzIGluIHRo
-ZSBkZXZpY2UKPiBjb21pbmcgYmFjayB0byBsaWZlIGFmdGVyIGEKPiA+IGhhbmcuIFRoaXMgaXMg
-Z3JlYXQgcHJvZ3Jlc3MsIHRob3VnaCEKPiA+IEknbGwga2VlcCB5b3UgcG9zdGVkIHdpdGggZXZl
-cnl0aGluZyBJIGZpbmQgZHVyaW5nIHRoZXNlIG5leHQgZmV3IGRheXMuCj4gRm9yIG5vdywgSSdk
-IHN1Ym1pdCB0aGUKPiA+IHBhdGNoIHJlZ2FyZGxlc3Mgc2luY2UgaXQncyBhbiBpbXByb3ZlbWVu
-dCBub25ldGhlbGVzcy4KPiA+IENoZWVycyEgQW5kIHRoYW5rcyBhZ2FpbiEKPiA+Cj4gPiBPbiBT
-dW4sIDIwMTktMTAtMjcgYXQgMTg6MTUgLTA2MDAsIERpZWdvIFJpdmVyYSB3cm90ZToKPiA+ID4g
-T2sgc28gZXhjZWxsZW50IG5ld3MhIEkgY2FuIG5vdyByZW1vdmUgYW5kIHJlLWF0dGFjaCB0aGUg
-ZGV2aWNlcyB3aXRoCj4gbm8gb29wc2VzISEgIEknbSB0ZXN0aW5nIHRoZQo+ID4gPiAic29mdC1y
-ZXNldCIgcGFydCBub3cgdG8gc2VlIGlmIHRoYXQnbGwgd29yayBhcyB3ZWxsLCBidXQgSSBub3cg
-aGF2ZSBhCj4gd29ya2Fyb3VuZCBmb3IgdGhhdCwgdG9vISEKPiA+ID4gSSBkaWRuJ3Qgc2VlIHRv
-byBtdWNoIG5vaXNlIG9uIHRoZSBsb2dzIGZyb20gdGhlIHN5c2ZzIHRlYXJkb3duLCB0aGVuCj4g
-YWdhaW4gSSBkaWRuJ3QgbG9vayB0b28KPiA+ID4gaGFyZC4gIFdoYXQgSSBtZWFudCBieSAicGFy
-YW1ldGVyIiB3YXMganVzdCB0aGF0OiBhIHJ1bnRpbWUgZmxhZyB0aGF0Cj4gY291bGQgYmUgdHVy
-bmVkIG9uL29mZiBieSBhCj4gPiA+IHVzZXIgaWYgdGhleSBncm93IHRpcmVkIG9mIHRoZSBub2lz
-ZSBvbiB0aGUgbG9ncy4gIEZvciB0aGUgSTJDIHRoaW5nLAo+IEkgdGhpbmsgYmxhY2tsaXN0aW5n
-IHRoZQo+ID4gPiBJMkMtSVIgZHJpdmVyIGxpa2Ugd2UgaGFkIGRvbmUgYmVmb3JlIHNob3VsZCBi
-ZSBlbm91Z2ggb2YgYSB3b3JrYXJvdW5kCj4gZm9yIG5vdy4KPiA+ID4gVGhhbmtzIGZvciB0aGlz
-ISEKPiA+ID4gQ2hlZXJzIQo+ID4gPiAtLQo+ID4gPgo+ID4gPgo+ID4gPgo+ID4gPiBEaWVnbyBS
-aXZlcmEKPiA+ID4KPiA+ID4gT24gU3VuLCAyMDE5LTEwLTI3IGF0IDE4OjE5IC0wNTAwLCBNaWtl
-IElzZWx5IHdyb3RlOgo+ID4gPiA+IFRoZSBzeXNmcyB0ZWFyZG93biBpc3N1ZSByaWdodCBub3cg
-aXMgbGFyZ2VseSBjb3NtZXRpYyAtIHlvdSBqdXN0Cj4gZ2V0IGxvZyBub2lzZSBidXQgdGhlIGVu
-ZAo+ID4gPiA+IHJlc3VsdCBhcHBlYXJzIHRvIHN0aWxsIGJlIGNvcnJlY3QuICBPYnZpb3VzbHkg
-dGhpcyBzdGlsbCBuZWVkcyB0bwo+IGJlIGZpeGVkLCBiZWNhdXNlIGdldHRpbmcKPiA+ID4gPiBz
-dGFjayB0cmFjZXMgaW4gdGhlIGtlcm5lbCBtZXNzYWdlIGxvZyBnZW5lcmFsbHkgc3Vja3MuCj4g
-PiA+ID4gVGhlcmUgYWN0dWFsbHkgaXMgYSBwdnJ1c2IyIGtlcm5lbCBjb25maWcgcGFyYW1ldGVy
-IHlvdSBjYW4gc2V0IGF0Cj4gY29tcGlsZSB0aW1lIHdoaWNoIHdpbGwKPiA+ID4gPiBkaXNhYmxl
-IHRoZSBzeXNmcyBwaWVjZSBvZiB0aGlzLiAgKE5vdCBhIHJ1bi10aW1lIHN3aXRjaCB0aG91Z2gu
-KQo+ID4gPiA+ICAgLU1pa2UKPiA+ID4gPiBPbiBTdW4sIDI3IE9jdCAyMDE5LCBEaWVnbyBSaXZl
-cmEgd3JvdGU6Cj4gPiA+ID4gPiBJIGhhZCBhIHRob3VnaHQgYWJvdXQgdGhlIHN5c2ZzIHRlYXJk
-b3duIHJhY2UgeW91IG1lbnRpb25lZC4gV291bGQKPiBpdCBjYXVzZXRvbyBtYW55IHByb2JsZW1z
-Cj4gPiA+ID4gPiBpZiBpbnN0ZWFkIHlvdSBhZGRlZCBhIG1vZHVsZSBwYXJhbWV0ZXIgdG8gc2Vs
-ZWN0aXZlbHlkaXNhYmxlIHRoYXQKPiBiaXQgYW5kIGxldCB0aGUgcmVzdCBvZiB0aGUKPiA+ID4g
-PiA+IGtlcm5lbCBkbyB0aGUgdGVhcmRvd24gaW5zdGVhZD8KPiA+ID4gPiA+IFRoYXQgbWlnaHQg
-YmUgZW5vdWdoIG9mIGFuIG9wdGlvbmFsIHdvcmthcm91bmQgZm9yIG5vdywgc2luY2UgdGhhdAo+
-IGRvZXNpbmRlZWQgc2VlbSBsaWtlIGEKPiA+ID4gPiA+IGJpZ2dlciBjaGFsbGVuZ2UuLi51bmxl
-c3MsIG9mIGNvdXJzZSwgdGhhdCBhcHByb2FjaGJyaW5ncyBtb3JlCj4gcHJvYmxlbXMgaW50byBm
-b2N1cy4uLgo+ID4gPiA+ID4gSnVzdCBhIHRob3VnaHQuLi4KPiA+ID4gPiA+IENoZWVycyEKPiA+
-ID4gPiA+IC0tCj4gPiA+ID4gPiBEaWVnbyBSaXZlcmEKPiA+Cj4KPiAtLQo+Cj4gTWlrZSBJc2Vs
-eQo+IGlzZWx5IEAgaXNlbHkgKGRvdCkgbmV0Cj4gUEdQOiAwMyA1NCA0MyA0RCA3NSBFNSBDQyA5
-MiA3MSAxNiAwMSBFMiBCNSBGNSBDMSBFOAo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCj4gcHZydXNiMiBtYWlsaW5nIGxpc3QKPiBwdnJ1c2IyQGlzZWx5
-Lm5ldAo+IGh0dHA6Ly93d3cuaXNlbHkubmV0L2NnaS1iaW4vbWFpbG1hbi9saXN0aW5mby9wdnJ1
-c2IyCj4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KcHZy
-dXNiMiBtYWlsaW5nIGxpc3QKcHZydXNiMkBpc2VseS5uZXQKaHR0cDovL3d3dy5pc2VseS5uZXQv
-Y2dpLWJpbi9tYWlsbWFuL2xpc3RpbmZvL3B2cnVzYjIK
+This is a MIME-formatted message.  If you see this text it means that your
+E-mail software does not support MIME-formatted messages.
+
+--=_cnc.isely.net-7798-1572276056-0001-2
+Content-Type: multipart/signed; micalg=pgp-sha1; protocol="application/pgp-signature"; boundary="=_cnc.isely.net-7798-1572276056-0001-3"
+
+This is a MIME-formatted message.  If you see this text it means that your
+E-mail software does not support MIME-formatted messages.
+
+--=_cnc.isely.net-7798-1572276056-0001-3
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+I disabled the ir_kbd_i2c and rc_hauppauge modules last night, and I haven'=
+t seen the soft lockup on
+boot since.  I get a nagging feeling that it's the same thing happening on =
+bootup, only when the
+kernel is in a vulnerable position where such a loop causes it to choke...
+I'll keep you posted if I see it without those modules in play. If that's i=
+t, then that as they say
+would be that and I'd have solved all the issues in play.
+Cheers!
+
+On Sun, 2019-10-27 at 22:24 -0600, Diego Rivera wrote:
+> Yeah. Figured as much. I'll see what I can repro in terms of core dumps a=
+nd stack traces.
+> Cheers!
+>=20
+> --
+>=20
+> Diego Rivera
+>=20
+> On Sun, Oct 27, 2019, 21:10 Mike Isely <isely@isely.net> wrote:
+> > Thanks.  I'll get that patch pushed upstream.
+> >=20
+> >=20
+> >=20
+> > The soft lockup situation I have not seen yet.  That isn't to say it=
+=20
+> >=20
+> > isn't happening, but rather that I will probably need a lot of info in=
+=20
+> >=20
+> > order to reproduce it here.  (This sort of problem can be a real devil=
+=20
+> >=20
+> > to reproduce especially on non-identical equipment.)
+> >=20
+> >=20
+> >=20
+> >   -Mike
+> >=20
+> >=20
+> >=20
+> > On Sun, 27 Oct 2019, Diego Rivera wrote:
+> >=20
+> >=20
+> >=20
+> > > So here's another tidbit that we may eventually want to look into: un=
+der unknown
+> > circumstances,
+> >=20
+> > > during driver bootup, a soft lockup will take place which renders the=
+ machine inoperable. This
+> > also
+> >=20
+> > > happens in the VM. I'll try to fish out logs to see if anything stand=
+s out.
+> >=20
+> > > That said, the driver patch does indeed seem to take care of the deat=
+h due to unplug/replug.=20
+> > Now I
+> >=20
+> > > have to test thoroughly to see if a soft-reset results in the device =
+coming back to life after
+> > a
+> >=20
+> > > hang. This is great progress, though!
+> >=20
+> > > I'll keep you posted with everything I find during these next few day=
+s. For now, I'd submit
+> > the
+> >=20
+> > > patch regardless since it's an improvement nonetheless.
+> >=20
+> > > Cheers! And thanks again!
+> >=20
+> > >=20
+> >=20
+> > > On Sun, 2019-10-27 at 18:15 -0600, Diego Rivera wrote:
+> >=20
+> > > > Ok so excellent news! I can now remove and re-attach the devices wi=
+th no oopses!!  I'm
+> > testing the
+> >=20
+> > > > "soft-reset" part now to see if that'll work as well, but I now hav=
+e a workaround for that,
+> > too!!
+> >=20
+> > > > I didn't see too much noise on the logs from the sysfs teardown, th=
+en again I didn't look
+> > too
+> >=20
+> > > > hard.  What I meant by "parameter" was just that: a runtime flag th=
+at could be turned on/off
+> > by a
+> >=20
+> > > > user if they grow tired of the noise on the logs.  For the I2C thin=
+g, I think blacklisting
+> > the
+> >=20
+> > > > I2C-IR driver like we had done before should be enough of a workaro=
+und for now.
+> >=20
+> > > > Thanks for this!!
+> >=20
+> > > > Cheers!
+> >=20
+> > > > --=20
+> >=20
+> > > >=20
+> >=20
+> > > >=20
+> >=20
+> > > >=20
+> >=20
+> > > > Diego Rivera
+> >=20
+> > > >=20
+> >=20
+> > > > On Sun, 2019-10-27 at 18:19 -0500, Mike Isely wrote:
+> >=20
+> > > > > The sysfs teardown issue right now is largely cosmetic - you just=
+ get log noise but the
+> > end
+> >=20
+> > > > > result appears to still be correct.  Obviously this still needs t=
+o be fixed, because
+> > getting
+> >=20
+> > > > > stack traces in the kernel message log generally sucks.
+> >=20
+> > > > > There actually is a pvrusb2 kernel config parameter you can set a=
+t compile time which will
+> >=20
+> > > > > disable the sysfs piece of this.  (Not a run-time switch though.)
+> >=20
+> > > > >   -Mike
+> >=20
+> > > > > On Sun, 27 Oct 2019, Diego Rivera wrote:
+> >=20
+> > > > > > I had a thought about the sysfs teardown race you mentioned. Wo=
+uld it causetoo many
+> > problems
+> >=20
+> > > > > > if instead you added a module parameter to selectivelydisable t=
+hat bit and let the rest
+> > of the
+> >=20
+> > > > > > kernel do the teardown instead?
+> >=20
+> > > > > > That might be enough of an optional workaround for now, since t=
+hat doesindeed seem like
+> > a
+> >=20
+> > > > > > bigger challenge...unless, of course, that approachbrings more =
+problems into focus...
+> >=20
+> > > > > > Just a thought...
+> >=20
+> > > > > > Cheers!
+> >=20
+> > > > > > --
+> >=20
+> > > > > > Diego Rivera
+> >=20
+> > >=20
+> >=20
+> >=20
+> >=20
+--=20
+
+
+
+Diego Rivera
+
+
+--=_cnc.isely.net-7798-1572276056-0001-3
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Transfer-Encoding: 7bit
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQS+WVRpxpbIDf9cWSYLNvj/2phirQUCXbcHMQAKCRALNvj/2phi
+rVSsAJwM6hrokX+KmQjCaelNFyxi0tvEFgCfV/j0Shm5CvLZQJFNBixYHw0GlNM=
+=6VSY
+-----END PGP SIGNATURE-----
+
+--=_cnc.isely.net-7798-1572276056-0001-3--
+
+--=_cnc.isely.net-7798-1572276056-0001-2
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KcHZydXNiMiBt
+YWlsaW5nIGxpc3QKcHZydXNiMkBpc2VseS5uZXQKaHR0cDovL3d3dy5pc2VseS5uZXQvY2dpLWJp
+bi9tYWlsbWFuL2xpc3RpbmZvL3B2cnVzYjIK
+
+--=_cnc.isely.net-7798-1572276056-0001-2--
