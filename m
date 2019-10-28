@@ -2,53 +2,22 @@ Return-Path: <pvrusb2-bounces@isely.net>
 X-Original-To: lists+pvrusb2@lfdr.de
 Delivered-To: lists+pvrusb2@lfdr.de
 Received: from cnc.isely.net (cnc.isely.net [75.149.91.89])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E5A1E6A74
-	for <lists+pvrusb2@lfdr.de>; Mon, 28 Oct 2019 02:23:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4B0DE6B4A
+	for <lists+pvrusb2@lfdr.de>; Mon, 28 Oct 2019 04:10:33 +0100 (CET)
 Received: from cnc.isely.net (cnc.isely.net [::ffff:192.168.23.2])
   (IDENT: list)
-  by cnc.isely.net with ESMTP; Sun, 27 Oct 2019 20:22:59 -0500
-  id 00000000001426B0.000000005DB642F3.00004D2F
-Received: from mail-vk1-f195.google.com (mail-vk1-f195.google.com
- [::ffff:209.85.221.195]) (TLS: TLSv1/SSLv3,128bits,AES128-GCM-SHA256)
- by cnc.isely.net with ESMTPS; Sun, 27 Oct 2019 20:22:56 -0500
- id 00000000001425CC.000000005DB642F0.00004D19
-Received: by mail-vk1-f195.google.com with SMTP id k19so1551112vke.10
- for <pvrusb2@isely.net>; Sun, 27 Oct 2019 18:22:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:subject:from:to:in-reply-to:references:date:mime-version
- :user-agent; bh=oAWkyrRBMLuAb+BxMzcP2NXGPghbplqfP+Crm9CXRz4=;
- b=QOiaZcMSVuW564pjI+4CB9rT5ZhEIHfkCjgUbPCEMnB7LsZxyLqodDZz7rY1s4TT2v
- gZR4ENNycm99TILEPY9HFmGwzVLzuPqnNqFw4z+hcvB2w13zLnld/UMs67CBqmLnJgms
- vBHMWt/XdqCjh9Z5QxE/hqjzDQik+el95RphVlRnaQuaLNIyAoMpE3Y6QKQ3f2F3z/7x
- GCWfFoR/sYTpGegKIdgF8gq21yAxvA/f7c1S+X/38FMEJhDgTxnEzLSG9wyLnJkIfL1L
- 28j+UcnCCN9U743y88OJoFTJHCJMfUyb+R+a1T+/PWLnS9kL7mkHuwK4KG0Kgqmdl1nc
- t5cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:in-reply-to
- :references:date:mime-version:user-agent;
- bh=oAWkyrRBMLuAb+BxMzcP2NXGPghbplqfP+Crm9CXRz4=;
- b=QqlgHklX6+GPP5QwLtHJhygbAA9ltWp4NTFoUmi7msfObgLPY/BsuEmkq70FxhvgdU
- AizeUysbaIK8G1lCldHZ2TuhNWDg20+jINixytWROWvzjbd0h21HU6OHTu1GMB8M5LkC
- Qd9Z8rq22XDFnKpXQadqKqsU1t2WdT+WJCrETySkMohOltT6VGqf/dRRW4jFUwb+vmHH
- G9KyGKeIDAzlUlFFcNULJe/7ZTp0rxOOYDL2mxvlXkqMYEeAIowaBAxBbyfUOTRvwSPN
- s3yfBqThkmXGXfXDJ6R27CmlTINxS2UQ/i+mEKSVuQaDOhlImSsjS+OSOQgd0vmh+TUM
- gXoA==
-X-Gm-Message-State: APjAAAUH3vtv1kMA1CarPeJpm/CgVAyL6gjhpXf78l2GawxsKyfHYubh
- gU15oJ9Xnujo9edU+vCE5Fj4/lOrN4w=
-X-Google-Smtp-Source: APXvYqxV39edeZIK1kuKnApvAT6b4mnONcsgCZXt8F9N36GcnMmswQ/UxFGxNMTM9bYIXGbz5Dj/yw==
-X-Received: by 2002:a1f:f8c3:: with SMTP id w186mr7569237vkh.82.1572225745187; 
- Sun, 27 Oct 2019 18:22:25 -0700 (PDT)
-Old-Return-Path: <diego.rivera.cr@gmail.com>
-Received: from diego.rivera.prv (ip130-144-15-186.ct.co.cr. [186.15.144.130])
- by smtp.googlemail.com with ESMTPSA id
- e17sm2586331uar.12.2019.10.27.18.22.24 for <pvrusb2@isely.net>
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 27 Oct 2019 18:22:24 -0700 (PDT)
-Message-ID: <274ef0fd00f1b75290741c4ceb821d1733995094.camel@gmail.com>
-From: Diego Rivera <diego.rivera.cr@gmail.com>
+  by cnc.isely.net with ESMTP; Sun, 27 Oct 2019 22:10:30 -0500
+  id 00000000001426D8.000000005DB65C26.0000568F
+Received: from ts3-dock2.isely.net (ts3-dock2.isely.net [::ffff:192.168.23.14])
+ (AUTH: PLAIN isely, TLS: TLSv1/SSLv3,256bits,DHE-RSA-AES256-GCM-SHA384)
+ by cnc.isely.net with ESMTPSA; Sun, 27 Oct 2019 22:10:28 -0500
+ id 00000000001425F7.000000005DB65C24.0000567E
+Date: Sun, 27 Oct 2019 22:10:24 -0500 (CDT)
+From: Mike Isely <isely@isely.net>
+X-X-Sender: isely@sheridan-wavelan
 To: Communications nexus for pvrusb2 driver <pvrusb2@isely.net>
-In-Reply-To: <c0487d1ef2fa5d45de45a09c5967fdd18eac72c2.camel@gmail.com>
+In-Reply-To: <274ef0fd00f1b75290741c4ceb821d1733995094.camel@gmail.com>
+Message-ID: <alpine.DEB.2.21.1910272208580.15059@sheridan-wavelan>
 References: <alpine.DEB.2.21.1910271644510.15059@sheridan-wavelan>
  <alpine.DEB.2.21.1910271646080.15059@sheridan-wavelan>
  <d3fdc65dba5bc5fa13beae2e5f8b76cc17ecdbf6.camel@gmail.com>
@@ -57,11 +26,9 @@ References: <alpine.DEB.2.21.1910271644510.15059@sheridan-wavelan>
  <CAA--8UbdVed+8hzKByqU9dh08G7RXPEXj_61zAVG2YvA45FN8Q@mail.gmail.com>
  <alpine.DEB.2.21.1910271818210.15059@sheridan-wavelan>
  <c0487d1ef2fa5d45de45a09c5967fdd18eac72c2.camel@gmail.com>
-Date: Sun, 27 Oct 2019 19:22:21 -0600
+ <274ef0fd00f1b75290741c4ceb821d1733995094.camel@gmail.com>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="=_cnc.isely.net-19759-1572225779-0001-2"
-User-Agent: Evolution 3.32.1-2
-X-Content-Filtered-By: Mailman/MimeDel 2.1.18
 Subject: Re: [pvrusb2] [PATCH] pvrusb2: Fix oops on tear-down when radio
  support is not present
 X-BeenThere: pvrusb2@isely.net
@@ -76,110 +43,63 @@ List-Help: <mailto:pvrusb2-request@isely.net?subject=help>
 List-Subscribe: <http://www.isely.net/cgi-bin/mailman/listinfo/pvrusb2>,
  <mailto:pvrusb2-request@isely.net?subject=subscribe>
 Reply-To: Communications nexus for pvrusb2 driver <pvrusb2@isely.net>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: pvrusb2-bounces@isely.net
 Sender: "pvrusb2" <pvrusb2-bounces@isely.net>
 
-This is a MIME-formatted message.  If you see this text it means that your
-E-mail software does not support MIME-formatted messages.
-
---=_cnc.isely.net-19759-1572225779-0001-2
-Content-Type: multipart/signed; micalg=pgp-sha1; protocol="application/pgp-signature"; boundary="=_cnc.isely.net-19759-1572225779-0001-3"
-
-This is a MIME-formatted message.  If you see this text it means that your
-E-mail software does not support MIME-formatted messages.
-
---=_cnc.isely.net-19759-1572225779-0001-3
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-So here's another tidbit that we may eventually want to look into: under un=
-known circumstances,
-during driver bootup, a soft lockup will take place which renders the machi=
-ne inoperable. This also
-happens in the VM. I'll try to fish out logs to see if anything stands out.
-That said, the driver patch does indeed seem to take care of the death due =
-to unplug/replug.  Now I
-have to test thoroughly to see if a soft-reset results in the device coming=
- back to life after a
-hang. This is great progress, though!
-I'll keep you posted with everything I find during these next few days. For=
- now, I'd submit the
-patch regardless since it's an improvement nonetheless.
-Cheers! And thanks again!
-
-On Sun, 2019-10-27 at 18:15 -0600, Diego Rivera wrote:
-> Ok so excellent news! I can now remove and re-attach the devices with no =
-oopses!!  I'm testing the
-> "soft-reset" part now to see if that'll work as well, but I now have a wo=
-rkaround for that, too!!
-> I didn't see too much noise on the logs from the sysfs teardown, then aga=
-in I didn't look too
-> hard.  What I meant by "parameter" was just that: a runtime flag that cou=
-ld be turned on/off by a
-> user if they grow tired of the noise on the logs.  For the I2C thing, I t=
-hink blacklisting the
-> I2C-IR driver like we had done before should be enough of a workaround fo=
-r now.
-> Thanks for this!!
-> Cheers!
-> --=20
->=20
->=20
->=20
-> Diego Rivera
->=20
-> On Sun, 2019-10-27 at 18:19 -0500, Mike Isely wrote:
-> > The sysfs teardown issue right now is largely cosmetic - you just get l=
-og noise but the end
-> > result appears to still be correct.  Obviously this still needs to be f=
-ixed, because getting
-> > stack traces in the kernel message log generally sucks.
-> > There actually is a pvrusb2 kernel config parameter you can set at comp=
-ile time which will
-> > disable the sysfs piece of this.  (Not a run-time switch though.)
-> >   -Mike
-> > On Sun, 27 Oct 2019, Diego Rivera wrote:
-> > > I had a thought about the sysfs teardown race you mentioned. Would it=
- causetoo many problems
-> > > if instead you added a module parameter to selectivelydisable that bi=
-t and let the rest of the
-> > > kernel do the teardown instead?
-> > > That might be enough of an optional workaround for now, since that do=
-esindeed seem like a
-> > > bigger challenge...unless, of course, that approachbrings more proble=
-ms into focus...
-> > > Just a thought...
-> > > Cheers!
-> > > --
-> > > Diego Rivera
---=20
-
-
-
-Diego Rivera
-
-
---=_cnc.isely.net-19759-1572225779-0001-3
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Transfer-Encoding: 7bit
-Content-Description: This is a digitally signed message part
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQS+WVRpxpbIDf9cWSYLNvj/2phirQUCXbZCzAAKCRALNvj/2phi
-rUOwAJ9QUviqc7NfYUN45JwRUEzg04skmACgkUNPDiLdE02KxuqpuoVny0cDnro=
-=GrWV
------END PGP SIGNATURE-----
-
---=_cnc.isely.net-19759-1572225779-0001-3--
-
---=_cnc.isely.net-19759-1572225779-0001-2
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KcHZydXNiMiBt
-YWlsaW5nIGxpc3QKcHZydXNiMkBpc2VseS5uZXQKaHR0cDovL3d3dy5pc2VseS5uZXQvY2dpLWJp
-bi9tYWlsbWFuL2xpc3RpbmZvL3B2cnVzYjIK
-
---=_cnc.isely.net-19759-1572225779-0001-2--
+ClRoYW5rcy4gIEknbGwgZ2V0IHRoYXQgcGF0Y2ggcHVzaGVkIHVwc3RyZWFtLgoKVGhlIHNvZnQg
+bG9ja3VwIHNpdHVhdGlvbiBJIGhhdmUgbm90IHNlZW4geWV0LiAgVGhhdCBpc24ndCB0byBzYXkg
+aXQgCmlzbid0IGhhcHBlbmluZywgYnV0IHJhdGhlciB0aGF0IEkgd2lsbCBwcm9iYWJseSBuZWVk
+IGEgbG90IG9mIGluZm8gaW4gCm9yZGVyIHRvIHJlcHJvZHVjZSBpdCBoZXJlLiAgKFRoaXMgc29y
+dCBvZiBwcm9ibGVtIGNhbiBiZSBhIHJlYWwgZGV2aWwgCnRvIHJlcHJvZHVjZSBlc3BlY2lhbGx5
+IG9uIG5vbi1pZGVudGljYWwgZXF1aXBtZW50LikKCiAgLU1pa2UKCk9uIFN1biwgMjcgT2N0IDIw
+MTksIERpZWdvIFJpdmVyYSB3cm90ZToKCj4gU28gaGVyZSdzIGFub3RoZXIgdGlkYml0IHRoYXQg
+d2UgbWF5IGV2ZW50dWFsbHkgd2FudCB0byBsb29rIGludG86IHVuZGVyIHVua25vd24gY2lyY3Vt
+c3RhbmNlcywKPiBkdXJpbmcgZHJpdmVyIGJvb3R1cCwgYSBzb2Z0IGxvY2t1cCB3aWxsIHRha2Ug
+cGxhY2Ugd2hpY2ggcmVuZGVycyB0aGUgbWFjaGluZSBpbm9wZXJhYmxlLiBUaGlzIGFsc28KPiBo
+YXBwZW5zIGluIHRoZSBWTS4gSSdsbCB0cnkgdG8gZmlzaCBvdXQgbG9ncyB0byBzZWUgaWYgYW55
+dGhpbmcgc3RhbmRzIG91dC4KPiBUaGF0IHNhaWQsIHRoZSBkcml2ZXIgcGF0Y2ggZG9lcyBpbmRl
+ZWQgc2VlbSB0byB0YWtlIGNhcmUgb2YgdGhlIGRlYXRoIGR1ZSB0byB1bnBsdWcvcmVwbHVnLiAg
+Tm93IEkKPiBoYXZlIHRvIHRlc3QgdGhvcm91Z2hseSB0byBzZWUgaWYgYSBzb2Z0LXJlc2V0IHJl
+c3VsdHMgaW4gdGhlIGRldmljZSBjb21pbmcgYmFjayB0byBsaWZlIGFmdGVyIGEKPiBoYW5nLiBU
+aGlzIGlzIGdyZWF0IHByb2dyZXNzLCB0aG91Z2ghCj4gSSdsbCBrZWVwIHlvdSBwb3N0ZWQgd2l0
+aCBldmVyeXRoaW5nIEkgZmluZCBkdXJpbmcgdGhlc2UgbmV4dCBmZXcgZGF5cy4gRm9yIG5vdywg
+SSdkIHN1Ym1pdCB0aGUKPiBwYXRjaCByZWdhcmRsZXNzIHNpbmNlIGl0J3MgYW4gaW1wcm92ZW1l
+bnQgbm9uZXRoZWxlc3MuCj4gQ2hlZXJzISBBbmQgdGhhbmtzIGFnYWluIQo+IAo+IE9uIFN1biwg
+MjAxOS0xMC0yNyBhdCAxODoxNSAtMDYwMCwgRGllZ28gUml2ZXJhIHdyb3RlOgo+ID4gT2sgc28g
+ZXhjZWxsZW50IG5ld3MhIEkgY2FuIG5vdyByZW1vdmUgYW5kIHJlLWF0dGFjaCB0aGUgZGV2aWNl
+cyB3aXRoIG5vIG9vcHNlcyEhICBJJ20gdGVzdGluZyB0aGUKPiA+ICJzb2Z0LXJlc2V0IiBwYXJ0
+IG5vdyB0byBzZWUgaWYgdGhhdCdsbCB3b3JrIGFzIHdlbGwsIGJ1dCBJIG5vdyBoYXZlIGEgd29y
+a2Fyb3VuZCBmb3IgdGhhdCwgdG9vISEKPiA+IEkgZGlkbid0IHNlZSB0b28gbXVjaCBub2lzZSBv
+biB0aGUgbG9ncyBmcm9tIHRoZSBzeXNmcyB0ZWFyZG93biwgdGhlbiBhZ2FpbiBJIGRpZG4ndCBs
+b29rIHRvbwo+ID4gaGFyZC4gIFdoYXQgSSBtZWFudCBieSAicGFyYW1ldGVyIiB3YXMganVzdCB0
+aGF0OiBhIHJ1bnRpbWUgZmxhZyB0aGF0IGNvdWxkIGJlIHR1cm5lZCBvbi9vZmYgYnkgYQo+ID4g
+dXNlciBpZiB0aGV5IGdyb3cgdGlyZWQgb2YgdGhlIG5vaXNlIG9uIHRoZSBsb2dzLiAgRm9yIHRo
+ZSBJMkMgdGhpbmcsIEkgdGhpbmsgYmxhY2tsaXN0aW5nIHRoZQo+ID4gSTJDLUlSIGRyaXZlciBs
+aWtlIHdlIGhhZCBkb25lIGJlZm9yZSBzaG91bGQgYmUgZW5vdWdoIG9mIGEgd29ya2Fyb3VuZCBm
+b3Igbm93Lgo+ID4gVGhhbmtzIGZvciB0aGlzISEKPiA+IENoZWVycyEKPiA+IC0tIAo+ID4gCj4g
+PiAKPiA+IAo+ID4gRGllZ28gUml2ZXJhCj4gPiAKPiA+IE9uIFN1biwgMjAxOS0xMC0yNyBhdCAx
+ODoxOSAtMDUwMCwgTWlrZSBJc2VseSB3cm90ZToKPiA+ID4gVGhlIHN5c2ZzIHRlYXJkb3duIGlz
+c3VlIHJpZ2h0IG5vdyBpcyBsYXJnZWx5IGNvc21ldGljIC0geW91IGp1c3QgZ2V0IGxvZyBub2lz
+ZSBidXQgdGhlIGVuZAo+ID4gPiByZXN1bHQgYXBwZWFycyB0byBzdGlsbCBiZSBjb3JyZWN0LiAg
+T2J2aW91c2x5IHRoaXMgc3RpbGwgbmVlZHMgdG8gYmUgZml4ZWQsIGJlY2F1c2UgZ2V0dGluZwo+
+ID4gPiBzdGFjayB0cmFjZXMgaW4gdGhlIGtlcm5lbCBtZXNzYWdlIGxvZyBnZW5lcmFsbHkgc3Vj
+a3MuCj4gPiA+IFRoZXJlIGFjdHVhbGx5IGlzIGEgcHZydXNiMiBrZXJuZWwgY29uZmlnIHBhcmFt
+ZXRlciB5b3UgY2FuIHNldCBhdCBjb21waWxlIHRpbWUgd2hpY2ggd2lsbAo+ID4gPiBkaXNhYmxl
+IHRoZSBzeXNmcyBwaWVjZSBvZiB0aGlzLiAgKE5vdCBhIHJ1bi10aW1lIHN3aXRjaCB0aG91Z2gu
+KQo+ID4gPiAgIC1NaWtlCj4gPiA+IE9uIFN1biwgMjcgT2N0IDIwMTksIERpZWdvIFJpdmVyYSB3
+cm90ZToKPiA+ID4gPiBJIGhhZCBhIHRob3VnaHQgYWJvdXQgdGhlIHN5c2ZzIHRlYXJkb3duIHJh
+Y2UgeW91IG1lbnRpb25lZC4gV291bGQgaXQgY2F1c2V0b28gbWFueSBwcm9ibGVtcwo+ID4gPiA+
+IGlmIGluc3RlYWQgeW91IGFkZGVkIGEgbW9kdWxlIHBhcmFtZXRlciB0byBzZWxlY3RpdmVseWRp
+c2FibGUgdGhhdCBiaXQgYW5kIGxldCB0aGUgcmVzdCBvZiB0aGUKPiA+ID4gPiBrZXJuZWwgZG8g
+dGhlIHRlYXJkb3duIGluc3RlYWQ/Cj4gPiA+ID4gVGhhdCBtaWdodCBiZSBlbm91Z2ggb2YgYW4g
+b3B0aW9uYWwgd29ya2Fyb3VuZCBmb3Igbm93LCBzaW5jZSB0aGF0IGRvZXNpbmRlZWQgc2VlbSBs
+aWtlIGEKPiA+ID4gPiBiaWdnZXIgY2hhbGxlbmdlLi4udW5sZXNzLCBvZiBjb3Vyc2UsIHRoYXQg
+YXBwcm9hY2hicmluZ3MgbW9yZSBwcm9ibGVtcyBpbnRvIGZvY3VzLi4uCj4gPiA+ID4gSnVzdCBh
+IHRob3VnaHQuLi4KPiA+ID4gPiBDaGVlcnMhCj4gPiA+ID4gLS0KPiA+ID4gPiBEaWVnbyBSaXZl
+cmEKPiAKCi0tIAoKTWlrZSBJc2VseQppc2VseSBAIGlzZWx5IChkb3QpIG5ldApQR1A6IDAzIDU0
+IDQzIDREIDc1IEU1IENDIDkyIDcxIDE2IDAxIEUyIEI1IEY1IEMxIEU4Cl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCnB2cnVzYjIgbWFpbGluZyBsaXN0CnB2
+cnVzYjJAaXNlbHkubmV0Cmh0dHA6Ly93d3cuaXNlbHkubmV0L2NnaS1iaW4vbWFpbG1hbi9saXN0
+aW5mby9wdnJ1c2IyCg==
