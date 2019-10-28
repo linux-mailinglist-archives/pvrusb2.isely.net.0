@@ -2,30 +2,65 @@ Return-Path: <pvrusb2-bounces@isely.net>
 X-Original-To: lists+pvrusb2@lfdr.de
 Delivered-To: lists+pvrusb2@lfdr.de
 Received: from cnc.isely.net (cnc.isely.net [75.149.91.89])
-	by mail.lfdr.de (Postfix) with ESMTPS id 697BFE6A32
-	for <lists+pvrusb2@lfdr.de>; Mon, 28 Oct 2019 00:20:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E2B6E6A49
+	for <lists+pvrusb2@lfdr.de>; Mon, 28 Oct 2019 01:16:29 +0100 (CET)
 Received: from cnc.isely.net (cnc.isely.net [::ffff:192.168.23.2])
   (IDENT: list)
-  by cnc.isely.net with ESMTP; Sun, 27 Oct 2019 18:20:02 -0500
-  id 0000000000142705.000000005DB62622.00004391
-Received: from ts3-dock2.isely.net (ts3-dock2.isely.net [::ffff:192.168.23.14])
- (AUTH: PLAIN isely, TLS: TLSv1/SSLv3,256bits,DHE-RSA-AES256-GCM-SHA384)
- by cnc.isely.net with ESMTPSA; Sun, 27 Oct 2019 18:20:00 -0500
- id 00000000001426D9.000000005DB62620.0000437F
-Date: Sun, 27 Oct 2019 18:19:56 -0500 (CDT)
-From: Mike Isely <isely@isely.net>
-X-X-Sender: isely@sheridan-wavelan
+  by cnc.isely.net with ESMTP; Sun, 27 Oct 2019 19:16:26 -0500
+  id 00000000001425EC.000000005DB6335A.000047F6
+Received: from mail-vs1-f68.google.com (mail-vs1-f68.google.com
+ [::ffff:209.85.217.68]) (TLS: TLSv1/SSLv3,128bits,AES128-GCM-SHA256)
+ by cnc.isely.net with ESMTPS; Sun, 27 Oct 2019 19:16:23 -0500
+ id 0000000000142175.000000005DB63357.000047E5
+Received: by mail-vs1-f68.google.com with SMTP id q21so5232683vsg.3
+ for <pvrusb2@isely.net>; Sun, 27 Oct 2019 17:16:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:subject:from:to:in-reply-to:references:date:mime-version
+ :user-agent; bh=4u5ANdezUhMpvOIEooaaRYuIR272b7kD62fFaQ2QV+A=;
+ b=JNmbVpW4vOWcr/xopxmjiF+yczUlZ6XOSVanGkXmf3EwTgy+a1fpUBKkpMWI7dErA9
+ 1kFVS9I0hkqhc/Tym2sXPC3m2tlmBNvu3nTejGvs1OpC6Yg7bvA1cHaK7iogHU4qGE+W
+ 51BvRhKqlyCem7g46pVFljtHiAW5N4VAuBaw2jp1IWp6LRUXrQwqZRauNMWgJLGLIPCs
+ wiHA1gj9taLRwgT5Zr3jSv6nDUQNbMyBWTMglWvfHktH+Lisa2JQo6fJHUE12kG49duF
+ XtBRBnBw0R+c3vFEKQu23PpSJh4FcfAfvN2jxWNNdayQz3lcZKJ8p9CG4BHo344CKyk1
+ NXAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:subject:from:to:in-reply-to
+ :references:date:mime-version:user-agent;
+ bh=4u5ANdezUhMpvOIEooaaRYuIR272b7kD62fFaQ2QV+A=;
+ b=NcoEWTgt3JMOGpEaIvAIlcg4SAsiBvBC56V79tH/3Hpdv7LcuCn3hClAe5cdDZQVpk
+ /r2UU4zVqs23QFc1Z3JrY21kPf9JfHi7R81zXSpK6pI/XSnT+JFBhdDGcic06DzRTQhY
+ TQwdc9EQsiicudTksdT0oYR+/4cZGyBs9g2fdPdyHD8rAxxABi5RMqG23Z6qQ9lAcAQA
+ qFTSxDpAVG+PXRHJ9PAwW8sbdaXL3f59z4HeCO7xzWsgpCCPmFZZzPMksx9zOTY9QIuw
+ VRYzkhFjAbXWDzXxAtFSoJbvPXiyhzU4Ro5fdSjA8sk41swGtVYUGzHO+i6enO7mjXeM
+ 7w2Q==
+X-Gm-Message-State: APjAAAXYmymSmLcT772Z+xY6GpuoJtn0sdmfyTzAEavAmE2IYrvn56gF
+ GIhn3wNNbelCMaQRHm+/7HlulFjqmHI=
+X-Google-Smtp-Source: APXvYqwlPDX95CElKyZI7T+ikQ0nETPyY/8kKAWHuVFI/YF4Va2zbryG8emtrrnNCDnmiCbsL2bDDg==
+X-Received: by 2002:a67:7343:: with SMTP id o64mr7672741vsc.188.1572221752792; 
+ Sun, 27 Oct 2019 17:15:52 -0700 (PDT)
+Old-Return-Path: <diego.rivera.cr@gmail.com>
+Received: from diego.rivera.prv (ip130-144-15-186.ct.co.cr. [186.15.144.130])
+ by smtp.googlemail.com with ESMTPSA id
+ r4sm3559468vsg.13.2019.10.27.17.15.51 for <pvrusb2@isely.net>
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 27 Oct 2019 17:15:52 -0700 (PDT)
+Message-ID: <c0487d1ef2fa5d45de45a09c5967fdd18eac72c2.camel@gmail.com>
+From: Diego Rivera <diego.rivera.cr@gmail.com>
 To: Communications nexus for pvrusb2 driver <pvrusb2@isely.net>
-In-Reply-To: <CAA--8UbdVed+8hzKByqU9dh08G7RXPEXj_61zAVG2YvA45FN8Q@mail.gmail.com>
-Message-ID: <alpine.DEB.2.21.1910271818210.15059@sheridan-wavelan>
+In-Reply-To: <alpine.DEB.2.21.1910271818210.15059@sheridan-wavelan>
 References: <alpine.DEB.2.21.1910271644510.15059@sheridan-wavelan>
  <alpine.DEB.2.21.1910271646080.15059@sheridan-wavelan>
  <d3fdc65dba5bc5fa13beae2e5f8b76cc17ecdbf6.camel@gmail.com>
  <15ab4e6e1d0e8df2879c8027eb060f4b811138c4.camel@gmail.com>
  <alpine.DEB.2.21.1910271739530.15059@sheridan-wavelan>
  <CAA--8UbdVed+8hzKByqU9dh08G7RXPEXj_61zAVG2YvA45FN8Q@mail.gmail.com>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+ <alpine.DEB.2.21.1910271818210.15059@sheridan-wavelan>
+Date: Sun, 27 Oct 2019 18:15:48 -0600
 Mime-Version: 1.0
+Content-Type: multipart/mixed; boundary="=_cnc.isely.net-18422-1572221786-0001-2"
+User-Agent: Evolution 3.32.1-2
+X-Content-Filtered-By: Mailman/MimeDel 2.1.18
 Subject: Re: [pvrusb2] [PATCH] pvrusb2: Fix oops on tear-down when radio
  support is not present
 X-BeenThere: pvrusb2@isely.net
@@ -40,103 +75,88 @@ List-Help: <mailto:pvrusb2-request@isely.net?subject=help>
 List-Subscribe: <http://www.isely.net/cgi-bin/mailman/listinfo/pvrusb2>,
  <mailto:pvrusb2-request@isely.net?subject=subscribe>
 Reply-To: Communications nexus for pvrusb2 driver <pvrusb2@isely.net>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
 Errors-To: pvrusb2-bounces@isely.net
 Sender: "pvrusb2" <pvrusb2-bounces@isely.net>
 
-ClRoZSBzeXNmcyB0ZWFyZG93biBpc3N1ZSByaWdodCBub3cgaXMgbGFyZ2VseSBjb3NtZXRpYyAt
-IHlvdSBqdXN0IGdldCAKbG9nIG5vaXNlIGJ1dCB0aGUgZW5kIHJlc3VsdCBhcHBlYXJzIHRvIHN0
-aWxsIGJlIGNvcnJlY3QuICBPYnZpb3VzbHkgCnRoaXMgc3RpbGwgbmVlZHMgdG8gYmUgZml4ZWQs
-IGJlY2F1c2UgZ2V0dGluZyBzdGFjayB0cmFjZXMgaW4gdGhlIGtlcm5lbCAKbWVzc2FnZSBsb2cg
-Z2VuZXJhbGx5IHN1Y2tzLgoKVGhlcmUgYWN0dWFsbHkgaXMgYSBwdnJ1c2IyIGtlcm5lbCBjb25m
-aWcgcGFyYW1ldGVyIHlvdSBjYW4gc2V0IGF0IApjb21waWxlIHRpbWUgd2hpY2ggd2lsbCBkaXNh
-YmxlIHRoZSBzeXNmcyBwaWVjZSBvZiB0aGlzLiAgKE5vdCBhIApydW4tdGltZSBzd2l0Y2ggdGhv
-dWdoLikKCiAgLU1pa2UKCk9uIFN1biwgMjcgT2N0IDIwMTksIERpZWdvIFJpdmVyYSB3cm90ZToK
-Cj4gSSBoYWQgYSB0aG91Z2h0IGFib3V0IHRoZSBzeXNmcyB0ZWFyZG93biByYWNlIHlvdSBtZW50
-aW9uZWQuIFdvdWxkIGl0IGNhdXNlCj4gdG9vIG1hbnkgcHJvYmxlbXMgaWYgaW5zdGVhZCB5b3Ug
-YWRkZWQgYSBtb2R1bGUgcGFyYW1ldGVyIHRvIHNlbGVjdGl2ZWx5Cj4gZGlzYWJsZSB0aGF0IGJp
-dCBhbmQgbGV0IHRoZSByZXN0IG9mIHRoZSBrZXJuZWwgZG8gdGhlIHRlYXJkb3duIGluc3RlYWQ/
-Cj4gCj4gVGhhdCBtaWdodCBiZSBlbm91Z2ggb2YgYW4gb3B0aW9uYWwgd29ya2Fyb3VuZCBmb3Ig
-bm93LCBzaW5jZSB0aGF0IGRvZXMKPiBpbmRlZWQgc2VlbSBsaWtlIGEgYmlnZ2VyIGNoYWxsZW5n
-ZS4uLnVubGVzcywgb2YgY291cnNlLCB0aGF0IGFwcHJvYWNoCj4gYnJpbmdzIG1vcmUgcHJvYmxl
-bXMgaW50byBmb2N1cy4uLgo+IAo+IEp1c3QgYSB0aG91Z2h0Li4uCj4gCj4gQ2hlZXJzIQo+IAo+
-IC0tCj4gCj4gRGllZ28gUml2ZXJhCj4gCj4gT24gU3VuLCBPY3QgMjcsIDIwMTksIDE2OjQyIE1p
-a2UgSXNlbHkgPGlzZWx5QGlzZWx5Lm5ldD4gd3JvdGU6Cj4gCj4gPgo+ID4gVGhlIHRhYnMgYXJl
-IHByb2JhYmx5IG15IGZhdWx0LiAgSSd2ZSBiZWVuIHRvbyB1c2VkIHRvIGp1c3QgbGV0dGluZwo+
-ID4gZW1hY3MgZGVhbCBhdXRvbWFnaWNhbGx5IHdpdGggaW5kZW50YXRpb24sIGFuZCBmb3IgcHJv
-amVjdHMgSSd2ZSBkb25lCj4gPiBvdmVyIHRoZSBwYXN0IHRlbiB5ZWFycyBJIHR5cGljYWxseSBj
-b25maWd1cmUgZW1hY3MgdG8ganVzdCBuZXZlciB1c2UKPiA+IHRhYnMgYXQgYWxsLiAgSG93ZXZl
-ciB0aGF0IGRyaXZlciBzb3VyY2UgdXNlcyB0YWJzIC0gYW5kIEkgcHJvYmFibHkKPiA+IGZvcmdv
-dCB0byBhZGp1c3QgZW1hY3MgdG8gZGVhbCB3aXRoIGl0Lgo+ID4KPiA+IEZvcnR1bmF0ZWx5IHRo
-aXMgaXNuJ3QgcHl0aG9uLCBzbyB0YWIgdnMgc3BhY2VzIHNjcmV3dXBzIHdvbid0IGJyZWFrIHRo
-ZQo+ID4gY29ycmVjdG5lc3Mgb2YgdGhlIGNoYW5nZS4gIEJ1dCB5ZWFoLCBpdCBtYXkgY2F1c2Ug
-cmVhZGFiaWxpdHkgcHJvYmxlbXMuCj4gPiBJJ2xsIGdldCB0aGF0IGNsZWFuZWQgdXAuCj4gPgo+
-ID4gICAtTWlrZQo+ID4KPiA+Cj4gPiBPbiBTdW4sIDI3IE9jdCAyMDE5LCBEaWVnbyBSaXZlcmEg
-d3JvdGU6Cj4gPgo+ID4gPiBUaGUgYnVpbGQgaXMgb2ZmIHRvIHRoZSByYWNlcyAoMjQgdGhyZWFk
-IGNvbmN1cnJlbmN5KSwgd2l0aCB0aGUgcGF0Y2gKPiA+IGluY29ycG9yYXRlZC4gSXQgd2FzIG9m
-ZnNldCBieQo+ID4gPiAxMCBsaW5lcywgYW5kIGhhZCB0byBpZ25vcmUgd2hpdGVzcGFjZSAoZm9y
-IHNvbWUgcmVhc29uIHRoZSBVYnVudHUgZm9sa3MKPiA+IHNlZW0gdG8gaGF2ZSBjaGFuZ2VkIHNv
-bWUKPiA+ID4gaW5kZW50cyB0byB0YWJzLi4uYnV0IG9ubHkgKnNvbWUqLi4uLm9oIHdlbGwpLgo+
-ID4gPiBJJ2xsIGxldCB5b3Uga25vdyB3aGVuIGl0J3MgcmVhZHkgYW5kIHJ1bm5pbmcuCj4gPiA+
-IENoZWVycyEKPiA+ID4gT24gU3VuLCAyMDE5LTEwLTI3IGF0IDE2OjAwIC0wNjAwLCBEaWVnbyBS
-aXZlcmEgd3JvdGU6Cj4gPiA+ID4gSSdsbCBkbyB0aGF0IHRvZGF5LiBJJ20gc2V0dGluZyB1cCBh
-IGtlcm5lbCBidWlsZCBzeXN0ZW0gbm93LCBzaG91bGQKPiA+IGJlIGFibGUgdG8gZmlyZSBvZmYg
-YSBidWlsZAo+ID4gPiA+IHNvb24uCj4gPiA+ID4gQ2hlZXJzIQo+ID4gPiA+IC0tCj4gPiA+ID4K
-PiA+ID4gPgo+ID4gPiA+Cj4gPiA+ID4gRGllZ28gUml2ZXJhCj4gPiA+ID4KPiA+ID4gPiBPbiBT
-dW4sIDIwMTktMTAtMjcgYXQgMTY6NDcgLTA1MDAsIE1pa2UgSXNlbHkgd3JvdGU6Cj4gPiA+ID4g
-PiBJZiBJIGNhbiBnZXQgaW5kZXBlbmRlbnQgY29uZmlybWF0aW9uIHRoYXQgdGhpcyBkZWZpbml0
-ZWx5IGhlbHBzCj4gPiBtYXR0ZXJzLCBJIHdpbGwgcG9zdCB0aGUgcGF0Y2gKPiA+ID4gPiA+IHVw
-c3RyZWFtLiAgSnVzdCBiZWluZyBhYnNvbHV0ZWx5IHBhcmFub2lkLi4uCj4gPiA+ID4gPiAgIC1N
-aWtlCj4gPiA+ID4gPiBPbiBTdW4sIDI3IE9jdCAyMDE5LCBNaWtlIElzZWx5IHdyb3RlOgo+ID4g
-PiA+ID4gPiBJbiBzb21lIGRldmljZSBjb25maWd1cmF0aW9ucyB0aGVyZSdzIG5vIHJhZGlvIG9y
-IHJhZGlvIHN1cHBvcnQgaW4KPiA+IHRoZWRyaXZlci4gIFRoYXQncyBPSywgYXMKPiA+ID4gPiA+
-ID4gdGhlIGRyaXZlciBzZXRzIGl0c2VsZiB1cCBhY2NvcmRpbmdseS4gIEhvd2V2ZXJvbiB0ZWFy
-LWRvd24gaW4KPiA+IHRoZXNlIGNhZXMgaXQncyBzdGlsbCB0cnlpbmcgdG8KPiA+ID4gPiA+ID4g
-dGVhciBkb3duIHJhZGlvcmVsYXRlZCBjb250ZXh0IHdoZW4gdGhlcmUgaXNuJ3QgYW55dGhpbmcg
-dGhlcmUsCj4gPiBsZWFkaW5nIHRvZGVyZWZlcmVuY2VzIHRocm91Z2gKPiA+ID4gPiA+ID4gYSBu
-dWxsIHBvaW50ZXIgYW5kIGNoYW9zIGZvbGxvd3MuCj4gPiA+ID4gPiA+IEhvdyB0aGlzIGJ1ZyBz
-dXJ2aXZlZCB1bmZpeGVkIGZvciAxMSB5ZWFycyBpbiB0aGUgcHZydXNiMiBkcml2ZXIKPiA+IGlz
-IGEgbXlzdGVyeSB0byBtZS4KPiA+ID4gPiA+ID4gU2lnbmVkLW9mZi1ieTogTWlrZSBJc2VseSA8
-aXNlbHlAcG9ib3guY29tPi0tLQo+ID4gZHJpdmVycy9tZWRpYS91c2IvcHZydXNiMi9wdnJ1c2Iy
-LXY0bDIuYyB8IDgKPiA+ID4gPiA+ID4gKysrKysrLS0gMSBmaWxlIGNoYW5nZWQsIDYgaW5zZXJ0
-aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKPiA+ID4gPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-bWVkaWEvdXNiL3B2cnVzYjIvcHZydXNiMi12NGwyLmMKPiA+IGIvZHJpdmVycy9tZWRpYS91c2Iv
-cHZydXNiMi9wdnJ1c2IyLQo+ID4gPiA+ID4gPiB2NGwyLmNpbmRleCBhYTRmYmMzZTg4Y2MuLjBh
-ODMxODQ5YTJiMCAxMDA2NDQtLS0KPiA+IGEvZHJpdmVycy9tZWRpYS91c2IvcHZydXNiMi9wdnJ1
-c2IyLXY0bDIuYysrKwo+ID4gPiA+ID4gPiBiL2RyaXZlcnMvbWVkaWEvdXNiL3B2cnVzYjIvcHZy
-dXNiMi12NGwyLmNAQCAtOTA5LDggKzkwOSwxMSBAQAo+ID4gc3RhdGljIHZvaWQKPiA+ID4gPiA+
-ID4gcHZyMl92NGwyX2ludGVybmFsX2NoZWNrKHN0cnVjdCBwdnIyX2NoYW5uZWwgKmNocCkKPiA+
-IHB2cjJfdjRsMl9kZXZfZGlzYXNzb2NpYXRlX3BhcmVudCh2cAo+ID4gPiA+ID4gPiAtPmRldl92
-aWRlbyk7ICAgcHZyMl92NGwyX2Rldl9kaXNhc3NvY2lhdGVfcGFyZW50KHZwLT5kZXZfcmFkaW8p
-Owo+ID4gICAgICBpZiAoIWxpc3RfZW1wdHkoJnZwLQo+ID4gPiA+ID4gPiA+ZGV2X3ZpZGVvLT5k
-ZXZiYXNlLmZoX2xpc3QpIHx8LQo+ID4gIWxpc3RfZW1wdHkoJnZwLT5kZXZfcmFkaW8tPmRldmJh
-c2UuZmhfbGlzdCkpKyAgICAgICAgICAoKAo+ID4gPiA+ID4gPiB2cC0+ZGV2X3JhZGlvICE9IE5V
-TEwpICYmKwo+ID4gICFsaXN0X2VtcHR5KCZ2cC0+ZGV2X3JhZGlvLT5kZXZiYXNlLmZoX2xpc3Qp
-KSkgeysKPiA+ID4gPiA+ID4gICAgICAgICBwdnIyX3RyYWNlKFBWUjJfVFJBQ0VfU1RSVUNULCJw
-dnIyX3Y0bDIgaW50ZXJuYWxfY2hlY2sKPiA+IGV4aXQtZW1wdHkgaWQ9JXAiLHZwKTsKPiA+ID4g
-PiA+ID4gcmV0dXJuOysgICAgICAgIH0gICAgICAgcHZyMl92NGwyX2Rlc3Ryb3lfbm9fbG9jayh2
-cCk7IH0gQEAgLTk0Niw3Cj4gPiArOTQ5LDggQEAgc3RhdGljIGludAo+ID4gPiA+ID4gPiBwdnIy
-X3Y0bDJfcmVsZWFzZShzdHJ1Y3QgZmlsZSAqZmlsZSkgICAga2ZyZWUoZmhwKTsgICAgIGlmCj4g
-PiAodnAtPmNoYW5uZWwubWNfaGVhZC0KPiA+ID4gPiA+ID4gPmRpc2Nvbm5lY3RfZmxhZyAmJgo+
-ID4gIGxpc3RfZW1wdHkoJnZwLT5kZXZfdmlkZW8tPmRldmJhc2UuZmhfbGlzdCkgJiYtICAgICAg
-ICAgbGlzdF9lbXB0eQo+ID4gPiA+ID4gPiAoJnZwLT5kZXZfcmFkaW8tPmRldmJhc2UuZmhfbGlz
-dCkpIHsrICAgICAgICgodnAtPmRldl9yYWRpbyA9PQo+ID4gTlVMTCkgfHwrICAgICAgICAgICAg
-IGxpc3RfZW1wdAo+ID4gPiA+ID4gPiB5KCZ2cC0+ZGV2X3JhZGlvLT5kZXZiYXNlLmZoX2xpc3Qp
-KSkgewo+ID4gcHZyMl92NGwyX2Rlc3Ryb3lfbm9fbG9jayh2cCk7ICB9Cj4gPiA+ID4gPiA+IHJl
-dHVybiAwOy0tCj4gPiAyLjIwLjFfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX3B2cnVzYjIgbWFpbGluZwo+ID4gPiA+ID4gPiBsaXN0cHZydXNiMkBpc2VseS5u
-ZXQKPiA+ID4gPiA+ID4gaHR0cDovL3d3dy5pc2VseS5uZXQvY2dpLWJpbi9tYWlsbWFuL2xpc3Rp
-bmZvL3B2cnVzYjIKPiA+ID4gPiA+ID4KPiA+ID4KPiA+Cj4gPiAtLQo+ID4KPiA+IE1pa2UgSXNl
-bHkKPiA+IGlzZWx5IEAgaXNlbHkgKGRvdCkgbmV0Cj4gPiBQR1A6IDAzIDU0IDQzIDREIDc1IEU1
-IENDIDkyIDcxIDE2IDAxIEUyIEI1IEY1IEMxIEU4Cj4gPiBfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwo+ID4gcHZydXNiMiBtYWlsaW5nIGxpc3QKPiA+IHB2
-cnVzYjJAaXNlbHkubmV0Cj4gPiBodHRwOi8vd3d3LmlzZWx5Lm5ldC9jZ2ktYmluL21haWxtYW4v
-bGlzdGluZm8vcHZydXNiMgo+ID4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwo+IHB2cnVzYjIgbWFpbGluZyBsaXN0Cj4gcHZydXNiMkBpc2VseS5uZXQK
-PiBodHRwOi8vd3d3LmlzZWx5Lm5ldC9jZ2ktYmluL21haWxtYW4vbGlzdGluZm8vcHZydXNiMgo+
-IAoKLS0gCgpNaWtlIElzZWx5CmlzZWx5IEAgaXNlbHkgKGRvdCkgbmV0ClBHUDogMDMgNTQgNDMg
-NEQgNzUgRTUgQ0MgOTIgNzEgMTYgMDEgRTIgQjUgRjUgQzEgRTgKX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KcHZydXNiMiBtYWlsaW5nIGxpc3QKcHZydXNi
-MkBpc2VseS5uZXQKaHR0cDovL3d3dy5pc2VseS5uZXQvY2dpLWJpbi9tYWlsbWFuL2xpc3RpbmZv
-L3B2cnVzYjIK
+This is a MIME-formatted message.  If you see this text it means that your
+E-mail software does not support MIME-formatted messages.
+
+--=_cnc.isely.net-18422-1572221786-0001-2
+Content-Type: multipart/signed; micalg=pgp-sha1; protocol="application/pgp-signature"; boundary="=_cnc.isely.net-18422-1572221786-0001-3"
+
+This is a MIME-formatted message.  If you see this text it means that your
+E-mail software does not support MIME-formatted messages.
+
+--=_cnc.isely.net-18422-1572221786-0001-3
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Ok so excellent news! I can now remove and re-attach the devices with no oo=
+pses!!  I'm testing the
+"soft-reset" part now to see if that'll work as well, but I now have a work=
+around for that, too!!
+I didn't see too much noise on the logs from the sysfs teardown, then again=
+ I didn't look too
+hard.  What I meant by "parameter" was just that: a runtime flag that could=
+ be turned on/off by a
+user if they grow tired of the noise on the logs.  For the I2C thing, I thi=
+nk blacklisting the I2C-
+IR driver like we had done before should be enough of a workaround for now.
+Thanks for this!!
+Cheers!
+
+On Sun, 2019-10-27 at 18:19 -0500, Mike Isely wrote:
+> The sysfs teardown issue right now is largely cosmetic - you just get log=
+ noise but the end result
+> appears to still be correct.  Obviously this still needs to be fixed, bec=
+ause getting stack traces
+> in the kernel message log generally sucks.
+> There actually is a pvrusb2 kernel config parameter you can set at compil=
+e time which will disable
+> the sysfs piece of this.  (Not a run-time switch though.)
+>   -Mike
+> On Sun, 27 Oct 2019, Diego Rivera wrote:
+> > I had a thought about the sysfs teardown race you mentioned. Would it c=
+ausetoo many problems if
+> > instead you added a module parameter to selectivelydisable that bit and=
+ let the rest of the
+> > kernel do the teardown instead?
+> > That might be enough of an optional workaround for now, since that does=
+indeed seem like a bigger
+> > challenge...unless, of course, that approachbrings more problems into f=
+ocus...
+> > Just a thought...
+> > Cheers!
+> > --
+> > Diego Rivera
+--=20
+
+
+
+Diego Rivera
+
+
+--=_cnc.isely.net-18422-1572221786-0001-3
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Transfer-Encoding: 7bit
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQS+WVRpxpbIDf9cWSYLNvj/2phirQUCXbYzNAAKCRALNvj/2phi
+rRYXAJ9IgUx8+oAu0pMFg5SFCbV/utgIHgCfR4gZ7qnZRS7TgXlNUmpgoao/i80=
+=F4YU
+-----END PGP SIGNATURE-----
+
+--=_cnc.isely.net-18422-1572221786-0001-3--
+
+--=_cnc.isely.net-18422-1572221786-0001-2
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KcHZydXNiMiBt
+YWlsaW5nIGxpc3QKcHZydXNiMkBpc2VseS5uZXQKaHR0cDovL3d3dy5pc2VseS5uZXQvY2dpLWJp
+bi9tYWlsbWFuL2xpc3RpbmZvL3B2cnVzYjIK
+
+--=_cnc.isely.net-18422-1572221786-0001-2--
