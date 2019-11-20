@@ -2,44 +2,43 @@ Return-Path: <pvrusb2-bounces@isely.net>
 X-Original-To: lists+pvrusb2@lfdr.de
 Delivered-To: lists+pvrusb2@lfdr.de
 Received: from cnc.isely.net (cnc.isely.net [75.149.91.89])
-	by mail.lfdr.de (Postfix) with ESMTPS id 915EA1040CC
-	for <lists+pvrusb2@lfdr.de>; Wed, 20 Nov 2019 17:29:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B60011041D3
+	for <lists+pvrusb2@lfdr.de>; Wed, 20 Nov 2019 18:13:09 +0100 (CET)
 Received: from cnc.isely.net (cnc.isely.net [::ffff:192.168.23.2])
   (IDENT: list)
-  by cnc.isely.net with ESMTP; Wed, 20 Nov 2019 10:29:21 -0600
-  id 0000000000142710.000000005DD569E1.00000CAE
-Received: from mail-yw1-f66.google.com (mail-yw1-f66.google.com
- [::ffff:209.85.161.66]) (TLS: TLSv1/SSLv3,128bits,AES128-GCM-SHA256)
- by cnc.isely.net with ESMTPS; Wed, 20 Nov 2019 10:29:18 -0600
- id 00000000001420F5.000000005DD569DE.00000C9A
-Received: by mail-yw1-f66.google.com with SMTP id z67so155411ywb.9
- for <pvrusb2@isely.net>; Wed, 20 Nov 2019 08:29:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=f2/mIxMA0MSNk2v+eD+lP8Nl0VXj0rvhXBVr2CCSvKg=;
- b=rcnMYbEZDOrWZyN9uCtH49jJSfTIU6lfIayPwGkCPBKHRvha+mQStZC8RpfKH1CZz2
- fh8iBVC7OVAxdjHaVLMDouWdxHBi7vy6I1Hxt5yH5fw60Di+S7DuRj9FNaVvZV8rYead
- GDXzyAj8iSf962HAy4E1jCC3f6g9xBw/UfR3iIy9ZYyJ6XLkCvUw1tyq3c4wzd37GuKB
- TKOQMFkjiwd16DPSbHWs3utMzXqDPhgcrFJgnn3ih38xwRqISWj/6A/zFE+lo7mBOe3S
- 5D/D9N7Cx5eQIRH1cBBpLMbIZtSpvCq21nTKZNWubKbAKGs814+3GB9uQoPtVFHhNW/i
- hVIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=f2/mIxMA0MSNk2v+eD+lP8Nl0VXj0rvhXBVr2CCSvKg=;
- b=W71RrjJ1QUndzUejiJQNFMyRc8Aewj5MDl5MVaHWr5FFkSB0asuMcwnXEZ9pOLYF+k
- +d+iiuu5u3zTGt9C/4ldN1D8RveDFgRDkznMP1ufMwISVATffon/v/kECjGOKzWhwsPk
- MoPvotUHkqiVhToFRwEBbeQ+YZd7BpMEv9WJtgSntUxJ4GQqNEmIezqd7FeoxwqYPo1C
- UugslvA1mZU6F+yhCaGHTO0n9lr9Ayy9TAPrCaAk+PqRTuh6tGxofRC/eO52aNJCnYbB
- gflhmNlSbRDQmuaoCbVvJKeGHUq+LToSHTz1PNyuqCUV6kLGTTQPrEyZwoT8iC99fZdB
- Exeg==
-X-Gm-Message-State: APjAAAUcc8vKpw0dmpWRQzmITL6TxAV/a9vOmtxUSjj4eRXkqGrnNTBn
- KL3M7/OgYdslg73PZdMf3dqkXdmK6s+vrbyIjkaz9lsN
-X-Google-Smtp-Source: APXvYqywhlGyIyzgoTXJX6nE051ckCVl5Qr5Zzgp5dS5yFG7PysPL2KajrQJvjdL2GkLAC2blHxGOQ7OPFCSFsZ/dWw=
-X-Received: by 2002:a81:f00f:: with SMTP id p15mr1597658ywm.353.1574267327641; 
- Wed, 20 Nov 2019 08:28:47 -0800 (PST)
-Mime-Version: 1.0
+  by cnc.isely.net with ESMTP; Wed, 20 Nov 2019 11:13:07 -0600
+  id 000000000014271B.000000005DD57423.00001552
+Received: from mailrelay101.isp.belgacom.be (mailrelay101.isp.belgacom.be
+ [::ffff:195.238.20.128])
+ (TLS: TLSv1/SSLv3,128bits,DHE-RSA-AES128-SHA256)
+ by cnc.isely.net with ESMTPS; Wed, 20 Nov 2019 11:13:05 -0600
+ id 00000000001426EB.000000005DD57421.00001541
+IronPort-SDR: nV8M5CJqyZxUNFjC1q4ILi131KnJUh+f45+A+IZ2AQFytmIsgvDR1f7bCgPwu2BuIOs3g+rqUV
+ D5buW8HWF5QqBXUhv2ROlFnDYRasksb7lf3EyLYFJgfEdQm/YZjt0a5p077bfHjPU+6cpAOG5E
+ ZMTebyeqh6EugvOc6JsMew1YjzBcMZ1tw4vI5P9EazgmZSZi97Mn6okXR8zL+OyV4+VW0ZHVxb
+ bZg5uFsqZcnNfNjKGPPxtVEM2ZrEAPTafQFHZfUuktl2I3nqniL1r5aZgNIAykVtzLWuxMWVJh
+ H0Q=
+X-Belgacom-Dynamic: yes
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2BDCgCyctVd/y8V8VFlHAEBAQEBBwE?=
+ =?us-ascii?q?BEQEEBAEBgW0EAQELAYIfb1EBIBIqhCqJA4YAAYIPDyYBgzSFbpFRCQEBAgE?=
+ =?us-ascii?q?BAQEBNAECAQGEQAKCJCc3Bg4CAwEBCwEBBQEBAQEBBQRthGtMDIVSAQUjMzM?=
+ =?us-ascii?q?LGAICJgICITYTBgIBARaDCIJHAzIBsEKBMoVOgkcNY4FIgQ4oAY1tP4E4gj0?=
+ =?us-ascii?q?uPoIbgneCQ4JeBJZelw9BB4IubQSQRoQSIY46i1qZFJFQI4FYTTCDL1ARFIZ?=
+ =?us-ascii?q?+g1GKPkADMAGBBAEBjWcBAQ?=
+X-IPAS-Result: =?us-ascii?q?A2BDCgCyctVd/y8V8VFlHAEBAQEBBwEBEQEEBAEBgW0EA?=
+ =?us-ascii?q?QELAYIfb1EBIBIqhCqJA4YAAYIPDyYBgzSFbpFRCQEBAgEBAQEBNAECAQGEQ?=
+ =?us-ascii?q?AKCJCc3Bg4CAwEBCwEBBQEBAQEBBQRthGtMDIVSAQUjMzMLGAICJgICITYTB?=
+ =?us-ascii?q?gIBARaDCIJHAzIBsEKBMoVOgkcNY4FIgQ4oAY1tP4E4gj0uPoIbgneCQ4JeB?=
+ =?us-ascii?q?JZelw9BB4IubQSQRoQSIY46i1qZFJFQI4FYTTCDL1ARFIZ+g1GKPkADMAGBB?=
+ =?us-ascii?q?AEBjWcBAQ?=
+Received: from 47.21-241-81.adsl-dyn.isp.belgacom.be (HELO dracor.xperim.be)
+ ([81.241.21.47])
+ by relay.skynet.be with ESMTP; 20 Nov 2019 18:12:33 +0100
+Received: from [192.168.1.184] (bajor.xperim.be [192.168.1.184])
+ by dracor.xperim.be (Postfix) with ESMTPSA id 7AF9E38415C
+ for <pvrusb2@isely.net>; Wed, 20 Nov 2019 18:12:33 +0100 (CET)
+To: pvrusb2@isely.net
 References: <alpine.DEB.2.21.1910271644510.15059@sheridan-wavelan>
  <alpine.DEB.2.21.1910271646080.15059@sheridan-wavelan>
  <d3fdc65dba5bc5fa13beae2e5f8b76cc17ecdbf6.camel@gmail.com>
@@ -54,11 +53,15 @@ References: <alpine.DEB.2.21.1910271644510.15059@sheridan-wavelan>
  <b740466788a9050c5d43fe489fcb0b2f8f28ff1c.camel@gmail.com>
  <alpine.DEB.2.21.1911032039000.31133@sheridan.isely.net>
  <eb89143567bebe888485e7f65188051d81b88610.camel@gmail.com>
-In-Reply-To: <eb89143567bebe888485e7f65188051d81b88610.camel@gmail.com>
-From: Gary Buhrmaster <gary.buhrmaster@gmail.com>
-Date: Wed, 20 Nov 2019 16:28:10 +0000
-Message-ID: <CAMfXtQw-hywrUuCHXW_qSxL5+4ZFhoSSEFji4UTfQkF5ji95MA@mail.gmail.com>
-To: Communications nexus for pvrusb2 driver <pvrusb2@isely.net>
+ <CAMfXtQw-hywrUuCHXW_qSxL5+4ZFhoSSEFji4UTfQkF5ji95MA@mail.gmail.com>
+From: Jan Ceuleers <jan.ceuleers@computer.org>
+Message-ID: <9de84e4b-0adb-dbb7-f808-0d4e6486998e@computer.org>
+Date: Wed, 20 Nov 2019 18:12:33 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
+MIME-Version: 1.0
+In-Reply-To: <CAMfXtQw-hywrUuCHXW_qSxL5+4ZFhoSSEFji4UTfQkF5ji95MA@mail.gmail.com>
+Content-Language: en-US
 Subject: Re: [pvrusb2] [PATCH] pvrusb2: Fix oops on tear-down when radio
  support is not present
 X-BeenThere: pvrusb2@isely.net
@@ -78,18 +81,22 @@ Content-Transfer-Encoding: base64
 Errors-To: pvrusb2-bounces@isely.net
 Sender: "pvrusb2" <pvrusb2-bounces@isely.net>
 
-T24gVHVlLCBOb3YgMTksIDIwMTkgYXQgOTo1OSBQTSBEaWVnbyBSaXZlcmEgPGRpZWdvLnJpdmVy
-YS5jckBnbWFpbC5jb20+IHdyb3RlOgo+Cj4gSGV5ISBBbnkgbmV3cyBvbiB0aGUgcGF0Y2ggbWFr
-aW5nIGl0IGludG8gbWFpbmxpbmU/IEFuZCBob3cgY2FuIEkgdHJhY2sgaWYvd2hlbiBpdCdzIGJl
-ZW4gaW50ZWdyYXRlZAo+IHRvIHRoZSBjb3JlIGtlcm5lbD8KCkp1c3QgdG8gc2V0IHNvbWUgZXhw
-ZWN0YXRpb25zLCBJIHRoaW5rIGl0CmNsZWFybHkgaXQgaXMgbm90IGdvaW5nIGluIHRvIDUuNCwg
-YW5kIEkgd291bGQKbm90IGJlIHN1cnByaXNlZCBpdCBtaXNzZXMgNS41IChwdWxsIHJlcXVlc3Rz
-CmFyZSBhbHJlYWR5IGJlaW5nIGFjY2VwdGVkLCBhbHRob3VnaCBhcyBhCnRhcmdldGVkIGZpeCwg
-aXQgbWlnaHQgZ2V0IHB1bGxlZCBkdXJpbmcgdGhlCnJjIGZpeCBjeWNsZSksIHNvIDUuNiBjb3Vs
-ZCBiZSB0aGUgZWFybGllc3QKZm9yIG1haW5saW5lLiAgNS41IGlzIGV4cGVjdGVkIChhcm91bmQp
-Ck1hcmNoL0FwcmlsIDIwMjAsIGFuZCA1LjYgcHJvYmFibHkgYXJvdW5kCkp1bmUvSnVseSAyMDIw
-LiAgQXMgdG8gd2hlbiBhbnkgc3BlY2lmaWMKZGlzdHJvIHdpbGwgcmVwYWNrYWdlIHRoZSBrZXJu
-ZWwgdGhhdAppbmNsdWRlcyB0aGUgZml4LCB3ZWxsLCB0aGF0IG9wZW5zIHVwCmFub3RoZXIgY2Fu
-IG9mIGJhZCBlc3RpbWF0aW9uLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpwdnJ1c2IyIG1haWxpbmcgbGlzdApwdnJ1c2IyQGlzZWx5Lm5ldApodHRwOi8v
-d3d3LmlzZWx5Lm5ldC9jZ2ktYmluL21haWxtYW4vbGlzdGluZm8vcHZydXNiMgo=
+T24gMjAvMTEvMjAxOSAxNzoyOCwgR2FyeSBCdWhybWFzdGVyIHdyb3RlOgo+IE9uIFR1ZSwgTm92
+IDE5LCAyMDE5IGF0IDk6NTkgUE0gRGllZ28gUml2ZXJhIDxkaWVnby5yaXZlcmEuY3JAZ21haWwu
+Y29tPiB3cm90ZToKPj4gSGV5ISBBbnkgbmV3cyBvbiB0aGUgcGF0Y2ggbWFraW5nIGl0IGludG8g
+bWFpbmxpbmU/IEFuZCBob3cgY2FuIEkgdHJhY2sgaWYvd2hlbiBpdCdzIGJlZW4gaW50ZWdyYXRl
+ZAo+PiB0byB0aGUgY29yZSBrZXJuZWw/Cj4gSnVzdCB0byBzZXQgc29tZSBleHBlY3RhdGlvbnMs
+IEkgdGhpbmsgaXQKPiBjbGVhcmx5IGl0IGlzIG5vdCBnb2luZyBpbiB0byA1LjQsIGFuZCBJIHdv
+dWxkCj4gbm90IGJlIHN1cnByaXNlZCBpdCBtaXNzZXMgNS41IChwdWxsIHJlcXVlc3RzCj4gYXJl
+IGFscmVhZHkgYmVpbmcgYWNjZXB0ZWQsIGFsdGhvdWdoIGFzIGEKPiB0YXJnZXRlZCBmaXgsIGl0
+IG1pZ2h0IGdldCBwdWxsZWQgZHVyaW5nIHRoZQo+IHJjIGZpeCBjeWNsZSksIHNvIDUuNiBjb3Vs
+ZCBiZSB0aGUgZWFybGllc3QKPiBmb3IgbWFpbmxpbmUuICA1LjUgaXMgZXhwZWN0ZWQgKGFyb3Vu
+ZCkKPiBNYXJjaC9BcHJpbCAyMDIwLCBhbmQgNS42IHByb2JhYmx5IGFyb3VuZAo+IEp1bmUvSnVs
+eSAyMDIwLiAgQXMgdG8gd2hlbiBhbnkgc3BlY2lmaWMKPiBkaXN0cm8gd2lsbCByZXBhY2thZ2Ug
+dGhlIGtlcm5lbCB0aGF0Cj4gaW5jbHVkZXMgdGhlIGZpeCwgd2VsbCwgdGhhdCBvcGVucyB1cAo+
+IGFub3RoZXIgY2FuIG9mIGJhZCBlc3RpbWF0aW9uLgpCdXQgaWYgTWlrZSB0YWdzIHRoZSBmaXgg
+Zm9yIHN0YWJsZSAoYW5kIGlmIHRoYXQgdGFnIGlzIGFjY2VwdGVkKSB0aGVuCml0IHdpbGwgYmUg
+YmFja3BvcnRlZCB0byBzdGFibGUga2VybmVscyBhcyB3ZWxsLgpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpwdnJ1c2IyIG1haWxpbmcgbGlzdApwdnJ1c2Iy
+QGlzZWx5Lm5ldApodHRwOi8vd3d3LmlzZWx5Lm5ldC9jZ2ktYmluL21haWxtYW4vbGlzdGluZm8v
+cHZydXNiMgo=
