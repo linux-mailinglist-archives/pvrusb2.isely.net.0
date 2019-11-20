@@ -2,44 +2,21 @@ Return-Path: <pvrusb2-bounces@isely.net>
 X-Original-To: lists+pvrusb2@lfdr.de
 Delivered-To: lists+pvrusb2@lfdr.de
 Received: from cnc.isely.net (cnc.isely.net [75.149.91.89])
-	by mail.lfdr.de (Postfix) with ESMTPS id 309581041FB
-	for <lists+pvrusb2@lfdr.de>; Wed, 20 Nov 2019 18:21:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BC7310437F
+	for <lists+pvrusb2@lfdr.de>; Wed, 20 Nov 2019 19:34:55 +0100 (CET)
 Received: from cnc.isely.net (cnc.isely.net [::ffff:192.168.23.2])
   (IDENT: list)
-  by cnc.isely.net with ESMTP; Wed, 20 Nov 2019 11:21:25 -0600
-  id 0000000000142722.000000005DD57615.00001704
-Received: from mail-yw1-f68.google.com (mail-yw1-f68.google.com
- [::ffff:209.85.161.68]) (TLS: TLSv1/SSLv3,128bits,AES128-GCM-SHA256)
- by cnc.isely.net with ESMTPS; Wed, 20 Nov 2019 11:21:22 -0600
- id 00000000001426FE.000000005DD57612.000016F2
-Received: by mail-yw1-f68.google.com with SMTP id p128so218083ywc.11
- for <pvrusb2@isely.net>; Wed, 20 Nov 2019 09:21:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=5mKenZTBsLmcUF5eVOyFvOZisFek+2uuLimg7Z+ZTnE=;
- b=eMyRpqcIOSTiN0H++98R59i+lAlU4zNzbPup2G4wBfT6h66zhvaXBZzBi2YgV5x6nD
- R6B4dglhqy1xvmyGIZtSiqN04iOO+ke9lOuA0YLZyawUiTAFPICyIKkQXkcFgU80QTxn
- O2q6EmVd6yd5ysEv+X/ik+JfU+wcPKoUN/Oinm6fEigESnOAxK3DujkZVruZG14Xxee+
- QRLShr6BvhgMVmIq1hapgmZ9QkDRBdQhezkHpDCSrUu/NVc64oNSYGaMXKATF+t4Svkr
- TQ+5Eu1w0oR/L+iJusMm261I7sE6/Ij6pQrYZa/28McAI9jmoK973ZiFv1xiR3nAqSHS
- 7dZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=5mKenZTBsLmcUF5eVOyFvOZisFek+2uuLimg7Z+ZTnE=;
- b=knjSq7dEFPTjokMKIyAsqB0bQWWIXt3RhA89R/T5m5jQ4yGjtr6hJZn5L9DUJew1L1
- LanzlTsO1dOEVx0n67FtjWCPiy48BPSoeMZRck3VsC8xW3XN7ksMeYnTUKQq1Dniq86J
- w5wvSInnExQi8OmxGoyTo/LwzzCbbC5oqITU+rpMxwfEqTo/aqSAaFPQsVtbonJ3L6iv
- +EwbtL4dbNoTBAMAwlmYxC+iHXBLjXwMt8GbsHGMYgg+ZtzEUD16gzZ1SUuGKIXRC5rd
- qO9CBW3kxCb+xjkZLswYghgofoMkmLUklwCJ0wfG9Uj2K5Vb6t9aMk03pr3nPSSt2sMg
- ekMg==
-X-Gm-Message-State: APjAAAXBs4+BaVaZ8zsyYiwCPL6MJWrbADxLGAeyMwkJ7Ic5qG0jLAU7
- WBPSRIoUYqRS6mmk3YCA2PkIpaQFnYZC7zbbPTqeD7iF
-X-Google-Smtp-Source: APXvYqzvVrzepe+S+blQPCZWQPxQvU/RNABnf60STfMqtOd64RrcJ5XtI9wnoowt+jFxjMSKM29AR/b+kM5U9nqYsIo=
-X-Received: by 2002:a81:b617:: with SMTP id u23mr2399777ywh.295.1574270451714; 
- Wed, 20 Nov 2019 09:20:51 -0800 (PST)
-Mime-Version: 1.0
+  by cnc.isely.net with ESMTP; Wed, 20 Nov 2019 12:34:52 -0600
+  id 0000000000142724.000000005DD5874C.00001EEC
+Received: from cnc-c.isely.net ([::ffff:75.149.91.89])
+ (AUTH: PLAIN isely, TLS: TLSv1/SSLv3,256bits,DHE-RSA-AES256-SHA)
+ by cnc.isely.net with ESMTPSA; Wed, 20 Nov 2019 12:34:49 -0600
+ id 000000000014271A.000000005DD58749.00001ED8
+Date: Wed, 20 Nov 2019 12:34:49 -0600 (CST)
+From: Mike Isely <isely@isely.net>
+To: Communications nexus for pvrusb2 driver <pvrusb2@isely.net>
+In-Reply-To: <9de84e4b-0adb-dbb7-f808-0d4e6486998e@computer.org>
+Message-ID: <alpine.DEB.2.11.1911201233190.3679@cnc.isely.net>
 References: <alpine.DEB.2.21.1910271644510.15059@sheridan-wavelan>
  <alpine.DEB.2.21.1910271646080.15059@sheridan-wavelan>
  <d3fdc65dba5bc5fa13beae2e5f8b76cc17ecdbf6.camel@gmail.com>
@@ -56,11 +33,8 @@ References: <alpine.DEB.2.21.1910271644510.15059@sheridan-wavelan>
  <eb89143567bebe888485e7f65188051d81b88610.camel@gmail.com>
  <CAMfXtQw-hywrUuCHXW_qSxL5+4ZFhoSSEFji4UTfQkF5ji95MA@mail.gmail.com>
  <9de84e4b-0adb-dbb7-f808-0d4e6486998e@computer.org>
-In-Reply-To: <9de84e4b-0adb-dbb7-f808-0d4e6486998e@computer.org>
-From: Gary Buhrmaster <gary.buhrmaster@gmail.com>
-Date: Wed, 20 Nov 2019 17:20:15 +0000
-Message-ID: <CAMfXtQzBHuNF=7hjxuPvBpenXAV4TVeE4u5LqWRGgBMqAN-Tpg@mail.gmail.com>
-To: Communications nexus for pvrusb2 driver <pvrusb2@isely.net>
+User-Agent: Alpine 2.11 (DEB 23 2013-08-11)
+Mime-Version: 1.0
 Subject: Re: [pvrusb2] [PATCH] pvrusb2: Fix oops on tear-down when radio
  support is not present
 X-BeenThere: pvrusb2@isely.net
@@ -80,15 +54,32 @@ Content-Transfer-Encoding: base64
 Errors-To: pvrusb2-bounces@isely.net
 Sender: "pvrusb2" <pvrusb2-bounces@isely.net>
 
-T24gV2VkLCBOb3YgMjAsIDIwMTkgYXQgNToxMyBQTSBKYW4gQ2V1bGVlcnMgPGphbi5jZXVsZWVy
-c0Bjb21wdXRlci5vcmc+IHdyb3RlOgoKPiBCdXQgaWYgTWlrZSB0YWdzIHRoZSBmaXggZm9yIHN0
-YWJsZSAoYW5kIGlmIHRoYXQgdGFnIGlzIGFjY2VwdGVkKSB0aGVuCj4gaXQgd2lsbCBiZSBiYWNr
-cG9ydGVkIHRvIHN0YWJsZSBrZXJuZWxzIGFzIHdlbGwuCgpUcnVlIGVub3VnaCwgSSB3YXMganVz
-dCByZXNwb25kaW5nIHRvIHRoZSBxdWVzdGlvbgphYm91dCB0aGUgbWFpbmxpbmUga2VybmVsLgoK
-Rm9yIHRoYXQgbWF0dGVyLCBpZiB5b3UgYXJlIHVzaW5nIGEgZGlzdHJvIGtlcm5lbCwKeW91IG1h
-eSBiZSBhYmxlIHRvIGdldCB0aGUgcGFja2FnZXIgdG8gYXBwbHkKYSBsb2NhbCBwYXRjaCB0byB0
-aGVpciBidWlsZHMgKGFsdGhvdWdoIG5vdCBlbnRpcmVseQpsaWtlbHkgZm9yIHNvbWV0aGluZyB0
-aGF0IGltcGFjdHMgc2luZ2xlIGRpZ2l0cyBvZgp1c2VycyBvZiB0aGUgZGlzdHJvKS4KX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KcHZydXNiMiBtYWlsaW5n
-IGxpc3QKcHZydXNiMkBpc2VseS5uZXQKaHR0cDovL3d3dy5pc2VseS5uZXQvY2dpLWJpbi9tYWls
-bWFuL2xpc3RpbmZvL3B2cnVzYjIK
+CkkgcG9zdGVkIGl0IHRvIGxpbnV4LW1lZGlhIHNldmVyYWwgd2Vla3MgYWdvLiAgQmFzZWQgb24g
+ZW1haWwgZmVlZGJhY2sgCnNlZW4gaW4gcmVzcG9uc2UsIGl0IGlzIGdvb2QgdG8gZ28uICBUaGVy
+ZSdzIG5vdGhpbmcgYmVpbmcgd2FpdGVkIGZvciAKdGhhdCBJIGtub3cgYWJvdXQuICBBdCB0aGlz
+IHBvaW50IHRoZSB0aW1pbmcgb2Ygd2hlcmUvd2hlbiBpdCBnb2VzIGlzIGluIAp0aGUgVjRMIG1h
+aW50YWluZXIncyBoYW5kcy4KCiAgLU1pa2UKCk9uIFdlZCwgMjAgTm92IDIwMTksIEphbiBDZXVs
+ZWVycyB3cm90ZToKCj4gT24gMjAvMTEvMjAxOSAxNzoyOCwgR2FyeSBCdWhybWFzdGVyIHdyb3Rl
+Ogo+ID4gT24gVHVlLCBOb3YgMTksIDIwMTkgYXQgOTo1OSBQTSBEaWVnbyBSaXZlcmEgPGRpZWdv
+LnJpdmVyYS5jckBnbWFpbC5jb20+IHdyb3RlOgo+ID4+IEhleSEgQW55IG5ld3Mgb24gdGhlIHBh
+dGNoIG1ha2luZyBpdCBpbnRvIG1haW5saW5lPyBBbmQgaG93IGNhbiBJIHRyYWNrIGlmL3doZW4g
+aXQncyBiZWVuIGludGVncmF0ZWQKPiA+PiB0byB0aGUgY29yZSBrZXJuZWw/Cj4gPiBKdXN0IHRv
+IHNldCBzb21lIGV4cGVjdGF0aW9ucywgSSB0aGluayBpdAo+ID4gY2xlYXJseSBpdCBpcyBub3Qg
+Z29pbmcgaW4gdG8gNS40LCBhbmQgSSB3b3VsZAo+ID4gbm90IGJlIHN1cnByaXNlZCBpdCBtaXNz
+ZXMgNS41IChwdWxsIHJlcXVlc3RzCj4gPiBhcmUgYWxyZWFkeSBiZWluZyBhY2NlcHRlZCwgYWx0
+aG91Z2ggYXMgYQo+ID4gdGFyZ2V0ZWQgZml4LCBpdCBtaWdodCBnZXQgcHVsbGVkIGR1cmluZyB0
+aGUKPiA+IHJjIGZpeCBjeWNsZSksIHNvIDUuNiBjb3VsZCBiZSB0aGUgZWFybGllc3QKPiA+IGZv
+ciBtYWlubGluZS4gIDUuNSBpcyBleHBlY3RlZCAoYXJvdW5kKQo+ID4gTWFyY2gvQXByaWwgMjAy
+MCwgYW5kIDUuNiBwcm9iYWJseSBhcm91bmQKPiA+IEp1bmUvSnVseSAyMDIwLiAgQXMgdG8gd2hl
+biBhbnkgc3BlY2lmaWMKPiA+IGRpc3RybyB3aWxsIHJlcGFja2FnZSB0aGUga2VybmVsIHRoYXQK
+PiA+IGluY2x1ZGVzIHRoZSBmaXgsIHdlbGwsIHRoYXQgb3BlbnMgdXAKPiA+IGFub3RoZXIgY2Fu
+IG9mIGJhZCBlc3RpbWF0aW9uLgo+IEJ1dCBpZiBNaWtlIHRhZ3MgdGhlIGZpeCBmb3Igc3RhYmxl
+IChhbmQgaWYgdGhhdCB0YWcgaXMgYWNjZXB0ZWQpIHRoZW4KPiBpdCB3aWxsIGJlIGJhY2twb3J0
+ZWQgdG8gc3RhYmxlIGtlcm5lbHMgYXMgd2VsbC4KPiBfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwo+IHB2cnVzYjIgbWFpbGluZyBsaXN0Cj4gcHZydXNiMkBp
+c2VseS5uZXQKPiBodHRwOi8vd3d3LmlzZWx5Lm5ldC9jZ2ktYmluL21haWxtYW4vbGlzdGluZm8v
+cHZydXNiMgo+IAoKLS0gCgpNaWtlIElzZWx5CmlzZWx5IEAgaXNlbHkgKGRvdCkgbmV0ClBHUDog
+MDMgNTQgNDMgNEQgNzUgRTUgQ0MgOTIgNzEgMTYgMDEgRTIgQjUgRjUgQzEgRTgKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KcHZydXNiMiBtYWlsaW5nIGxp
+c3QKcHZydXNiMkBpc2VseS5uZXQKaHR0cDovL3d3dy5pc2VseS5uZXQvY2dpLWJpbi9tYWlsbWFu
+L2xpc3RpbmZvL3B2cnVzYjIK
