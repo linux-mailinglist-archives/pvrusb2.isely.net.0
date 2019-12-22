@@ -2,56 +2,22 @@ Return-Path: <pvrusb2-bounces@isely.net>
 X-Original-To: lists+pvrusb2@lfdr.de
 Delivered-To: lists+pvrusb2@lfdr.de
 Received: from cnc.isely.net (cnc.isely.net [75.149.91.89])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12F4D121BAD
-	for <lists+pvrusb2@lfdr.de>; Mon, 16 Dec 2019 22:25:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C888128FED
+	for <lists+pvrusb2@lfdr.de>; Sun, 22 Dec 2019 22:02:41 +0100 (CET)
 Received: from cnc.isely.net (cnc.isely.net [::ffff:192.168.23.2])
   (IDENT: list)
-  by cnc.isely.net with ESMTP; Mon, 16 Dec 2019 15:25:31 -0600
-  id 00000000001426EC.000000005DF7F64B.00003558
-Received: from mail-vs1-f68.google.com (mail-vs1-f68.google.com
- [::ffff:209.85.217.68]) (TLS: TLSv1/SSLv3,128bits,AES128-GCM-SHA256)
- by cnc.isely.net with ESMTPS; Mon, 16 Dec 2019 15:25:28 -0600
- id 0000000000142438.000000005DF7F648.00003546
-Received: by mail-vs1-f68.google.com with SMTP id f8so5091301vsq.8
- for <pvrusb2@isely.net>; Mon, 16 Dec 2019 13:25:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:subject:from:to:in-reply-to:references:date:mime-version
- :user-agent; bh=+huGP8iWMq7iBgEHnvT8xlbovXydF7bvt9UzfJ42i38=;
- b=CBoRI+4uumjJe8EmP/vctf6PvzzdwzHf2LwCYLuaF0pLwXqTrRifah3ivy51zhgYl9
- 8q2iBhtB4JMJc6cYL99uymcYuwAQZmQh6tulIGkA58cMSZVNBoP/HRIdcWy1VIiSnEig
- zwaa4W1jWEFsPTP4+CNftgvyjtJRTmoWU1ROflEh5Icmf9r/lgkC6p6g9lspESqFeLfi
- CVJG2pNhGZsmntvi8Daba2/yml+BQPhCW7bLdu0Bev4gMQr1sqbovj6L52RUURjI85G7
- 52MuEoIrXcsBH4I14SZXMIwGIOHUdrJbVRExpXNvhDXjvzg+lJP1tC5G2E0c7Uvw8wgD
- 9b7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:in-reply-to
- :references:date:mime-version:user-agent;
- bh=+huGP8iWMq7iBgEHnvT8xlbovXydF7bvt9UzfJ42i38=;
- b=tYruMFh7xU8Tjp3cuNoogqDsTOQVn++rsmY9S/ie4yK89cY8U2EKNS40twifScKGtn
- ECAXynp5uebAya5NWVFC12+p7H0nxgVezKevPzYBZOCzUBcNmd/hA1l07U7i0qdeEd6x
- 4J10HkJcnsA5Qv6JRrlsILNZjxd6z1ZA+yrRGN7mtnt9YUEPPkzNRUVwsTZ7TdTCl/kc
- 1lf4ZJmKxSya7ZXLrWFcUzFq7IlRiGL7ZGTpZeCdd0ybb4/ebCqGg6s8SmAiqO7fnFRU
- A5zhytw0BAAiHSBX30tKBHvAR4y9+aDUmLo2rAaubN3kubjFdBjBvJg1VuXeA1yfehJY
- hCog==
-X-Gm-Message-State: APjAAAVjI4jlanjyKgY7pMvLLyGYE946nyb9O+2AYPWIC35QqBD/8D6Z
- SBab9HZw3vWA3VKDZN69AQmwX+qlNrQ=
-X-Google-Smtp-Source: APXvYqxghR0LhZ32q6wJgI0cB2UK6KYiEyBVIqIWw5YUF+n5pTVAbG3RrQEv8cDy5gkxc2EN5rtUXg==
-X-Received: by 2002:a67:6041:: with SMTP id u62mr730569vsb.49.1576531497325;
- Mon, 16 Dec 2019 13:24:57 -0800 (PST)
-Old-Return-Path: <diego.rivera.cr@gmail.com>
-Received: from diego.rivera.prv (ip33-138-50-179.ct.co.cr. [179.50.138.33])
- by smtp.googlemail.com with ESMTPSA id r6sm7367765vsp.5.2019.12.16.13.24.55
- for <pvrusb2@isely.net>
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 16 Dec 2019 13:24:56 -0800 (PST)
-Message-ID: <6a47d848c0db0192294efa8098ea365a792ca753.camel@gmail.com>
-From: Diego Rivera <diego.rivera.cr@gmail.com>
+  by cnc.isely.net with ESMTP; Sun, 22 Dec 2019 15:02:38 -0600
+  id 00000000001426D6.000000005DFFD9EE.0000111A
+Received: from ts3-dock2.isely.net (ts3-dock2.isely.net [::ffff:192.168.23.14])
+ (AUTH: PLAIN isely, TLS: TLSv1/SSLv3,256bits,DHE-RSA-AES256-GCM-SHA384)
+ by cnc.isely.net with ESMTPSA; Sun, 22 Dec 2019 15:02:34 -0600
+ id 00000000001420F6.000000005DFFD9EA.00001109
+Date: Sun, 22 Dec 2019 15:02:34 -0600 (CST)
+From: Mike Isely <isely@isely.net>
 To: Communications nexus for pvrusb2 driver <pvrusb2@isely.net>
-In-Reply-To: <alpine.DEB.2.11.1912131034200.6884@cnc.isely.net>
+In-Reply-To: <6a47d848c0db0192294efa8098ea365a792ca753.camel@gmail.com>
+Message-ID: <alpine.DEB.2.21.1912221501550.12084@sheridan.isely.net>
 References: <alpine.DEB.2.21.1910271644510.15059@sheridan-wavelan>
- <CAA--8UbdVed+8hzKByqU9dh08G7RXPEXj_61zAVG2YvA45FN8Q@mail.gmail.com>
- <alpine.DEB.2.21.1910271818210.15059@sheridan-wavelan>
  <c0487d1ef2fa5d45de45a09c5967fdd18eac72c2.camel@gmail.com>
  <274ef0fd00f1b75290741c4ceb821d1733995094.camel@gmail.com>
  <alpine.DEB.2.21.1910272208580.15059@sheridan-wavelan>
@@ -66,11 +32,9 @@ References: <alpine.DEB.2.21.1910271644510.15059@sheridan-wavelan>
  <alpine.DEB.2.11.1911201254180.3679@cnc.isely.net>
  <0e7360062dcf76eba43abe717ac00125de7dcc8e.camel@gmail.com>
  <alpine.DEB.2.11.1912131034200.6884@cnc.isely.net>
-Date: Mon, 16 Dec 2019 15:24:54 -0600
+ <6a47d848c0db0192294efa8098ea365a792ca753.camel@gmail.com>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="=_cnc.isely.net-13656-1576531531-0001-2"
-User-Agent: Evolution 3.32.1-2
-X-Content-Filtered-By: Mailman/MimeDel 2.1.18
 Subject: Re: [pvrusb2] [PATCH] pvrusb2: Fix oops on tear-down when radio
  support is not present
 X-BeenThere: pvrusb2@isely.net
@@ -85,91 +49,47 @@ List-Help: <mailto:pvrusb2-request@isely.net?subject=help>
 List-Subscribe: <http://www.isely.net/cgi-bin/mailman/listinfo/pvrusb2>,
  <mailto:pvrusb2-request@isely.net?subject=subscribe>
 Reply-To: Communications nexus for pvrusb2 driver <pvrusb2@isely.net>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: pvrusb2-bounces@isely.net
 Sender: "pvrusb2" <pvrusb2-bounces@isely.net>
 
-This is a MIME-formatted message.  If you see this text it means that your
-E-mail software does not support MIME-formatted messages.
-
---=_cnc.isely.net-13656-1576531531-0001-2
-Content-Type: multipart/signed; micalg=pgp-sha1; protocol="application/pgp-signature"; boundary="=_cnc.isely.net-13656-1576531531-0001-3"
-
-This is a MIME-formatted message.  If you see this text it means that your
-E-mail software does not support MIME-formatted messages.
-
---=_cnc.isely.net-13656-1576531531-0001-3
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-I wonder if it will ever make it into the 5.3 branch? This is what the late=
-st Ubuntu uses, and 20.04
-is still a few months away...
-Cheers!
-
-On Fri, 2019-12-13 at 10:35 -0600, Mike Isely wrote:
-> I was cc'ed just a few days ago on pushes of this patch to every stable b=
-ranch.  Specifically,
-> 4.4, 4.9. 4.14, 4.19, and 5.4.
-> So it's getting there.
->   -Mike
-> On Fri, 13 Dec 2019, Diego Rivera wrote:
-> > Hey!! Any news on whether this patch can make it into Stable so it will=
- trickle down?Thanks!On
-> > Wed, 2019-11-20 at 12:55 -0600, Mike Isely wrote:
-> > > It's already in their pipeline.  I'm unclear if reposting that might =
-foul things up.  I will
-> > > askabout this.  The cc's on the post already were after I checked wit=
-h V4L folks about the
-> > > currentpush process (it's been a while).  -MikeOn Wed, 20 Nov 2019, J=
-an Ceuleers wrote:
-> > > > On 20/11/2019 19:34, Mike Isely wrote:
-> > > > > I posted it to linux-media several weeks ago.  Based on email fee=
-dback seen in response,
-> > > > > it isgood to go.  There's nothing being waited for that I know ab=
-out.  At this point the
-> > > > > timing ofwhere/when it goes is in the V4L maintainer's hands.
-> > > >=20
-> > > > Thanks Mike. Your post entered the annals here:
-> > > > https://www.spinics.net/lists/linux-media/msg160029.html
-> > > >=20
-> > > > But it seems that you did not cc: stable. Would it be possible for =
-youto still do that
-> > > > please?Only by doing that will the fix percolate downto distros tha=
-t peope are currently
-> > > > using.
-> > > > Thanks, Jan_______________________________________________pvrusb2 m=
-ailing=20
-> > > > listpvrusb2@isely.net
-> > > > http://www.isely.net/cgi-bin/mailman/listinfo/pvrusb2
-> > > >=20
---=20
-
-
-
-Diego Rivera
-
-
---=_cnc.isely.net-13656-1576531531-0001-3
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Transfer-Encoding: 7bit
-Content-Description: This is a digitally signed message part
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQS+WVRpxpbIDf9cWSYLNvj/2phirQUCXff2JQAKCRALNvj/2phi
-rcs1AJsGRtB7TQd4IewiuD6z+goJPKJxhgCfS6hpxNFNozYtmyRUHzkoGQHRfFo=
-=8xy6
------END PGP SIGNATURE-----
-
---=_cnc.isely.net-13656-1576531531-0001-3--
-
---=_cnc.isely.net-13656-1576531531-0001-2
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KcHZydXNiMiBt
-YWlsaW5nIGxpc3QKcHZydXNiMkBpc2VseS5uZXQKaHR0cDovL3d3dy5pc2VseS5uZXQvY2dpLWJp
-bi9tYWlsbWFuL2xpc3RpbmZvL3B2cnVzYjIK
-
---=_cnc.isely.net-13656-1576531531-0001-2--
+ClNhZGx5LCBwcm9iYWJseSBub3QuICBUaGF0IGFwcGVhcnMgbm90IHRvIGJlIGNvbnNpZGVyZWQg
+YW4gTFRTIGJyYW5jaC4gIApTbyBpZiBpdCB3ZXJlIHRvIGdldCB0aGVyZSwgdGhlIFVidW50dSBw
+cm9qZWN0IHdvdWxkIHByb2JhYmx5IGhhdmUgdG8gCm1lcmdlIGl0IGludG8gdGhlaXIgb3duIGZv
+cmsuCgogIC1NaWtlCgpPbiBNb24sIDE2IERlYyAyMDE5LCBEaWVnbyBSaXZlcmEgd3JvdGU6Cgo+
+IEkgd29uZGVyIGlmIGl0IHdpbGwgZXZlciBtYWtlIGl0IGludG8gdGhlIDUuMyBicmFuY2g/IFRo
+aXMgaXMgd2hhdCB0aGUgbGF0ZXN0IFVidW50dSB1c2VzLCBhbmQgMjAuMDQKPiBpcyBzdGlsbCBh
+IGZldyBtb250aHMgYXdheS4uLgo+IENoZWVycyEKPiAKPiBPbiBGcmksIDIwMTktMTItMTMgYXQg
+MTA6MzUgLTA2MDAsIE1pa2UgSXNlbHkgd3JvdGU6Cj4gPiBJIHdhcyBjYydlZCBqdXN0IGEgZmV3
+IGRheXMgYWdvIG9uIHB1c2hlcyBvZiB0aGlzIHBhdGNoIHRvIGV2ZXJ5IHN0YWJsZSBicmFuY2gu
+ICBTcGVjaWZpY2FsbHksCj4gPiA0LjQsIDQuOS4gNC4xNCwgNC4xOSwgYW5kIDUuNC4KPiA+IFNv
+IGl0J3MgZ2V0dGluZyB0aGVyZS4KPiA+ICAgLU1pa2UKPiA+IE9uIEZyaSwgMTMgRGVjIDIwMTks
+IERpZWdvIFJpdmVyYSB3cm90ZToKPiA+ID4gSGV5ISEgQW55IG5ld3Mgb24gd2hldGhlciB0aGlz
+IHBhdGNoIGNhbiBtYWtlIGl0IGludG8gU3RhYmxlIHNvIGl0IHdpbGwgdHJpY2tsZSBkb3duP1Ro
+YW5rcyFPbgo+ID4gPiBXZWQsIDIwMTktMTEtMjAgYXQgMTI6NTUgLTA2MDAsIE1pa2UgSXNlbHkg
+d3JvdGU6Cj4gPiA+ID4gSXQncyBhbHJlYWR5IGluIHRoZWlyIHBpcGVsaW5lLiAgSSdtIHVuY2xl
+YXIgaWYgcmVwb3N0aW5nIHRoYXQgbWlnaHQgZm91bCB0aGluZ3MgdXAuICBJIHdpbGwKPiA+ID4g
+PiBhc2thYm91dCB0aGlzLiAgVGhlIGNjJ3Mgb24gdGhlIHBvc3QgYWxyZWFkeSB3ZXJlIGFmdGVy
+IEkgY2hlY2tlZCB3aXRoIFY0TCBmb2xrcyBhYm91dCB0aGUKPiA+ID4gPiBjdXJyZW50cHVzaCBw
+cm9jZXNzIChpdCdzIGJlZW4gYSB3aGlsZSkuICAtTWlrZU9uIFdlZCwgMjAgTm92IDIwMTksIEph
+biBDZXVsZWVycyB3cm90ZToKPiA+ID4gPiA+IE9uIDIwLzExLzIwMTkgMTk6MzQsIE1pa2UgSXNl
+bHkgd3JvdGU6Cj4gPiA+ID4gPiA+IEkgcG9zdGVkIGl0IHRvIGxpbnV4LW1lZGlhIHNldmVyYWwg
+d2Vla3MgYWdvLiAgQmFzZWQgb24gZW1haWwgZmVlZGJhY2sgc2VlbiBpbiByZXNwb25zZSwKPiA+
+ID4gPiA+ID4gaXQgaXNnb29kIHRvIGdvLiAgVGhlcmUncyBub3RoaW5nIGJlaW5nIHdhaXRlZCBm
+b3IgdGhhdCBJIGtub3cgYWJvdXQuICBBdCB0aGlzIHBvaW50IHRoZQo+ID4gPiA+ID4gPiB0aW1p
+bmcgb2Z3aGVyZS93aGVuIGl0IGdvZXMgaXMgaW4gdGhlIFY0TCBtYWludGFpbmVyJ3MgaGFuZHMu
+Cj4gPiA+ID4gPiAKPiA+ID4gPiA+IFRoYW5rcyBNaWtlLiBZb3VyIHBvc3QgZW50ZXJlZCB0aGUg
+YW5uYWxzIGhlcmU6Cj4gPiA+ID4gPiBodHRwczovL3d3dy5zcGluaWNzLm5ldC9saXN0cy9saW51
+eC1tZWRpYS9tc2cxNjAwMjkuaHRtbAo+ID4gPiA+ID4gCj4gPiA+ID4gPiBCdXQgaXQgc2VlbXMg
+dGhhdCB5b3UgZGlkIG5vdCBjYzogc3RhYmxlLiBXb3VsZCBpdCBiZSBwb3NzaWJsZSBmb3IgeW91
+dG8gc3RpbGwgZG8gdGhhdAo+ID4gPiA+ID4gcGxlYXNlP09ubHkgYnkgZG9pbmcgdGhhdCB3aWxs
+IHRoZSBmaXggcGVyY29sYXRlIGRvd250byBkaXN0cm9zIHRoYXQgcGVvcGUgYXJlIGN1cnJlbnRs
+eQo+ID4gPiA+ID4gdXNpbmcuCj4gPiA+ID4gPiBUaGFua3MsIEphbl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fcHZydXNiMiBtYWlsaW5nIAo+ID4gPiA+ID4g
+bGlzdHB2cnVzYjJAaXNlbHkubmV0Cj4gPiA+ID4gPiBodHRwOi8vd3d3LmlzZWx5Lm5ldC9jZ2kt
+YmluL21haWxtYW4vbGlzdGluZm8vcHZydXNiMgo+ID4gPiA+ID4gCj4gCgotLSAKCk1pa2UgSXNl
+bHkKaXNlbHkgQCBpc2VseSAoZG90KSBuZXQKUEdQOiAwMyA1NCA0MyA0RCA3NSBFNSBDQyA5MiA3
+MSAxNiAwMSBFMiBCNSBGNSBDMSBFOApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpwdnJ1c2IyIG1haWxpbmcgbGlzdApwdnJ1c2IyQGlzZWx5Lm5ldApodHRw
+Oi8vd3d3LmlzZWx5Lm5ldC9jZ2ktYmluL21haWxtYW4vbGlzdGluZm8vcHZydXNiMgo=
